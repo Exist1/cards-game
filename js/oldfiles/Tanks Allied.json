@@ -1,0 +1,505 @@
+{
+	"M3 Lee": {
+		"img-src": "../assets/cards/M3Lee.png",
+		"type": 1,
+		"weight": 2,
+		"side": 3,
+		"date-start": {
+			"mounth": 4,
+			"year": 1941
+		},
+		"date-end": {
+			"mounth": 12,
+			"year": 1942
+		},
+		"speed": 4,
+		"range": 4,
+		"hp": 4,
+		"fpower": 4,
+		"armor": 5,
+		"cost": 81
+	},
+	
+	"M4A1": {
+		"img-src": "../assets/cards/M4A1.png",
+		"type": 1,
+		"weight": 2,
+		"side": 3,
+		"date-start": {
+			"mounth": 6,
+			"year": 1942
+		},
+		"date-end": {
+			"mounth": 12,
+			"year": 1943
+		},
+		"speed": 4,
+		"range": 5,
+		"hp": 3,
+		"fpower": 5,
+		"armor": 6,
+		"cost": 75
+	},
+
+	"M4A1(76)": {
+		"img-src": "../assets/cards/M4A1(76).png",
+		"type": 1,
+		"weight": 2,
+		"side": 3,
+		"date-start": {
+			"mounth": 1,
+			"year": 1943
+		},
+		"date-end": {
+			"mounth": 12,
+			"year": 1944
+		},
+		"speed": 4,
+		"range": 6,
+		"hp": 4,
+		"fpower": 7,
+		"armor": 6,
+		"cost": 100
+	},
+
+	"M4A3E8": {
+		"img-src": "../assets/cards/M4A3E8.png",
+		"type": 1,
+		"weight": 2,
+		"side": 3,
+		"date-start": {
+			"mounth": 8,
+			"year": 1944
+		},
+		"date-end": {
+			"mounth": 5,
+			"year": 1945
+		},
+		"speed": 5,
+		"range": 6,
+		"hp": 3,
+		"fpower": 7,
+		"armor": 7,
+		"cost": 110
+	},	
+
+	"Jumbo": {
+		"img-src": "../assets/cards/Jumbo.png",
+		"type": 1,
+		"weight": 3,
+		"side": 3,
+		"date-start": {
+			"mounth": 3,
+			"year": 1944
+		},
+		"date-end": {
+			"mounth": 5,
+			"year": 1945
+		},
+		"speed": 3,
+		"range": 5,
+		"hp": 3,
+		"fpower": 5,
+		"armor": 12,
+		"cost": 151
+	},
+	
+	"Jumbo(76)": {
+		"img-src": "../assets/cards/Jumbo(76).png",
+		"type": 1,
+		"weight": 3,
+		"side": 3,
+		"date-start": {
+			"mounth": 1,
+			"year": 1945
+		},
+		"date-end": {
+			"mounth": 5,
+			"year": 1945
+		},
+		"speed": 3,
+		"range": 6,
+		"hp": 3,
+		"fpower": 7,
+		"armor": 12,
+		"cost": 178
+	},
+	
+	"Firefly": {
+		"img-src": "../assets/cards/Firefly.png",
+		"type": 1,
+		"weight": 2,
+		"side": 3,
+		"date-start": {
+			"mounth": 12,
+			"year": 1943
+		},
+		"date-end": {
+			"mounth": 5,
+			"year": 1945
+		},
+		"speed": 4,
+		"range": 8,
+		"hp": 3,
+		"fpower": 8,
+		"armor": 6,
+		"cost": 139
+	},
+	
+	"Matilda": {
+		"img-src": "../assets/cards/Matilda.png",
+		"type": 1,
+		"weight": 2,
+		"side": 3,
+		"date-start": {
+			"mounth": 4,
+			"year": 1941
+		},
+		"date-end": {
+			"mounth": 2,
+			"year": 1943
+		},
+		"speed": 2,
+		"range": 3,
+		"hp": 3,
+		"fpower": 4,
+		"armor": 7,
+		"cost": 55
+	},
+	
+	"Comet": {
+		"img-src": "../assets/cards/Comet.png",
+		"type": 1,
+		"weight": 2,
+		"side": 3,
+		"date-start": {
+			"mounth": 12,
+			"year": 1944
+		},
+		"date-end": {
+			"mounth": 5,
+			"year": 1945
+		},
+		"speed": 5,
+		"range": 7,
+		"hp": 3,
+		"fpower": 8,
+		"armor": 5,
+		"cost": 122
+	},
+	
+	"Cromwell": {
+		"img-src": "../assets/cards/Cromwell.png",
+		"type": 1,
+		"weight": 2,
+		"side": 3,
+		"date-start": {
+			"mounth": 11,
+			"year": 1942
+		},
+		"date-end": {
+			"mounth": 5,
+			"year": 1945
+		},
+		"speed": 7,
+		"range": 5,
+		"hp": 3,
+		"fpower": 5,
+		"armor": 5,
+		"cost": 89
+	},
+	
+	"Churchill I": {
+		"img-src": "../assets/cards/Churchill-I.png",
+		"type": 1,
+		"weight": 3,
+		"side": 3,
+		"date-start": {
+			"mounth": 4,
+			"year": 1941
+		},
+		"date-end": {
+			"mounth": 6,
+			"year": 1942
+		},
+		"speed": 3,
+		"range": 3,
+		"hp": 5,
+		"fpower": 4,
+		"armor": 8,
+		"cost": 143
+	},
+	
+	"Churchill III": {
+		"img-src": "../assets/cards/Churchill-III.png",
+		"type": 1,
+		"weight": 3,
+		"side": 3,
+		"date-start": {
+			"mounth": 7,
+			"year": 1942
+		},
+		"date-end": {
+			"mounth": 12,
+			"year": 1943
+		},
+		"speed": 3,
+		"range": 4,
+		"hp": 5,
+		"fpower": 5,
+		"armor": 8,
+		"cost": 155
+	},
+	
+	"Churchill VII": {
+		"img-src": "../assets/cards/Churchill-VII.png",
+		"type": 1,
+		"weight": 3,
+		"side": 3,
+		"date-start": {
+			"mounth": 1,
+			"year": 1944
+		},
+		"date-end": {
+			"mounth": 5,
+			"year": 1945
+		},
+		"speed": 3,
+		"range": 5,
+		"hp": 5,
+		"fpower": 6,
+		"armor": 11,
+		"cost": 245
+	},
+	
+	"Pershing": {
+		"img-src": "../assets/cards/Pershing.png",
+		"type": 1,
+		"weight": 3,
+		"side": 3,
+		"date-start": {
+			"mounth": 2,
+			"year": 1945
+		},
+		"date-end": {
+			"mounth": 5,
+			"year": 1945
+		},
+		"speed": 4,
+		"range": 7,
+		"hp": 4,
+		"fpower": 9,
+		"armor": 9,
+		"cost": 220
+	},
+	
+	"M3 Stuart": {
+		"img-src": "../assets/cards/M3-Stuart.png",
+		"type": 1,
+		"weight": 1,
+		"side": 3,
+		"date-start": {
+			"mounth": 4,
+			"year": 1941
+		},
+		"date-end": {
+			"mounth": 9,
+			"year": 1943
+		},
+		"speed": 6,
+		"range": 3,
+		"hp": 2,
+		"fpower": 2,
+		"armor": 3,
+		"cost": 40
+	},
+	
+	"M5 Stuart": {
+		"img-src": "../assets/cards/M5-Stuart.png",
+		"type": 1,
+		"weight": 1,
+		"side": 3,
+		"date-start": {
+			"mounth": 4,
+			"year": 1942
+		},
+		"date-end": {
+			"mounth": 3,
+			"year": 1944
+		},
+		"speed": 6,
+		"range": 3,
+		"hp": 3,
+		"fpower": 2,
+		"armor": 3,
+		"cost": 44
+	},
+	
+	"Chaffie": {
+		"img-src": "../assets/cards/Chaffie.png",
+		"type": 1,
+		"weight": 1,
+		"side": 3,
+		"date-start": {
+			"mounth": 4,
+			"year": 1944
+		},
+		"date-end": {
+			"mounth": 5,
+			"year": 1945
+		},
+		"speed": 6,
+		"range": 5,
+		"hp": 2,
+		"fpower": 5,
+		"armor": 3,
+		"cost": 55
+	},
+	
+	"Locust": {
+		"img-src": "../assets/cards/Locust.png",
+		"type": 1,
+		"weight": 1,
+		"side": 3,
+		"date-start": {
+			"mounth": 4,
+			"year": 1943
+		},
+		"date-end": {
+			"mounth": 5,
+			"year": 1945
+		},
+		"speed": 7,
+		"range": 3,
+		"hp": 1,
+		"fpower": 2,
+		"armor": 2,
+		"cost": 47
+	},
+	
+	"Valentine": {
+		"img-src": "../assets/cards/Valentine.png",
+		"type": 1,
+		"weight": 1,
+		"side": 3,
+		"date-start": {
+			"mounth": 4,
+			"year": 1941
+		},
+		"date-end": {
+			"mounth": 3,
+			"year": 1943
+		},
+		"speed": 3,
+		"range": 3,
+		"hp": 3,
+		"fpower": 4,
+		"armor": 6,
+		"cost": 43
+	},
+	
+	"Crusader": {
+		"img-src": "../assets/cards/Crusader.png",
+		"type": 1,
+		"weight": 1,
+		"side": 3,
+		"date-start": {
+			"mounth": 4,
+			"year": 1941
+		},
+		"date-end": {
+			"mounth": 12,
+			"year": 1942
+		},
+		"speed": 5,
+		"range": 3,
+		"hp": 3,
+		"fpower": 4,
+		"armor": 3,
+		"cost": 40
+	},
+	
+	"M8A1": {
+		"img-src": "../assets/cards/M8A1.png",
+		"type": 2,
+		"weight": 1,
+		"side": 3,
+		"date-start": {
+			"mounth": 5,
+			"year": 1942
+		},
+		"date-end": {
+			"mounth": 8,
+			"year": 1944
+		},
+		"speed": 5,
+		"range": 4,
+		"hp": 2,
+		"fpower": 4,
+		"armor": 3,
+		"cost": 34
+	},
+	
+	"Slugger": {
+		"img-src": "../assets/cards/Slugger.png",
+		"type": 2,
+		"weight": 2,
+		"side": 3,
+		"date-start": {
+			"mounth": 11,
+			"year": 1943
+		},
+		"date-end": {
+			"mounth": 5,
+			"year": 1945
+		},
+		"speed": 5,
+		"range": 7,
+		"hp": 2,
+		"fpower": 9,
+		"armor": 5,
+		"cost": 103
+	},
+	
+	"Wolverine": {
+		"img-src": "../assets/cards/Wolverine.png",
+		"type": 2,
+		"weight": 2,
+		"side": 3,
+		"date-start": {
+			"mounth": 9,
+			"year": 1942
+		},
+		"date-end": {
+			"mounth": 8,
+			"year": 1944
+		},
+		"speed": 4,
+		"range": 6,
+		"hp": 2,
+		"fpower": 6,
+		"armor": 4,
+		"cost": 58
+	},
+
+	"Hellcat": {
+		"img-src": "../assets/cards/Hellcat.png",
+		"type": 2,
+		"weight": 2,
+		"side": 3,
+		"date-start": {
+			"mounth": 7,
+			"year": 1943
+		},
+		"date-end": {
+			"mounth": 5,
+			"year": 1945
+		},
+		"speed": 6,
+		"range": 6,
+		"hp": 2,
+		"fpower": 7,
+		"armor": 2,
+		"cost": 71
+	}
+}

@@ -1,0 +1,20 @@
+.start-screen
+	&__buttons
+		margin: calc((#{$GOFFSET}*100vw)/#{$GWIDTH}) auto 0
+		width: 65%
+	&__btn:first-child
+		margin-bottom: calc((#{$GOFFSET/2}*100vw)/#{$GWIDTH})
+	@media screen and ( max-width: #{$GTABLET}px )
+		&__wrap
+			margin: auto 0
+		&__buttons
+			+size-calc('margin', 'rxx', $GOFFSET*0.75, $GHEIGHT, auto)
+			width: 80%
+		&__btn:first-child
+			+size-calc('margin-bottom', 'r', $GOFFSET*0.375)
+	@media screen and ( max-width: #{$GMOBILE}px )
+		&__buttons
+			+size-calc('margin', 'rxx', $GOFFSET*0.375, $GHEIGHT, auto)
+			width: 100%
+		&__btn:first-child
+			+size-calc('margin-bottom', 'r', $GOFFSET/4)

@@ -1,0 +1,216 @@
+.attack-table
+	&__wrap
+		display: flex
+	&__panel-up
+		display: none
+		left: 0
+		position: fixed
+		top: 0
+		width: 100%
+		z-index: 999
+		&::before
+			background: $bgDecorDefault
+			background-size: $gridMobileDecor
+	&__tab
+		border-radius: 0
+		display: flex
+		flex-basis: calc(100%/3)
+		font-family: $GFONT_bold
+		font-weight: bold
+		+size-font('r', 40)
+		line-height: 1.8
+		z-index: 2
+		span
+			margin: auto
+	&__arrow
+		display: flex
+		height: 100%
+		left: 0
+		position: absolute
+		top: 0
+		transform: translateX(-(100%/3)*2)
+		width: calc(100% + #{$GOFFSET*0.075}rem)
+		z-index: 1
+		&_start, &_end
+			border-radius: 0
+			display: block
+			height: 100%
+			position: absolute
+			top: 0
+			&::before
+				background: $bgDecorLight
+				background-size: $gridMobileDecor
+		&_start
+			left: 0
+			width: calc(100% - #{$GOFFSET*0.075}rem)
+		&_end
+			clip-path: polygon(100% 50%, 0 0, 0 100%)
+			right: 0
+			+size-calc('width', 'r', $GOFFSET*0.75)
+	&__svg-panel, &__title svg
+		fill: $COLOR_grey
+		height: 85%
+		left: 0
+		position: absolute
+		top: 50%
+		transform: translateY(-50%)
+		width: 100%
+		z-index: -1
+	&__svg-panel
+		.attack-table__tab.is-active &
+			fill: $COLOR_bgDefault
+	&__item
+		flex-basis: calc(100%/3)
+		padding: 0 calc((#{$GOFFSET/2}*100vw)/#{$GWIDTH})
+		&:nth-child(3)
+			border:
+				left: 1px solid $COLOR_separator
+				right: 1px solid $COLOR_separator
+		&:not(:nth-child(3))
+			display: flex
+			flex-direction: column
+	&__title
+		+resp-font(75, 50)
+		line-height: 1.75
+		position: relative
+		text-align: center
+		text-transform: uppercase
+		svg
+			height: 100%
+			top: 0
+			transform: none
+	&__info
+		margin-top: calc((#{$GOFFSET/2}*100vw)/#{$GWIDTH})
+	&__text
+		+resp-font(24, 16)
+		&::after
+			color: $COLOR_yellow
+	&__chance::after
+		content: attr(data-chance) '%'
+	&__max-damage::after
+		content: attr(data-damage)
+	&__result
+		color: $COLOR_yellow
+		+resp-font(40, 30)
+		margin-top: calc((#{$GOFFSET/2}*100vw)/#{$GWIDTH})
+		text-align: center
+		text-transform: uppercase
+		&::before
+			color: $GCOLOR_white
+			content: 'Результат:'
+			display: block
+			font-family: $GFONT_regular
+			font-weight: normal
+			+resp-font(24, 16)
+			+size_calc('margin-bottom', 'r', $GOFFSET/4)
+			text-transform: none
+	&__back
+		align-items: center
+		display: flex
+		justify-content: center
+		svg
+			height: calc((#{$GOFFSET*1.25}*100vw)/#{$GWIDTH})
+			margin-right: calc((#{$GOFFSET/2}*100vw)/#{$GWIDTH})
+			width: calc((#{$GOFFSET*1.25}*100vw)/#{$GWIDTH})
+	&__list
+		display: flex
+		justify-content: space-between
+		flex-wrap: wrap
+		margin: calc((#{$GOFFSET/2}*100vw)/#{$GWIDTH}) 0 auto
+		position: relative
+		&::before
+			align-items: center
+			background-color: rgba($GCOLOR_black, 0.9)
+			content: attr(data-message)
+			color: $COLOR_yellow
+			display: flex
+			+resp-font(22, $GFONT_min)
+			justify-content: center
+			height: 100%
+			opacity: 0
+			+size-calc('padding', 'r', $GOFFSET/4)
+			position: absolute
+			pointer-events: none
+			text-align: center
+			width: 100%
+			z-index: 999
+		&.is-error::before
+			opacity: 1
+			pointer-events: all
+		&_fpower .attack-table__buttons
+			&:nth-last-child(2)
+				order: -1
+		&_armor .attack-table__buttons
+			&:nth-last-child(3)
+				order: 1
+		&_cube .attack-table__buttons
+			&:last-child()
+				order: -1
+	&__buttons
+		cursor: no-drop
+		flex-basis: calc(100%/4.25)
+		font-family: $GFONT_bold
+		font-weight: bold
+		+resp-font(28, 20)
+		line-height: 2
+		margin-bottom: calc((#{$GOFFSET*0.375}*100vw)/#{$GWIDTH})
+		text-align: center
+		&::before
+			background: $bgDecorLight
+			background-size: $gridDecor
+		.attack-table__list.is-active &
+			cursor: pointer
+		&_close
+			&::before
+				background: $bgDecorDefault
+				background-size: $gridDecor
+			.attack-table__list.is-active &
+				cursor: no-drop
+		&.is-active
+			color: $COLOR_bgDefault
+			&::before
+				background-color: $GCOLOR_white
+				background-image: none
+	@media screen and ( max-width: #{$GTABLET}px )
+		padding-top: calc(((#{$GOFFSET*2}*100vw)/#{$GWIDTH}) + #{$GOFFSET*0.18}rem)
+		&__wrap
+			display: block
+		&__item
+			height: 100%
+			flex-basis: auto
+			opacity: 0
+			padding: 0
+			pointer-events: none
+			width: 100%
+			&:nth-child(3)
+				border: none
+			&.is-active
+				opacity: 1
+				pointer-events: all
+		&__panel-up
+			display: flex
+		&__info
+			+size_calc('margin-top', 'r', $GOFFSET/2)
+		&__back svg
+			+size-calc('height', 'r', $GOFFSET)
+			+size-calc('margin-right', 'r', $GOFFSET/4)
+			+size-calc('width', 'r', $GOFFSET)
+		&__list
+			+size_calc('margin', 'rx', $GOFFSET*0.375)
+		&__buttons
+			+size_calc('margin-bottom', 'r', $GOFFSET*0.375)
+			&::before
+				background-size: $gridTabletDecor
+			&_close::before
+				background-size: $gridTabletDecor
+	@media screen and ( max-width: #{$GMOBILE}px )
+		&__title
+			+size_calc('margin', 'rx', $GOFFSET*0.375)
+		&__list
+			+size_calc('margin', 'rx', $GOFFSET/4)
+		&__buttons
+			+size_calc('margin-bottom', 'r', $GOFFSET/4)
+			&::before
+				background-size: $gridMobileDecor
+			&_close::before
+				background-size: $gridMobileDecor

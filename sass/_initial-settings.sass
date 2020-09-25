@@ -1,0 +1,137 @@
+.initial-settings
+	&__title::before
+		content: 'Настройте игру, прежде чем начать.'
+	&__body
+		display: flex
+		flex-wrap: wrap
+		justify-content: space-between
+		margin-top: calc((#{$GOFFSET}*100vw)/#{$GWIDTH})
+	&__item
+		flex-basis: calc(100%/3)
+		padding: 0 calc((#{$GOFFSET/2}*100vw)/#{$GWIDTH})
+		order: 0
+		&::before
+			content: attr(settings-name)
+			display: block
+			+resp-font(16, $GFONT_min)
+			margin-bottom: calc((#{$GOFFSET/2}*100vw)/#{$GWIDTH})
+		&:nth-child(2)
+			border:
+				left: 1px solid $GCOLOR_white
+				right: 1px solid $GCOLOR_white
+			&::after
+				color: $COLOR_red
+				content: 'Заполните обязательные поля!'
+				display: block
+				+resp-font(16, $GFONT_min)
+				margin-top: calc((#{$GOFFSET*0.375}*100vw)/#{$GWIDTH})
+				opacity: 0
+				text-align: center
+		&:last-child
+			flex-basis: 100%
+			margin-top: calc((#{$GOFFSET/2}*100vw)/#{$GWIDTH})
+			&::before
+				display: none
+		&.is-error
+			&::after
+				opacity: 1
+	&__date
+		align-items: center
+		display: flex
+		justify-content: space-between
+		margin-bottom: calc((#{$GOFFSET/2}*100vw)/#{$GWIDTH})
+	&__number
+		flex-basis: calc(100%/3.125)
+	&__switchBtn
+		display: flex
+		justify-content: center
+		&::before
+			border-style: solid
+			border-color: $GCOLOR_null
+			+size_calc('border-left-width', 'r', $GOFFSET)
+			+size_calc('border-right-width', 'r', $GOFFSET)
+			content: ''
+	&__next
+		&::before
+			border-bottom-color: $COLOR_bgLight
+			+size_calc('border-bottom-width', 'r', $GOFFSET/2)
+		&.is-end::before
+			border-bottom-color: $COLOR_bgDefault
+	&__text
+		font-family: $GFONT_bold
+		font-weight: bold
+		+resp-font(50, 28)
+		+size-calc('margin', 'rx', $GOFFSET/4)
+		text-align: center
+		&::before
+			background: $bgDecorDefault
+			background-size: $gridDecor
+	&__prev
+		&::before
+			border-top-color: $COLOR_bgLight
+			+size_calc('border-top-width', 'r', $GOFFSET/2)
+		&.is-end::before
+			border-top-color: $COLOR_bgDefault
+	&__label
+		display: block
+		&:not(:last-child)
+			margin-bottom: calc((#{$GOFFSET/4}*100vw)/#{$GWIDTH})
+		&::before
+			background: $bgDecorDefault
+			background-size: $gridDecor
+		&.is-error::before
+			background: $bgDecorError
+			background-size: $gridDecor
+	&__player
+		+resp-font(20, $GFONT_min)
+		z-index: 1
+	&__resources
+		+resp-font(80, 35)
+		span::after
+			content: '%'
+	&__random
+		+resp-font(22, 16)
+		width: 100%
+	&__btn
+		margin: 0 auto
+		width: 100% - (100%/3)
+	@media screen and ( max-width: #{$GTABLET}px )
+		&__body
+			+size-calc('margin-top', 'r', $GOFFSET*0.75)
+		&__item
+			flex-basis: 100%
+			padding: 0
+			&::before
+				border-top: 1px solid $GCOLOR_white
+				+size-calc('margin-bottom', 'r', $GOFFSET*0.375)
+				+size-calc('padding-top', 'r', $GOFFSET/4)
+			&:not(:last-child)
+				+size-calc('margin-bottom', 'r', $GOFFSET*0.375)
+			&:nth-child(2)
+				border: none
+				order: 2
+				&::after
+					+size-calc('margin-top', 'r', $GOFFSET/4)
+			&:last-child
+				margin-top: 0
+				order: 2
+		&__date
+			+size-calc('margin-bottom', 'r', $GOFFSET/2)
+		&__text, &__label, &__label.is-error
+			&::before
+				background-size: $gridTabletDecor
+		&__label:not(:last-child)
+			+size-calc('margin-bottom', 'r', $GOFFSET/4)
+		&__btn
+			width: 100%
+	@media screen and ( max-width: #{$GMOBILE}px )
+		&__body
+			+size-calc('margin-top', 'r', $GOFFSET*0.375)
+		&__item
+			&::before
+				+size-calc('margin-bottom', 'r', $GOFFSET/4)
+			&:not(:last-child)
+				+size-calc('margin-bottom', 'r', $GOFFSET*0.375)
+		&__text, &__label, &__label.is-error
+			&::before
+				background-size: $gridMobileDecor

@@ -1,0 +1,115 @@
+.army-formation
+	&__title
+		align-items: center
+		display: flex
+		&::before, &::after
+			display: block
+		&::before
+			content: 'Время сформировать армию, ' attr(data-player) '!'
+		&::after
+			content: "**." attr(data-month) '.19' attr(data-year)
+			+resp_font(50, 22)
+			margin-left: auto
+	&__subtitle
+		+resp_font(20, $GFONT_min)
+	&__body
+		display: flex
+		+size_calc('margin-top', 'v', $GOFFSET/2)
+	&__list
+		flex-basis: $armyOffset
+		height: 55vh
+		overflow: hidden
+	&__info
+		flex-basis: 100% - $armyOffset
+	&__tab
+		display: flex
+		flex-wrap: wrap
+		justify-content: space-between
+		height: 100%
+		opacity: 0
+		overflow-x: hidden
+		+size_calc('padding-right', 'r', $GOFFSET/2)
+		pointer-events: none
+		position: absolute
+		width: 100%
+		z-index: 1
+		&.is-active
+			opacity: 1
+			pointer-events: all
+			z-index: 2
+	&__germany .army-formation__name
+		color: $COLOR_red
+	&__ussr .army-formation__name
+		color: $COLOR_green
+	&__allies .army-formation__name
+		color: $COLOR_blue
+	&__item
+		+size_calc('border-radius', 'r', $GBDRAIUS*2.5)
+		flex-basis: calc(100%/3.125)
+		+size_calc('margin-top', 'v', $GOFFSET/2)
+		&_tank .army-formation__card
+		&_pt-sau .army-formation__card
+	&__card
+		+size_calc('padding', 'r', $GOFFSET/2)
+		&::before
+			
+	&__name
+		background: left center no-repeat
+		background-size: $armyImage auto
+		+resp_font(26, 18)
+		line-height: 2.75
+		+size_calc('margin-bottom', 'v', $GOFFSET*0.375)
+		padding-left: $armyImage + 2.5%
+	&__progress
+		background-color: $COLOR_red
+		display: block
+		height: 100%
+		left: 0
+		position: absolute
+		top: 0
+		width: 0%
+		&-box
+			+size_calc('margin-bottom', 'v', $GOFFSET/2)
+		&-item
+			background-color: $GCOLOR_black
+			+size_calc('border-radius', 'r', $GBDRAIUS)
+			+size_calc('margin-bottom', 'r', $GOFFSET/8)
+			overflow: hidden
+			&::before
+				background: $bgDecorDark center
+				background-size: $gridDecor
+				content: ''
+				height: 100%
+				left: 0
+				pointer-events: none
+				position: absolute
+				top: 0
+				width: 100%
+			&::after
+				content: attr(data-progress)
+				display: block
+				+resp_font(18, $GFONT_min)
+				text-align: center
+				z-index: 1
+	&__info
+	&__box
+		align-items: center
+		display: flex
+		&:first-child::after
+			border-left: 1px solid $COLOR_separator
+			color: inherit
+			content: attr(data-cost)
+			font-family: inherit
+			font-size: inherit
+			font-weight: inherit
+			line-height: inherit
+			margin-left: auto
+			padding-left: 7.5%
+	&__group		
+	@media screen and ( max-width: #{$GTABLET}px )
+		&__item
+			+size_calc('margin-top', 'r', $GOFFSET/2)
+	@media screen and ( max-width: #{$GMOBILE}px )
+		&__item
+			flex-basis: 100%
+			+size_calc('margin-top', 'r', $GOFFSET*0.375)

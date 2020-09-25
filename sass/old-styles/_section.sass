@@ -1,0 +1,70 @@
+.section
+	display: flex
+	height: 100%
+	left: 0
+	opacity: 0
+	overflow-x: hidden
+	+size_calc('padding', 'rx', $GOFFSET/4, $GHEIGHT, calc((#{$GOFFSET/2}*100vw)/#{$MINBODY}))
+	pointer-events: none
+	position: absolute
+	top: 50%
+	transform: translateY(-50%)
+	width: 100%
+	z-index: 1
+	&.is-active
+		opacity: 1
+		pointer-events: all
+		transition-delay: $TRS_time*1.5
+		z-index: 2
+	&__content
+		flex-basis: 100%
+		margin: auto
+	&__title
+		+resp_font(44, 22)
+		+size_calc('margin-bottom', 'v', $GOFFSET)
+		text-align: center
+	&__btn
+		background-color: $GCOLOR_white
+		+size_calc('border-radius', 'r', $GBDRAIUS)
+		color: $GCOLOR_black
+		+resp_font(28, $GFONT_min)
+		line-height: 2.25
+	&__decor
+		+size_calc('border-radius', 'r', $GBDRAIUS)
+		color: $GCOLOR_white
+		overflow: hidden
+		&::before
+			background-position: center
+			background-size: $gridDecor
+			content: ''
+			height: 100%
+			left: 0
+			pointer-events: none
+			position: absolute
+			top: 0
+			width: 100%
+		&_default
+			background-color: #333
+			&::before
+				background-image: $bgDecorDefault
+		&_light
+			background-color: $COLOR_bgBtn
+			&::before
+				background-image: $bgDecorLight
+		&_error
+			background-color: $COLOR_errorInput
+			&::before
+				background-image: $bgDecorError
+	@media screen and ( max-width: #{$GTABLET}px )
+		+size_calc('padding', 'rx', $GOFFSET/2, $GHEIGHT, calc((#{$GOFFSET/2}*100vw)/#{$MINBODY}))
+		top: 0
+		transform: none
+		&__title
+			+size_calc('margin-bottom', 'r', $GOFFSET)
+		&__decor::before
+			background-size: $gridDecor + 6vw
+	@media screen and ( max-width: #{$GMOBILE}px )
+		&__title
+			+size_calc('margin-bottom', 'r', $GOFFSET/2)
+		&__decor::before
+			background-size: $gridDecor + 16vw

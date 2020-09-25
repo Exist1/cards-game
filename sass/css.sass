@@ -1,0 +1,103 @@
+@import '_vars.sass'
+@import '_mixins.sass'
+
++font-face("Font-Regular", "../font/ProximaNova-Regular")
++font-face("Font-Bold", "../font/ProximaNova-Bold")
+
+::selection
+	background-color: $GCOLOR_white
+	color: $GCOLOR_black
+
+::placeholder
+	color: $COLOR_grey
+
+*, *::before, *::after
+	box-sizing: border-box
+	color: $GCOLOR_white
+	font-family: $GFONT_regular
+	font-weight: normal
+	line-height: $LH_text
+	list-style: none
+	margin: 0
+	outline: none
+	padding: 0
+	// position: relative
+	scroll-behavior: smooth
+	text-decoration: none
+	transition: all $TRSC
+	user-select: none
+
+html
+	font-size: 10px
+	height: 100%
+
+picture
+	display: block
+	z-index: 1
+textarea
+	overflow: hidden
+	resize: none
+button, input, textarea
+	background-color: $GCOLOR_null
+	border: none
+	cursor: pointer
+	display: block
+	width: 100%
+button, a, p, li, span, h1, h2, h3, h4, h5, h6
+	span, &::before, &::after
+		color: inherit
+		font-family: inherit
+		font-style: inherit
+		font-weight: inherit
+		line-height: inherit
+		pointer-events: none
+		z-index: 2
+input, textarea
+	+size_calc('padding', 'r', $GOFFSET/4)
+	&:focus::placeholder
+		opacity: 0
+		color: $GCOLOR_null
+h1, h2, h3, h4, h5, h6
+	font-family: $GFONT_bold
+	font-weight: bold
+	line-height: $LH_head
+
+body
+	background-color: $GCOLOR_black
+	height: 100%
+	+size_calc('min-width', 'r', $MINBODY)
+	overflow: hidden
+	position: relative
+	&::before
+		background: $bgDecorDark
+		background-size: $gridDecor
+		bottom: calc((#{$GOFFSET}*100vw)/#{$GWIDTH})
+		content: ''
+		display: block
+		left: calc((#{$GOFFSET}*100vw)/#{$GWIDTH})
+		position: absolute
+		right: calc((#{$GOFFSET}*100vw)/#{$GWIDTH})
+		top: calc((#{$GOFFSET}*100vw)/#{$GWIDTH})
+		z-index: 1
+	@media screen and ( max-width: #{$GTABLET}px )
+		&::before
+			background-size: $gridTabletDecor
+	@media screen and ( max-width: #{$GMOBILE}px )
+		&::before
+			background-size: $gridMobileDecor
+
+.sprite
+	display: none
+	left: -9999px
+	opacity: 0
+	pointer-events: none
+	position: absolute
+	top: -9999px
+	z-index: -9999
+
+@import '_screen.sass'
+@import '_start-screen.sass'
+@import '_initial-settings.sass'
+@import '_starting-army.sass'
+@import '_global.sass'
+@import '_attack-table.sass'

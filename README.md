@@ -1,1 +1,1 @@
-# cards-game
+# Сard-Tanks

@@ -1,0 +1,222 @@
+@mixin resp-font ($pcSize, $mobSize)
+  $addSize: $pcSize - $mobSize
+  $addMobSize: ($addSize*2)*0.7
+  @media (max-width: #{$GMOBILE}px)
+    font-size: calc(#{$mobSize + px} + #{$addMobSize} * ((100vw - 320px)/#{$GWIDTH}))
+  @media (min-width: #{$GMOBILE}px)
+    font-size: calc(#{$mobSize + px} + #{$addSize} * (100vw/#{$GWIDTH}))
+	
+@mixin font-face($font-family, $file-path, $weight: normal, $style: normal, $asset-pipeline: false )
+	@font-face
+		font-family: $font-family
+		font-weight: $weight
+		font-style: $style
+		font-display: fallback
+
+		@if $asset-pipeline == true 
+			src: font-url('#{$file-path}.eot')
+			src: font-url('#{$file-path}.eot?#iefix') format('embedded-opentype'), font-url('#{$file-path}.woff2') format('woff2'), font-url('#{$file-path}.ttf') format('truetype')
+		@else
+			src: url('#{$file-path}.eot')
+			src: url('#{$file-path}.eot?#iefix') format('embedded-opentype'), url('#{$file-path}.woff2') format('woff2'), url('#{$file-path}.ttf') format('truetype')
+
+@mixin size-calc($what, $values, $first_value, $vh: $GHEIGHT, $second_value: 0, $third_value: 0, $fourth_value: 0)
+
+	// Для одного значения:
+	@if $values == 'r'
+		#{$what}: #{$first_value/10}rem
+	@else if $values == 'v'
+		#{$what}: calc((#{$first_value}*100vh)/#{$vh})
+	@else if $values == 'x'
+		#{$what}: $first_value
+
+	// Для двух значения:
+	@else if $values == 'rr'
+		#{$what}: #{$first_value/10}rem #{$second_value/10}rem
+	@else if $values == 'rv'
+		#{$what}: #{$first_value/10}rem calc((#{$second_value}*100vh)/#{$vh})
+	@else if $values == 'rx'
+		#{$what}: #{$first_value/10}rem $second_value
+	@else if $values == 'vr'
+		#{$what}: calc((#{$first_value}*100vh)/#{$vh}) #{$second_value/10}rem
+	@else if $values == 'vv'
+		#{$what}: calc((#{$first_value}*100vh)/#{$vh}) calc((#{$second_value}*100vh)/#{$vh})
+	@else if $values == 'vx'
+		#{$what}: calc((#{$first_value}*100vh)/#{$vh}) $second_value
+	@else if $values == 'xr'
+		#{$what}: $first_value #{$second_value/10}rem
+	@else if $values == 'xv'
+		#{$what}: $first_value calc((#{$second_value}*100vh)/#{$vh})
+	@else if $values == 'xx'
+		#{$what}: $first_value $second_value
+
+	// Для трёх значений:
+	@else if $values == 'rrr'
+		#{$what}: #{$first_value/10}rem #{$second_value/10}rem #{$third_value/10}rem
+	@else if $values == 'rrv'
+		#{$what}: #{$first_value/10}rem #{$second_value/10}rem calc((#{$third_value}*100vh)/#{$vh})
+	@else if $values == 'rrx'
+		#{$what}: #{$first_value/10}rem #{$second_value/10}rem $third_value
+	@else if $values == 'rvr'
+		#{$what}: #{$first_value/10}rem calc((#{$second_value}*100vh)/#{$vh}) #{$third_value/10}rem
+	@else if $values == 'rvv'
+		#{$what}: #{$first_value/10}rem calc((#{$second_value}*100vh)/#{$vh}) calc((#{$third_value}*100vh)/#{$vh})
+	@else if $values == 'rvx'
+		#{$what}: #{$first_value/10}rem calc((#{$second_value}*100vh)/#{$vh}) $third_value
+	@else if $values == 'rxr'
+		#{$what}: #{$first_value/10}rem $second_value #{$third_value/10}rem
+	@else if $values == 'rxv'
+		#{$what}: #{$first_value/10}rem $second_value calc((#{$third_value}*100vh)/#{$vh})
+	@else if $values == 'rxx'
+		#{$what}: #{$first_value/10}rem $second_value $third_value
+	@else if $values == 'vrr'
+		#{$what}: calc((#{$first_value}*100vh)/#{$vh}) #{$second_value/10}rem #{$third_value/10}rem
+	@else if $values == 'vvr'
+		#{$what}: calc((#{$first_value}*100vh)/#{$vh}) calc((#{$second_value}*100vh)/#{$vh}) #{$third_value/10}rem
+	@else if $values == 'vvv'
+		#{$what}: calc((#{$first_value}*100vh)/#{$vh}) calc((#{$second_value}*100vh)/#{$vh}) calc((#{$third_value}*100vh)/#{$vh})
+	@else if $values == 'vvx'
+		#{$what}: calc((#{$first_value}*100vh)/#{$vh}) calc((#{$second_value}*100vh)/#{$vh}) $third_value
+	@else if $values == 'vxr'
+		#{$what}: calc((#{$first_value}*100vh)/#{$vh}) $second_value #{$third_value/10}rem
+	@else if $values == 'vxv'
+		#{$what}: calc((#{$first_value}*100vh)/#{$vh}) $second_value calc((#{$third_value}*100vh)/#{$vh})
+	@else if $values == 'vxx'
+		#{$what}: calc((#{$first_value}*100vh)/#{$vh}) $second_value $third_value
+	@else if $values == 'xrr'
+		#{$what}: $first_value #{$second_value/10}rem #{$third_value/10}rem
+	@else if $values == 'xvr'
+		#{$what}: $first_value calc((#{$second_value}*100vh)/#{$vh}) #{$third_value/10}rem
+	@else if $values == 'xvv'
+		#{$what}: $first_value calc((#{$second_value}*100vh)/#{$vh}) calc((#{$third_value}*100vh)/#{$vh})
+	@else if $values == 'xvx'
+		#{$what}: $first_value calc((#{$second_value}*100vh)/#{$vh}) $third_value
+	@else if $values == 'xxr'
+		#{$what}: $first_value $second_value #{$third_value/10}rem
+	@else if $values == 'xxv'
+		#{$what}: $first_value $second_value calc((#{$third_value}*100vh)/#{$vh})
+	@else if $values == 'xxx'
+		#{$what}: $first_value $second_value $third_value
+
+	// Для четырёх значений:
+	@else if $values == 'rrrr'
+		#{$what}: #{$first_value/10}rem #{$second_value/10}rem #{$third_value/10}rem #{$fourth_value/10}rem
+	@else if $values == 'rrrv'
+		#{$what}: #{$first_value/10}rem #{$second_value/10}rem #{$third_value/10}rem calc((#{$fourth_value}*100vh)/#{$vh})
+	@else if $values == 'rrrx'
+		#{$what}: #{$first_value/10}rem #{$second_value/10}rem #{$third_value/10}rem $fourth_value
+	@else if $values == 'rrvr'
+		#{$what}: #{$first_value/10}rem #{$second_value/10}rem calc((#{$third_value}*100vh)/#{$vh}) #{$fourth_value/10}rem
+	@else if $values == 'rrvv'
+		#{$what}: #{$first_value/10}rem #{$second_value/10}rem calc((#{$third_value}*100vh)/#{$vh}) calc((#{$fourth_value}*100vh)/#{$vh})
+	@else if $values == 'rrvx'
+		#{$what}: #{$first_value/10}rem #{$second_value/10}rem calc((#{$third_value}*100vh)/#{$vh}) $fourth_value
+	@else if $values == 'rrxr'
+		#{$what}: #{$first_value/10}rem #{$second_value/10}rem $third_value #{$fourth_value/10}rem
+	@else if $values == 'rrxv'
+		#{$what}: #{$first_value/10}rem #{$second_value/10}rem $third_value calc((#{$fourth_value}*100vh)/#{$vh})
+	@else if $values == 'rrxx'
+		#{$what}: #{$first_value/10}rem #{$second_value/10}rem $third_value $fourth_value
+	@else if $values == 'rvrr'
+		#{$what}: #{$first_value/10}rem calc((#{$second_value}*100vh)/#{$vh}) #{$third_value/10}rem #{$fourth_value/10}rem
+	@else if $values == 'rvvr'
+		#{$what}: #{$first_value/10}rem calc((#{$second_value}*100vh)/#{$vh}) calc((#{$third_value}*100vh)/#{$vh}) #{$fourth_value/10}rem
+	@else if $values == 'rvvv'
+		#{$what}: #{$first_value/10}rem calc((#{$second_value}*100vh)/#{$vh}) calc((#{$third_value}*100vh)/#{$vh}) calc((#{$fourth_value}*100vh)/#{$vh})
+	@else if $values == 'rvvx'
+		#{$what}: #{$first_value/10}rem calc((#{$second_value}*100vh)/#{$vh}) calc((#{$third_value}*100vh)/#{$vh}) $fourth_value
+	@else if $values == 'rvxr'
+		#{$what}: #{$first_value/10}rem calc((#{$second_value}*100vh)/#{$vh}) $third_value #{$fourth_value/10}rem
+	@else if $values == 'rvxv'
+		#{$what}: #{$first_value/10}rem calc((#{$second_value}*100vh)/#{$vh}) $third_value calc((#{$fourth_value}*100vh)/#{$vh})
+	@else if $values == 'rvxx'
+		#{$what}: #{$first_value/10}rem calc((#{$second_value}*100vh)/#{$vh}) $third_value $fourth_value
+	@else if $values == 'rxrr'
+		#{$what}: #{$first_value/10}rem $second_value #{$third_value/10}rem #{$fourth_value/10}rem
+	@else if $values == 'rxrx'
+		#{$what}: #{$first_value/10}rem $second_value #{$third_value/10}rem $fourth_value
+	@else if $values == 'rxvr'
+		#{$what}: #{$first_value/10}rem $second_value calc((#{$third_value}*100vh)/#{$vh}) #{$fourth_value/10}rem
+	@else if $values == 'rxvv'
+		#{$what}: #{$first_value/10}rem $second_value calc((#{$third_value}*100vh)/#{$vh}) calc((#{$fourth_value}*100vh)/#{$vh})
+	@else if $values == 'rxvx'
+		#{$what}: #{$first_value/10}rem $second_value calc((#{$third_value}*100vh)/#{$vh}) $fourth_value
+	@else if $values == 'rxxr'
+		#{$what}: #{$first_value/10}rem $second_value $third_value #{$fourth_value/10}rem
+	@else if $values == 'rxxv'
+		#{$what}: #{$first_value/10}rem $second_value $third_value calc((#{$fourth_value}*100vh)/#{$vh})
+	@else if $values == 'rxxx'
+		#{$what}: #{$first_value/10}rem $second_value $third_value $fourth_value
+	@else if $values == 'vrrr'
+		#{$what}: calc((#{$first_value}*100vh)/#{$vh}) #{$second_value/10}rem #{$third_value/10}rem #{$fourth_value/10}rem
+	@else if $values == 'vvrr'
+		#{$what}: calc((#{$first_value}*100vh)/#{$vh}) calc((#{$second_value}*100vh)/#{$vh}) #{$third_value/10}rem #{$fourth_value/10}rem
+	@else if $values == 'vvvr'
+		#{$what}: calc((#{$first_value}*100vh)/#{$vh}) calc((#{$second_value}*100vh)/#{$vh}) calc((#{$third_value}*100vh)/#{$vh}) #{$fourth_value/10}rem
+	@else if $values == 'vvvv'
+		#{$what}: calc((#{$first_value}*100vh)/#{$vh}) calc((#{$second_value}*100vh)/#{$vh}) calc((#{$third_value}*100vh)/#{$vh}) calc((#{$fourth_value}*100vh)/#{$vh})
+	@else if $values == 'vvvx'
+		#{$what}: calc((#{$first_value}*100vh)/#{$vh}) calc((#{$second_value}*100vh)/#{$vh}) calc((#{$third_value}*100vh)/#{$vh}) $fourth_value
+	@else if $values == 'vvxr'
+		#{$what}: calc((#{$first_value}*100vh)/#{$vh}) calc((#{$second_value}*100vh)/#{$vh}) $third_value #{$fourth_value/10}rem
+	@else if $values == 'vvxv'
+		#{$what}: calc((#{$first_value}*100vh)/#{$vh}) calc((#{$second_value}*100vh)/#{$vh}) $third_value calc((#{$fourth_value}*100vh)/#{$vh})
+	@else if $values == 'vvxx'
+		#{$what}: calc((#{$first_value}*100vh)/#{$vh}) calc((#{$second_value}*100vh)/#{$vh}) $third_value $fourth_value
+	@else if $values == 'vxrr'
+		#{$what}: calc((#{$first_value}*100vh)/#{$vh}) $second_value #{$third_value/10}rem #{$fourth_value/10}rem
+	@else if $values == 'vxvr'
+		#{$what}: calc((#{$first_value}*100vh)/#{$vh}) $second_value calc((#{$third_value}*100vh)/#{$vh}) #{$fourth_value/10}rem
+	@else if $values == 'vxvv'
+		#{$what}: calc((#{$first_value}*100vh)/#{$vh}) $second_value calc((#{$third_value}*100vh)/#{$vh}) calc((#{$fourth_value}*100vh)/#{$vh})
+	@else if $values == 'vxvx'
+		#{$what}: calc((#{$first_value}*100vh)/#{$vh}) $second_value calc((#{$third_value}*100vh)/#{$vh}) $fourth_value
+	@else if $values == 'vxxr'
+		#{$what}: calc((#{$first_value}*100vh)/#{$vh}) $second_value $third_value #{$fourth_value/10}rem
+	@else if $values == 'vxxv'
+		#{$what}: calc((#{$first_value}*100vh)/#{$vh}) $second_value $third_value calc((#{$fourth_value}*100vh)/#{$vh})
+	@else if $values == 'vxxx'
+		#{$what}: calc((#{$first_value}*100vh)/#{$vh}) $second_value $third_value $fourth_value
+	@else if $values == 'xrrr'
+		#{$what}: $first_value #{$second_value/10}rem #{$third_value/10}rem #{$fourth_value/10}rem
+	@else if $values == 'xvrr'
+		#{$what}: $first_value calc((#{$second_value}*100vh)/#{$vh}) #{$third_value/10}rem #{$fourth_value/10}rem
+	@else if $values == 'xvvr'
+		#{$what}: $first_value calc((#{$second_value}*100vh)/#{$vh}) calc((#{$third_value}*100vh)/#{$vh}) #{$fourth_value/10}rem
+	@else if $values == 'xvvv'
+		#{$what}: $first_value calc((#{$second_value}*100vh)/#{$vh}) calc((#{$third_value}*100vh)/#{$vh}) calc((#{$fourth_value}*100vh)/#{$vh})
+	@else if $values == 'xvvx'
+		#{$what}: $first_value calc((#{$second_value}*100vh)/#{$vh}) calc((#{$third_value}*100vh)/#{$vh}) $fourth_value
+	@else if $values == 'xvxr'
+		#{$what}: $first_value calc((#{$second_value}*100vh)/#{$vh}) $third_value #{$fourth_value/10}rem
+	@else if $values == 'xvxv'
+		#{$what}: $first_value calc((#{$second_value}*100vh)/#{$vh}) $third_value calc((#{$fourth_value}*100vh)/#{$vh})
+	@else if $values == 'xvxx'
+		#{$what}: $first_value calc((#{$second_value}*100vh)/#{$vh}) $third_value $fourth_value
+	@else if $values == 'xxrr'
+		#{$what}: $first_value $second_value #{$third_value/10}rem #{$fourth_value/10}rem
+	@else if $values == 'xrxr'
+		#{$what}: $first_value #{$second_value/10}rem $third_value #{$fourth_value/10}rem
+	@else if $values == 'xxvr'
+		#{$what}: $first_value $second_value calc((#{$third_value}*100vh)/#{$vh}) #{$fourth_value/10}rem
+	@else if $values == 'xxvv'
+		#{$what}: $first_value $second_value calc((#{$third_value}*100vh)/#{$vh}) calc((#{$fourth_value}*100vh)/#{$vh})
+	@else if $values == 'xxvx'
+		#{$what}: $first_value $second_value calc((#{$third_value}*100vh)/#{$vh}) $fourth_value
+	@else if $values == 'xxxr'
+		#{$what}: $first_value $second_value $third_value #{$fourth_value/10}rem
+	@else if $values == 'xxxv'
+		#{$what}: $first_value $second_value $third_value calc((#{$fourth_value}*100vh)/#{$vh})
+	@else if $values == 'xxxx'
+		#{$what}: $first_value $second_value $third_value $fourth_value
+
+@mixin size-font($type, $size)
+	@if $type == 'vh'
+		$on_height: ($GFONT_min*$GHEIGHT)/$size
+
+		font-size: #{($size/10) + 0.2}vh
+		@media screen and ( max-height: #{$on_height}px )
+			font-size: #{$GFONT_min/10}rem
+
+	@else if $type == 'r'
+		font-size: #{$size/10}rem

@@ -1,0 +1,338 @@
+.starting-army
+	&__info
+		align-items: center
+		display: flex
+		justify-content: space-between
+	&__title
+		display: block
+		text-align: left
+		&::before
+			content: 'Время сформировать армию, '
+		&::after
+			content: attr(data-player) '!'
+		.starting-army.is-completed &::before
+			content: 'Ваша армия сформирована, '
+	&__date
+		+resp-font(50, 28)
+		&::after
+			content: attr(data-month) '.19' attr(data-year)
+	&__subtitle
+		+resp-font(24, $GFONT_min)
+		margin-bottom: calc((#{$GOFFSET}*100vw)/#{$GWIDTH})
+		&::before
+			content: 'Наберите боевые единицы на доступное количество очков!'
+		.starting-army.is-completed &::before
+			content: 'Вы приобрели:'
+	&__body
+		display: flex
+	&__list
+		height: 50vh
+		flex-basis: $startArmyList
+		overflow: hidden
+		position: relative
+	&__tab
+		align-items: flex-start
+		display: flex
+		flex-wrap: wrap
+		justify-content: space-between
+		height: 100%
+		left: 0
+		opacity: 0
+		overflow-x: hidden
+		padding-right: calc((#{$GOFFSET/2}*100vw)/#{$GWIDTH})
+		pointer-events: none
+		position: absolute
+		top: 0
+		width: 100%
+		z-index: 1
+		&.is-active
+			opacity: 1
+			pointer-events: all
+			z-index: 2
+	&__box
+		flex-basis: calc(100%/2.0625)
+		margin-bottom: calc((#{$GOFFSET/2}*100vw)/#{$GWIDTH})
+		&::before
+			background: $bgDecorDefault
+			background-size: $gridDecor
+	&__card
+		height: 100%
+		padding: calc((#{$GOFFSET/4}*100vw)/#{$GWIDTH}) calc((#{$GOFFSET/2}*100vw)/#{$GWIDTH})
+		position: relative
+		width: 100%
+	&__picture
+		// background: left center no-repeat
+		// background-size: contain
+		align-items: center
+		display: flex
+		+resp-font(22, 18)
+		+size-calc('height', 'r', $GOFFSET*2.25)
+		+size-calc('padding-left', 'r', $GOFFSET*2.25)
+		&::before
+			border-right: 1px solid $GCOLOR_white
+			content: attr(data-card-count) 'x'
+			display: none
+			font-family: $GFONT_bold
+			font-weight: bold
+			+size-calc('padding-right', 'r', $GOFFSET/4)
+			+size-calc('margin-right', 'r', $GOFFSET/4)
+		.starting-army__box.not-one-card &::before
+			display: block
+		.starting-army__box.card-clone &
+			background-position-x: right !important
+			padding-left: 0
+			+size-calc('padding-right', 'r', $GOFFSET*2)
+	&__image
+		height: auto
+		width: 25%
+		.starting-army__box.card-clone &
+			order: 1
+			margin-left: auto
+	&__name
+	&__cost
+		border-left: 1px solid $COLOR_separator
+		margin-left: auto
+		+size-calc('padding-left', 'r', $GOFFSET*0.375)
+		.starting-army__box.card-clone &
+			display: none
+	&__progress
+		margin-bottom: calc((#{$GOFFSET/2}*100vw)/#{$GWIDTH})
+	&__item
+		+size-calc('margin-bottom', 'r', $GOFFSET/8)
+		&::before
+			background: $bgDecorDark
+			background-size: $gridDecor
+		&::after
+			content: attr(data-progress)
+			display: block
+			+resp-font(20, $GFONT_min)
+			text-align: center
+			position: relative
+	&__line
+		display: block
+		height: 100%
+		left: 0
+		position: absolute
+		top: 0
+		&_speed
+			background-color: $COLOR_progress
+		&_power
+			background-color: $COLOR_blue
+		&_hp
+			background-color: $COLOR_red
+	&__type
+		border-bottom: 1px solid $COLOR_separator
+		display: flex
+		font-family: $GFONT_bold
+		font-weight: bold
+		+size-font('r', $GFONT_min)
+		margin-bottom: calc((#{$GOFFSET*0.375}*100vw)/#{$GWIDTH})
+		padding-bottom: calc((#{$GOFFSET/4}*100vw)/#{$GWIDTH})
+		&::after
+			border-left: 1px solid $COLOR_separator
+			color: $GCOLOR_white
+			content: 'На вооружении'
+			display: block
+			margin-left: auto
+			+size-calc('padding-left', 'r', $GOFFSET*0.375)
+		&_old::after
+			color: $COLOR_grey
+			content: 'Снят с производства'
+	&__footer
+		align-items: center
+		display: flex
+	&__params, &__counter
+		display: flex
+		justify-content: space-between
+	&__params
+		flex-basis: $startArmyParams
+		+size-calc('padding-right', 'r', $GOFFSET*0.375)
+		.starting-army__box.card-clone &
+			flex-basis: 100%
+			padding-right: 0
+	&__counter
+		align-items: center
+		border-left: 1px solid $COLOR_separator
+		flex-basis: 100% - $startArmyParams
+		+size-calc('padding-left', 'r', $GOFFSET*0.375)
+		.starting-army__box.card-clone &
+			display: none
+	&__svg
+		display: block
+		+size-calc('height', 'r', $GOFFSET)
+		width: 100%
+		&:not(:first-child)
+			+size-calc('margin-left', 'r', $GOFFSET/4)
+	&__param
+		flex-basis: calc(100%/5.0625)
+		overflow: hidden
+		position: relative
+		&::before
+			content: attr(data-quantity)
+			display: block
+			font-family: $GFONT_bold
+			font-weight: bold
+			+resp-font(28, 20)
+			left: 50%
+			position: absolute
+			top: 50%
+			transform: translate(-50%, -50%)
+	&__btn
+		border-radius: 50%
+		font-family: $GFONT_bold
+		font-weight: bold
+		+resp-font(18, 16)
+		+size-calc('height', 'r', $GOFFSET*0.75)
+		padding: 0
+		+size-calc('width', 'r', $GOFFSET*0.75)
+		&.is-end
+			background-color: $COLOR_grey
+			cursor: no-drop
+	&__number
+		font-family: $GFONT_bold
+		font-weight: bold
+		+resp-font(22, 16)
+		+size-calc('margin', 'xr', 0, $GHEIGHT, $GOFFSET/8)
+	&__money
+		display: flex
+		flex-basis: 100% - $startArmyList
+		flex-direction: column
+		justify-content: space-between
+	&__resources
+		color: $COLOR_red
+		font-family: $GFONT_bold
+		font-weight: bold
+		+resp-font(80, 28)
+		text-align: right
+		width: 100%
+		&::before, &::after
+			color: $GCOLOR_white
+			display: block
+			font-family: $GFONT_regular
+			+resp-font(20, $GFONT_min)
+			font-weight: normal
+		&::before
+			content: 'Ваш баланс:'
+		&::after
+			content: 'Очков престижа'
+			+size-calc('padding-bottom', 'r', $GOFFSET/4)
+	&__buttons
+		margin-left: auto
+		width: $startArmyList
+	&__cancel
+		display: none
+		+size-calc('margin-bottom', 'r', $GOFFSET/4)
+		.starting-army.is-completed &
+			display: block
+	&__next-player::after
+		content: 'Готово'
+		.starting-army.is-completed &
+			content: 'Следующий'
+		.starting-army.is-end &
+			content: 'Ок'
+	&__germany .starting-army
+		&__name, &__cost, &__type
+			color: $COLOR_red
+	&__ussr .starting-army
+		&__name, &__cost, &__type
+			color: $COLOR_green
+	&__allies .starting-army
+		&__name, &__cost, &__type
+			color: $COLOR_blue
+	@media screen and ( min-width: 1400px )
+		&__box
+			flex-basis: calc(100%/3.125)
+	@media screen and ( max-width: #{$GTABLET}px )
+		&__info
+			+size-calc('margin-bottom', 'r', $GOFFSET/4)
+		&__date
+			display: none
+		&__subtitle
+			border-bottom: 1px solid $GCOLOR_white
+			margin-bottom: 0
+			+size-calc('padding-bottom', 'r', $GOFFSET)
+		&__body
+			display: block
+		&__tab
+			+size-calc('padding-right', 'r', $GOFFSET/2)
+		&__list
+			height: calc(100vh - #{$GOFFSET*0.6375}rem)
+		&__card
+			+size-calc('padding', 'rr', $GOFFSET/4, $GHEIGHT, $GOFFSET/2)
+		&__progress
+			+size-calc('margin-bottom', 'r', $GOFFSET/2)
+		&__cost, &__type, &__counter
+			+size-calc('padding-left', 'r', $GOFFSET/4)
+		&__cost
+			+size-calc('padding-left', 'r', $GOFFSET*0.375)
+		&__type
+			+size-calc('margin-bottom', 'r', $GOFFSET*0.375)
+			+size-calc('padding-bottom', 'r', $GOFFSET/4)
+		&__params
+			+size-calc('padding-right', 'r', $GOFFSET/4)
+		&__btn
+			+size-calc('height', 'r', $GOFFSET/2)
+			+size-calc('width', 'r', $GOFFSET/2)
+		&__money
+			align-items: center
+			border-radius: 0
+			bottom: 0
+			flex-direction: row
+			left: 0
+			+size-calc('padding', 'rx', $GOFFSET*0.375, $GHEIGHT, calc((#{$GOFFSET*2}*100vw)/#{$GWIDTH}))
+			position: absolute
+			width: 100%
+			&::before
+				background: $bgDecorDefault
+				background-size: $gridTabletDecor
+			.starting-army.is-completed &
+				align-items: flex-start
+				flex-wrap: wrap
+		&__resources
+			+resp-font(20, $GFONT_min)
+			text-align: left
+			z-index: 2
+			&::before, &::after
+				display: inline
+			&::before
+				content: 'Осталось: '
+			&::after
+				content: ' очков.'
+			.starting-army.is-completed &
+				+size-calc('margin-bottom', 'r', $GOFFSET/4)
+		&__buttons
+			.starting-army.is-completed &
+				display: flex
+				width: 100%
+		&__cancel
+			.starting-army.is-completed &
+				margin-bottom: 0
+				+size-calc('margin-right', 'r', $GOFFSET/2)
+		&__box
+			+size-calc('margin-bottom', 'r', $GOFFSET/2)
+			&::before
+				background-size: $gridTabletDecor
+	@media screen and ( max-width: #{$GMOBILE}px )
+		&__wrap
+			margin: 0
+		&__subtitle
+			+size-calc('padding-bottom', 'r', $GOFFSET*0.375)
+			+size-calc('margin-bottom', 'r', $GOFFSET*0.375)
+		&__list
+			height: calc(100vh - #{$GOFFSET*0.55}rem)
+		&__tab
+			padding-right: 0
+		&__box
+			flex-basis: 100%
+			&::before
+				background-size: $gridMobileDecor
+		&__card
+			+size-calc('padding', 'r', $GOFFSET/4)
+		&__progress
+			+size-calc('margin-bottom', 'r', $GOFFSET*0.375)
+		&__cost
+			+size-calc('padding-left', 'r', $GOFFSET/4)
+		&__svg
+			+size-calc('height', 'r', $GOFFSET*0.75)
+		&__money::before
+			background-size: $gridMobileDecor

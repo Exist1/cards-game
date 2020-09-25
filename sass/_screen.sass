@@ -1,0 +1,66 @@
+.screen
+	display: flex
+	height: 100%
+	opacity: 0
+	overflow-x: hidden
+	padding: calc((#{$GOFFSET*2}*100vw)/#{$GWIDTH})
+	pointer-events: none
+	position: absolute
+	width: 100%
+	z-index: 2
+	&.is-active
+		opacity: 1
+		pointer-events: all
+		transition-delay: $TRS_time*1.5
+		z-index: 3
+	&__wrap
+		flex-basis: 100%
+		margin: auto 0
+	&__title
+		align-items: center
+		display: flex
+		justify-content: center
+		+resp-font(40, 24)
+		text-align: center
+	&__decor
+		+size-calc('border-radius', 'r', $GBDRAIUS)
+		overflow: hidden
+		position: relative
+		&::before
+			content: ''
+			display: block
+			height: 100%
+			left: 0
+			position: absolute
+			top: 0
+			width: 100%
+			z-index: 1
+		*
+			position: relative
+			z-index: 1
+	&__button
+		+size-calc('border-radius', 'r', $GBDRAIUS)
+		+resp-font(28, 16)
+		overflow: hidden
+		padding: calc((#{$GOFFSET/4}*100vw)/#{$GWIDTH})
+		position: relative
+		&::before
+			background: $bgDecorLight
+			background-size: $gridDecor
+		&_action
+			background-color: $GCOLOR_white
+			color: $GCOLOR_black
+	@media screen and ( max-width: #{$GTABLET}px )
+		&__wrap
+			margin: 0
+		&__button
+			+size-calc('padding', 'r', $GOFFSET/4)
+			&::before
+				background-size: $gridTabletDecor
+	@media screen and ( max-width: #{$GMOBILE}px )
+		&__title br
+			display: none
+		&__button
+			+size-calc('padding', 'r', $GOFFSET/8)
+			&::before
+				background-size: $gridMobileDecor

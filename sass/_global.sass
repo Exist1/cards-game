@@ -1,0 +1,255 @@
+.global
+	&__info
+		@extend .starting-army__info
+	&__box, &__exit, &__table, &__technics, &__attack
+		align-items: center
+		display: flex
+	&__title
+		+resp-font(40, 18)
+	&__date
+		+resp-font(50, 18)
+		margin-right: calc((#{$GOFFSET*0.75}*100vw)/#{$GWIDTH})
+		&::after
+			content: attr(data-month) '.19' attr(data-year)
+	&__exit
+		+resp-font(32, 24)
+		order: 1
+		padding: calc((#{$GOFFSET/4}*100vw)/#{$GWIDTH}) calc((#{$GOFFSET/2}*100vw)/#{$GWIDTH})
+		svg
+			height: calc((#{$GOFFSET*1.25}*100vw)/#{$GWIDTH})
+			margin-right: calc((#{$GOFFSET/2}*100vw)/#{$GWIDTH})
+			width: calc((#{$GOFFSET*1.25}*100vw)/#{$GWIDTH})
+	&__subtitle
+		@extend .starting-army__subtitle
+		&::before
+			content: 'Первым ходит ' attr(data-first-player) ', последним ' attr(data-last-player) '.'
+	&__table
+		align-items: flex-start
+		flex-wrap: wrap
+	&__item
+		&_players
+			flex-basis: 55%
+		&_prestige
+			flex-basis: 30%
+			margin-left: auto
+		&_buttons
+			display: flex
+			flex-basis: 100%
+			margin-top: calc((#{$GOFFSET}*100vw)/#{$GWIDTH})
+	&__line-info
+		color: $COLOR_grey
+		display: flex
+		+resp-font(16, $GFONT_min)
+		+size-calc('margin-bottom', 'r', $GOFFSET/4)
+		padding-right: calc(40% + #{(($GOFFSET*0.375)*100vw)/$GWIDTH})
+		&::before
+			content: 'Игрок:'
+		&::after
+			border-left: 1px solid $GCOLOR_white
+			content: 'База:'
+			margin-left: auto
+			padding-left: 3%
+	&__svg
+		height: calc((#{$GOFFSET}*100vw)/#{$GWIDTH})
+		margin-right: calc((#{$GOFFSET*0.375}*100vw)/#{$GWIDTH})
+		width: calc((#{$GOFFSET}*100vw)/#{$GWIDTH})
+	&__player
+		display: flex
+		font-family: $GFONT_bold
+		font-weight: bold
+		+resp-font(26, 16)
+		max-height: 0
+		opacity: 0
+		overflow: hidden
+		pointer-events: none
+		&.is-active
+			max-height: 100%
+			opacity: 1
+			pointer-events: all
+			&:not(:last-child)
+				margin-bottom: calc((#{$GOFFSET/2}*100vw)/#{$GWIDTH})
+	&__param
+		align-items: center
+		display: flex
+		flex-basis: 60%
+		font-family: inherit
+		font-size: inherit
+		font-weight: inherit
+		padding: calc((#{$GOFFSET/4}*100vw)/#{$GWIDTH}) calc((#{$GOFFSET*0.375}*100vw)/#{$GWIDTH})
+		&::before
+			background: $bgDecorDefault
+			background-size: $gridDecor
+		&_germany
+			color: $COLOR_red
+		&_ussr
+			color: $COLOR_green
+		&_allies
+			color: $COLOR_blue
+		&::after
+			border-left: 1px solid $GCOLOR_white
+			color: $GCOLOR_white
+			content: attr(data-base)
+			margin-left: auto
+			+size-calc('min-width', 'r', $GOFFSET*1.25)
+			text-align: center
+	&__shop
+		align-items: center
+		display: flex
+		font-family: inherit
+		font-size: inherit
+		font-weight: inherit
+		justify-content: center
+		margin-left: auto
+		padding: calc((#{$GOFFSET/4}*100vw)/#{$GWIDTH}) calc((#{$GOFFSET/2}*100vw)/#{$GWIDTH})
+		width: 35%
+		&::before
+			background: $bgDecorLight
+			background-size: $gridDecor
+	&__prestige-points
+		display: block
+		font-family: $GFONT_bold
+		font-weight: bold
+		+resp-font(36, 34)
+		text-align: right
+		&::before, &::after
+			display: block
+			font-family: $GFONT_regular
+			font-weight: normal
+			+resp-font(18, $GFONT_min)
+		&::before
+			content: attr(data-before)
+		&::after
+			content: attr(data-after)
+		&:first-child
+			border-bottom: 1px solid $GCOLOR_white
+			margin-bottom: calc((#{$GOFFSET/2}*100vw)/#{$GWIDTH})
+			padding-bottom: calc((#{$GOFFSET/2}*100vw)/#{$GWIDTH})
+	&__technics, &__attack
+		justify-content: center
+		svg
+			height: calc((#{$GOFFSET*1.5}*100vw)/#{$GWIDTH})
+			margin-right: calc((#{$GOFFSET*0.75}*100vw)/#{$GWIDTH})
+			width: calc((#{$GOFFSET*1.5}*100vw)/#{$GWIDTH})
+	&__technics
+		margin-right: calc((#{$GOFFSET/2}*100vw)/#{$GWIDTH})
+	&__attack
+		margin-left: calc((#{$GOFFSET/2}*100vw)/#{$GWIDTH})
+	@media screen and ( max-width: #{$GTABLET}px )
+		&__date
+			display: block
+			+size-calc('margin-right', 'r', $GOFFSET/4)
+		&__subtitle, &__prestige-points:first-child
+			+size-calc('padding-bottom', 'r', $GOFFSET/2)
+			+size-calc('margin-bottom', 'r', $GOFFSET/2)
+		&__exit
+			+size-calc('padding', 'r', $GOFFSET/4)
+			svg
+				+size-calc('height', 'r', $GOFFSET)
+				+size-calc('margin-right', 'r', $GOFFSET/4)
+				+size-calc('width', 'r', $GOFFSET)
+		&__svg
+			+size-calc('height', 'r', $GOFFSET*0.75)
+			+size-calc('margin-right', 'r', $GOFFSET/4)
+			+size-calc('width', 'r', $GOFFSET*0.75)
+		&__item
+			flex-basis: 100%
+			&_prestige
+				display: flex
+				+size-calc('margin-top', 'r', $GOFFSET/2)
+				margin-left: 0
+			&_buttons
+				+size-calc('margin-top', 'r', $GOFFSET*0.75)
+		&__line-info
+			padding-right: calc(50% + #{$GOFFSET*0.0375}rem)
+		&__player:not(:last-child)
+			+size-calc('margin-bottom', 'r', $GOFFSET*0.375)
+		&__param
+			flex-basis: 50%
+			+size-calc('padding', 'rr', $GOFFSET/4, $GHEIGHT, $GOFFSET*0.375)
+		&__shop
+			+size-calc('padding', 'rr', $GOFFSET/4, $GHEIGHT, $GOFFSET*0.375)
+			width: 45%
+		&__param, &__shop
+			&::before
+				background-size: $gridTabletDecor
+		&__prestige-points
+			flex-basis: 50%
+			&:first-child
+				border-bottom: 0
+				border-right: 1px solid $GCOLOR_white
+				margin-bottom: 0
+				padding-bottom: 0
+				padding-right: 5%
+		&__technics, &__attack
+			svg
+				+size-calc('height', 'r', $GOFFSET*1.5)
+				+size-calc('margin-right', 'r', $GOFFSET*0.75)
+				+size-calc('width', 'r', $GOFFSET*1.5)
+		&__technics
+			+size-calc('margin-right', 'r', $GOFFSET/2)
+		&__attack
+			+size-calc('margin-left', 'r', $GOFFSET/2)
+	@media screen and ( max-width: #{$GMOBILE}px )
+		&__info
+			flex-wrap: wrap
+			justify-content: center
+		&__title
+			flex-basis: 100%
+			+resp-font(40, 24)
+			justify-content: flex-start
+			order: 1
+		&__date
+			+resp-font(50, 28)
+		&__box
+			display: block
+			border-bottom: 1px solid $GCOLOR_white
+			flex-basis: 100%
+			+size-calc('margin-bottom', 'r', $GOFFSET/4)
+			+size-calc('padding-bottom', 'r', $GOFFSET/4)
+			text-align: center
+		&__item
+			&_prestige
+				display: block
+				margin-top: 0
+				order: -1
+			&_buttons, &_players
+				+size-calc('margin-top', 'r', $GOFFSET/2)
+		&__line-info
+			+size-calc('padding-right', 'r', $GOFFSET*1.5)
+		&__player:not(:last-child)
+			+size-calc('margin-bottom', 'r', $GOFFSET/4)
+		&__param
+			flex-basis: calc(100% - #{$GOFFSET*0.15}rem)
+			+size-calc('padding', 'rr', $GOFFSET/4)
+			&::after
+				+size-calc('min-width', 'r', $GOFFSET)
+		&__shop
+			+size-calc('padding', 'r', $GOFFSET/4)
+			+size-calc('width', 'r', $GOFFSET*1.25)
+			span
+				display: none
+			.global__svg
+				margin-right: 0
+		&__param, &__shop
+			&::before
+				background-size: $gridMobileDecor
+		&__prestige-points
+			&:first-child, &:last-child
+				border-bottom: 1px solid $GCOLOR_white
+				+size-calc('padding-bottom', 'r', $GOFFSET/2)
+			&:first-child
+				border-right: 0
+				+size-calc('margin-bottom', 'r', $GOFFSET/2)
+				padding-right: 0
+		&__exit
+			+size-calc('margin-bottom', 'r', $GOFFSET/4)
+			+size-calc('padding', 'rr', $GOFFSET/4, $GHEIGHT, $GOFFSET*0.375)
+		&__technics, &__attack
+			svg
+				+size-calc('height', 'r', $GOFFSET*0.75)
+				+size-calc('margin-right', 'r', $GOFFSET/4)
+				+size-calc('width', 'r', $GOFFSET*0.75)
+		&__technics
+			+size-calc('margin-right', 'r', $GOFFSET/8)
+		&__attack
+			+size-calc('margin-left', 'r', $GOFFSET/8)
