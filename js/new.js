@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		attackChance = document.querySelector('.attack-table__chance'), // Место указывающее какой шанс поражения противника.
 		attackDamage = document.querySelector('.attack-table__max-damage'), // Место указывающее какой максимальный урон.
 		attackResult = document.querySelector('.attack-table__result'),
+		globalBtnShop = document.querySelectorAll('.global__shop'),
 		tableSettings = {
 			"month": ["X", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"], // Массив обозначения месяца на странице.
 			"resources": {
@@ -48,9 +49,10 @@ document.addEventListener('DOMContentLoaded', function() {
 		currentYear = minNumber, // Текущий год.
 		currentResources = 100, // Текущий процент добавки ресурсов.
 		counterPlayer = minNumber, // Количество играющих.
-		currentPlayer = 0, // Текущий игрок.
 		currentFpower, currentArmor, currentCube, // Выбор огневой мощи, защищенности и что выпало на кубиках, в режиме "стрельба".
-		currentFirst, currentSecond, currentLast; // Номера первого, второго и последнего игрока после жеребьевки.
+		currentFirst, currentSecond, currentLast, // Номера первого, второго и последнего игрока после жеребьевки.
+		nextPlayer = true, // Есть ли следующий игрок.
+		playerNotLast = true; // Игрорк не последний, если участвуют все три игрока.
 
 	// Кеширование длины массивов элементов.
 	let issCaching = iSettingsSwitch.length,
@@ -58,7 +60,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		ispCaching = iSettingsPlayer.length,
 		satCaching = startArmyTab.length,
 		gpCaching = globalParam.length,
-		alCaching = attackList.length;
+		alCaching = attackList.length,
+		gbsCaching = globalBtnShop.length;
 
 	// Получение данных из файла с конфигурацией игры.
 	request.open('GET', jsonUrl);
@@ -361,41 +364,64 @@ document.addEventListener('DOMContentLoaded', function() {
 			if (!screens[2].classList.contains(isCompleted)) {
 				screens[2].classList.add(isCompleted);
 				changeActiveClass(satCaching - 1, startArmyTab);
-				if (currentPlayer === counterPlayer) screens[2].classList.add(isEnd);
+				if (!nextPlayer) screens[2].classList.add(isEnd);
 
 			} else {
-				if (currentPlayer === counterPlayer) {
-					currentPlayer = counterPlayer;
-					localStorage.setItem('money-' + currentPlayer, startArmyResources.textContent);
+				if (!nextPlayer) {
+					localStorage.setItem('money-' + currentLast, startArmyResources.textContent);
 					switchSections(this);
 
 					// Установка кто первый, а кто последний.
 					globalSubtitle.setAttribute('data-first-player', localStorage.getItem('player-' + currentFirst));
 					globalSubtitle.setAttribute('data-last-player', localStorage.getItem('player-' + currentLast));
 
-					// Установка очереди.
+					// Установка игроков.
 					for (let gp = 0; gp < gpCaching; gp++) {
-						let getSide = localStorage.getItem('queue-' + gp); // Очередь игрока.
+						let getСountry = localStorage.getItem('country-' + gp); // Страна игрока.
 
-						if (getSide !== null) {
-							globalParam[getSide].parentElement.classList.add(isActive);
-							globalParam[getSide].querySelector('span').textContent = localStorage.getItem('player-' + gp);
+						if (getСountry !== null) {
+							globalParam[getСountry].parentElement.classList.add(isActive);
+							globalParam[getСountry].querySelector('span').textContent = localStorage.getItem('player-' + getСountry);
 						};
 					};
 
 				} else {
-					localStorage.setItem('money-' + currentPlayer, startArmyResources.textContent);
+					if (counterPlayer === 1) {
+						localStorage.setItem('money-' + currentFirst, startArmyResources.textContent);
 
-					// Постановка информации начальной следующего игрока.
-					currentPlayer++;
-					screens[2].classList.remove(isCompleted);
-					startArmyTitle.setAttribute('data-player', iSettingsPlayer[currentPlayer - 1].value);
-					startArmyResources.textContent = localStorage.getItem('money-' + currentPlayer);
-					changeActiveClass(+localStorage.getItem('side-' + currentPlayer) - 1, startArmyTab);
-					
-					// Удаление карточек выбранных предыдущим игроком.
-					startArmyTab[satCaching - 1].innerHTML = '';
+						// Постановка информации начальной последнего игрока.
+						screens[2].classList.remove(isCompleted);
+						startArmyTitle.setAttribute('data-player', iSettingsPlayer[currentLast].value);
+						startArmyResources.textContent = localStorage.getItem('money-' + currentLast);
+						changeActiveClass(+localStorage.getItem('country-' + currentLast), startArmyTab);
+						nextPlayer = false;
+	
+					} else if (counterPlayer === 2) {
+						if (playerNotLast) {
+							localStorage.setItem('money-' + currentFirst, startArmyResources.textContent);
+
+							// Постановка информации начальной вторго игрока.
+							screens[2].classList.remove(isCompleted);
+							startArmyTitle.setAttribute('data-player', iSettingsPlayer[currentSecond].value);
+							startArmyResources.textContent = localStorage.getItem('money-' + currentSecond);
+							changeActiveClass(+localStorage.getItem('country-' + currentSecond), startArmyTab);
+							playerNotLast = false;
+
+						} else {
+							localStorage.setItem('money-' + currentSecond, startArmyResources.textContent);
+
+							// Постановка информации начальной последнего игрока.
+							screens[2].classList.remove(isCompleted);
+							startArmyTitle.setAttribute('data-player', iSettingsPlayer[currentLast].value);
+							startArmyResources.textContent = localStorage.getItem('money-' + currentLast);
+							changeActiveClass(+localStorage.getItem('country-' + currentLast), startArmyTab);
+							nextPlayer = false;
+						};	
+					};
 				};
+
+				// Удаление карточек выбранных предыдущим игроком.
+				startArmyTab[satCaching - 1].innerHTML = '';
 			};
 		});
 
@@ -403,7 +429,20 @@ document.addEventListener('DOMContentLoaded', function() {
 		startArmyCancel.addEventListener('click', function() {
 			screens[2].classList.remove(isCompleted);
 			screens[2].classList.remove(isEnd);
-			changeActiveClass(+localStorage.getItem('side-' + currentPlayer) - 1, startArmyTab);
+
+			if (counterPlayer === 1) {
+				nextPlayer ? changeActiveClass(+localStorage.getItem('country-' + currentFirst), startArmyTab) : changeActiveClass(+localStorage.getItem('country-' + currentLast), startArmyTab);
+
+			} else if (counterPlayer === 2) {
+				if (nextPlayer && playerNotLast) {
+					changeActiveClass(+localStorage.getItem('country-' + currentFirst), startArmyTab);
+				} else if (nextPlayer && !playerNotLast) {
+					changeActiveClass(+localStorage.getItem('country-' + currentSecond), startArmyTab);
+				} else if (!nextPlayer && !playerNotLast) {
+					changeActiveClass(+localStorage.getItem('country-' + currentLast), startArmyTab);
+				};
+			};
+			// changeActiveClass(+localStorage.getItem('side-' + currentPlayer) - 1, startArmyTab);
 		});
 
 		// Управление перезапуском игры.
@@ -433,11 +472,16 @@ document.addEventListener('DOMContentLoaded', function() {
 					document.querySelector('.switches__resources > .initial-settings__text span').textContent = currentResources;
 					document.querySelector('.switches__resources > .initial-settings__prev').classList.remove(isEnd);
 
-					currentPlayer = 0;
+					nextPlayer = true;
+					playerNotLast = true;
 					screens[2].classList.remove(isCompleted);
 					screens[2].classList.remove(isEnd);
 
 					clearInputPlayer();
+
+					for (let sat = 0; sat < satCaching; sat++) {
+						startArmyTab[sat].innerHTML = '';
+					};
 				}, 500);
 			});
 		};
@@ -548,6 +592,13 @@ document.addEventListener('DOMContentLoaded', function() {
 			};
 		});
 
+		// Кнопки запуска магазина.
+		for (let gbs = 0; gbs < globalBtnShop.length; gbs++) {
+			const btnShop = globalBtnShop[gbs];
+			
+		}
+
+
 
 		/* Ошипка выбора варианта на стрельбе.
 			@param {object} list - где была выбор, который еще не открыт. */
@@ -626,7 +677,7 @@ document.addEventListener('DOMContentLoaded', function() {
 						totalProductCurent = (+Object.keys(isRESOURCES)[currentYear]*12) + (currentMonth + 1), // Перевод в месяца, дату сражения.
 						totalProductEnd = (+parameter.dateEnd.year*12) + +parameter.dateEnd.month, // Перевод в месяца, дату конца производства техники.
 						typeItem, // Тип техники.
-						productionItem; // Есть ли производство техники.
+						productionItem, isOld; // Есть ли производство техники.
 
 					// Корректировка парамтра.
 					+parameter.armor === 22 ? progressArmor = Math.round((((parameter.hp/3)*isPROGRESS.armor[parameter.armor - 5])*100)/1100) : progressArmor = Math.round((((parameter.hp/3)*isPROGRESS.armor[parameter.armor])*100)/1100);
@@ -649,6 +700,7 @@ document.addEventListener('DOMContentLoaded', function() {
 						if (totalProductEnd >= (totalProductCurent - 5)) {
 							if (totalProductEnd <= (totalProductCurent - 1)) {
 								productionItem = 'starting-army__type_old';
+								tabItem.classList.add('is-old');
 							};
 						};
 					};
@@ -656,16 +708,16 @@ document.addEventListener('DOMContentLoaded', function() {
 					// Html-разметка карточки. 
 					tabItem.innerHTML = `
 						<div class="starting-army__card">
-							<picture class="starting-army__picture" style="background: url('${parameter.images}') left center no-repeat; background-size: contain;">
-								<!-- <source srcset="" type="image/webp">
-								<img class="starting-army__image" src="" data-src="${parameter.images}">  -->
+							<picture class="starting-army__picture">
+								<!-- <source srcset="" type="image/webp">  -->
+								<img class="starting-army__image" src="${parameter.images}">
 								<h3 class="starting-army__name">${nameTechnics}</h3>
 								<p class="starting-army__cost">${parameter.cost}</p>
 							</picture>
 							<ul class="starting-army__progress">
-								<li class="screen__decor starting-army__item" data-progress="Подвижность"><span class="starting-army__line starting-army__line_speed" data-color="${progressMobility}" style="width: ${progressMobility}%;"></span></li>
-								<li class="screen__decor starting-army__item" data-progress="Вооружение"><span class="starting-army__line starting-army__line_power" data-color="${progressFpower}" style="width: ${progressFpower}%;"></span></li>
-								<li class="screen__decor starting-army__item" data-progress="Живучесть"><span class="starting-army__line starting-army__line_hp" data-color="${progressArmor}" style="width: ${progressArmor}%;"></span></li>
+								<li class="screen__decor starting-army__item" data-progress="Подвижность"><span class="starting-army__line" data-color="${progressMobility}" style="width: ${progressMobility}%;"></span></li>
+								<li class="screen__decor starting-army__item" data-progress="Вооружение"><span class="starting-army__line" data-color="${progressFpower}" style="width: ${progressFpower}%;"></span></li>
+								<li class="screen__decor starting-army__item" data-progress="Живучесть"><span class="starting-army__line" data-color="${progressArmor}" style="width: ${progressArmor}%;"></span></li>
 							</ul>
 							<p class="starting-army__type ${productionItem}">${typeItem}</p>
 							<div class="starting-army__footer">
@@ -729,7 +781,7 @@ document.addEventListener('DOMContentLoaded', function() {
 					};
 
 					if (+startArmyResources.textContent - saPrice > 0) {
-						currentCount >= 999 ? currentCount = 999 : currentCount++;
+						currentCount >= 99 ? currentCount = 99 : currentCount++;
 						saText.textContent = currentCount;
 						startArmyResources.textContent = +startArmyResources.textContent - saPrice;
 

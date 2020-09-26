@@ -55,19 +55,18 @@
 		&::before
 			background: $bgDecorDefault
 			background-size: $gridDecor
+		&.is-old
+			.is-shop &
+				display: none
 	&__card
 		height: 100%
 		padding: calc((#{$GOFFSET/4}*100vw)/#{$GWIDTH}) calc((#{$GOFFSET/2}*100vw)/#{$GWIDTH})
 		position: relative
 		width: 100%
 	&__picture
-		// background: left center no-repeat
-		// background-size: contain
 		align-items: center
 		display: flex
 		+resp-font(22, 18)
-		+size-calc('height', 'r', $GOFFSET*2.25)
-		+size-calc('padding-left', 'r', $GOFFSET*2.25)
 		&::before
 			border-right: 1px solid $GCOLOR_white
 			content: attr(data-card-count) 'x'
@@ -78,17 +77,12 @@
 			+size-calc('margin-right', 'r', $GOFFSET/4)
 		.starting-army__box.not-one-card &::before
 			display: block
-		.starting-army__box.card-clone &
-			background-position-x: right !important
-			padding-left: 0
-			+size-calc('padding-right', 'r', $GOFFSET*2)
 	&__image
 		height: auto
 		width: 25%
 		.starting-army__box.card-clone &
 			order: 1
 			margin-left: auto
-	&__name
 	&__cost
 		border-left: 1px solid $COLOR_separator
 		margin-left: auto
@@ -114,12 +108,18 @@
 		left: 0
 		position: absolute
 		top: 0
-		&_speed
-			background-color: $COLOR_progress
-		&_power
-			background-color: $COLOR_blue
-		&_hp
-			background-color: $COLOR_red
+		@for $a from 0 through 25
+			&[data-color="#{$a}"]
+				background-color: #803525
+		@for $b from 26 through 50
+			&[data-color="#{$b}"]
+				background-color: #825e24
+		@for $c from 51 through 75
+			&[data-color="#{$c}"]
+				background-color: #827524
+		@for $d from 76 through 100
+			&[data-color="#{$d}"]
+				background-color: #7c8224
 	&__type
 		border-bottom: 1px solid $COLOR_separator
 		display: flex
@@ -135,9 +135,10 @@
 			display: block
 			margin-left: auto
 			+size-calc('padding-left', 'r', $GOFFSET*0.375)
-		&_old::after
-			color: $COLOR_grey
-			content: 'Снят с производства'
+		&_old
+			&::after
+				color: $COLOR_grey
+				content: 'Снят с производства'
 	&__footer
 		align-items: center
 		display: flex
