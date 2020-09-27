@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		attackDamage = document.querySelector('.attack-table__max-damage'), // Место указывающее какой максимальный урон.
 		attackResult = document.querySelector('.attack-table__result'),
 		globalBtnShop = document.querySelectorAll('.global__shop'),
+		globalPrestigePoints = document.querySelectorAll('.global__prestige-points'), // Награды.
 		tableSettings = {
 			"month": ["X", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"], // Массив обозначения месяца на странице.
 			"resources": {
@@ -62,7 +63,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		satCaching = startArmyTab.length,
 		gpCaching = globalParam.length,
 		alCaching = attackList.length,
-		gbsCaching = globalBtnShop.length;
+		gbsCaching = globalBtnShop.length,
+		gppCaching = globalPrestigePoints.length;
 
 	// Получение данных из файла с конфигурацией игры.
 	request.open('GET', jsonUrl);
@@ -356,6 +358,15 @@ document.addEventListener('DOMContentLoaded', function() {
 				startArmyResources.textContent = localStorage.getItem('money-' + currentFirst); // Подстановка ресурсов.
 				
 				changeActiveClass(+localStorage.getItem('country-' + currentFirst), startArmyTab); // Открытие вкладки с техникой.
+
+				// Определение наград.
+				for (let gpp = 0; gpp < gppCaching; gpp++) {
+					let prestigePoint = globalPrestigePoints[gpp],
+					perCircle = Math.round(isRESOURCES[Object.keys(isRESOURCES)[currentYear]][currentMonth]/25), // Расчёт за круг.
+					perFlag = Math.round(isRESOURCES[Object.keys(isRESOURCES)[currentYear]][currentMonth]/50); // Расчёт за флаг.
+
+					gpp === 0 ? prestigePoint.textContent = perCircle : prestigePoint.textContent = perFlag;
+				};
 			};
 		});
 
@@ -644,7 +655,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		});
 
 		// Кнопки запуска магазина.
-		for (let gbs = 0; gbs < globalBtnShop.length; gbs++) {
+		for (let gbs = 0; gbs < gbsCaching; gbs++) {
 			let btnShop = globalBtnShop[gbs],
 				listNameCountry = ['Германии', 'СССР', 'Союзников'];
 
