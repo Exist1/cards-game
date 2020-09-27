@@ -420,7 +420,7 @@ document.addEventListener('DOMContentLoaded', function() {
 								gparam.parentElement.classList.add(isActive);
 								gparam.classList.add(classCountry[localStorage.getItem('country-' + currentLast)]);
 								gparam.setAttribute('data-base', localStorage.getItem('base-' + currentLast));
-								paramSvg.setAttribute('xlink:href', linkSvg[classCountry[localStorage.getItem('country-' + currentLast)]]);
+								paramSvg.setAttribute('xlink:href', linkSvg[localStorage.getItem('country-' + currentLast)]);
 								paramText.textContent = localStorage.getItem('player-' + currentLast);
 							};
 						};
