@@ -1,86 +1,6 @@
 {
 	"TECHNICS": {
 		"AXIS": {
-			"StuG III B": {
-				"images": "./assets/cards/stug_iii_b.png",
-				"type": 2,
-				"weight": 2,
-				"dateStart": {
-					"month": 4,
-					"year": 41
-				},
-				"dateEnd": {
-					"month": 7,
-					"year": 42
-				},
-				"speed": 5,
-				"range": 4,
-				"hp": 3,
-				"fpower": 4,
-				"armor": 4,
-				"cost": 45
-			},
-			
-			"Pz IV F1": {
-				"images": "./assets/cards/pz_iv_f1.png",
-				"type": 1,
-				"weight": 2,
-				"dateStart": {
-					"month": 4,
-					"year": 41
-				},
-				"dateEnd": {
-					"month": 4,
-					"year": 42
-				},
-				"speed": 4,
-				"range": 3,
-				"hp": 3,
-				"fpower": 4,
-				"armor": 4,
-				"cost": 38
-			},
-		
-			"Pz IV F2": {
-				"images": "./assets/cards/pz_iv_f2.png",
-				"type": 1,
-				"weight": 2,
-				"dateStart": {
-					"month": 3,
-					"year": 42
-				},
-				"dateEnd": {
-					"month": 3,
-					"year": 43
-				},
-				"speed": 4,
-				"range": 6,
-				"hp": 3,
-				"fpower": 6,
-				"armor": 4,
-				"cost": 71
-			},
-		
-			"Pz I": {
-				"images": "./assets/cards/pz_i.png",
-				"type": 1,
-				"weight": 1,
-				"dateStart": {
-					"month": 3,
-					"year": 41
-				},
-				"dateEnd": {
-					"month": 8,
-					"year": 41
-				},
-				"speed": 5,
-				"range": 2,
-				"hp": 1,
-				"fpower": 0,
-				"armor": 2,
-				"cost": 24
-			},	
-		
 			"Pz II": {
 				"images": "./assets/cards/pz_ii.png",
 				"type": 1,
@@ -100,7 +20,201 @@
 				"armor": 3,
 				"cost": 22
 			},
-			
+			"Pz(38)t": {
+				"images": "./assets/cards/pz38t.png",
+				"type": 1,
+				"weight": 1,
+				
+				"dateStart": {
+					"month": 4,
+					"year": 41
+				},
+				"dateEnd": {
+					"month": 6,
+					"year": 42
+				},
+				"speed": 4,
+				"range": 3,
+				"hp": 2,
+				"fpower": 2,
+				"armor": 2,
+				"cost": 22
+			},
+			"Pz I": {
+				"images": "./assets/cards/pz_i.png",
+				"type": 1,
+				"weight": 1,
+				"dateStart": {
+					"month": 3,
+					"year": 41
+				},
+				"dateEnd": {
+					"month": 8,
+					"year": 41
+				},
+				"speed": 5,
+				"range": 2,
+				"hp": 1,
+				"fpower": 0,
+				"armor": 2,
+				"cost": 24
+			},
+			"Jg Pz I": {
+				"images": "./assets/cards/jg_pz_i.png",
+				"type": 2,
+				"weight": 1,
+				
+				"dateStart": {
+					"month": 4,
+					"year": 41
+				},
+				"dateEnd": {
+					"month": 5,
+					"year": 42
+				},
+				"speed": 5,
+				"range": 4,
+				"hp": 1,
+				"fpower": 3,
+				"armor": 2,
+				"cost": 29
+			},
+			"Pz IV C": {
+				"images": "./assets/cards/pz_iv_c.png",
+				"type": 1,
+				"weight": 2,
+				
+				"dateStart": {
+					"month": 4,
+					"year": 41
+				},
+				"dateEnd": {
+					"month": 9,
+					"year": 41
+				},
+				"speed": 4,
+				"range": 3,
+				"hp": 3,
+				"fpower": 4,
+				"armor": 2,
+				"cost": 30
+			},
+			"Pz IV F1": {
+				"images": "./assets/cards/pz_iv_f1.png",
+				"type": 1,
+				"weight": 2,
+				"dateStart": {
+					"month": 4,
+					"year": 41
+				},
+				"dateEnd": {
+					"month": 4,
+					"year": 42
+				},
+				"speed": 4,
+				"range": 3,
+				"hp": 3,
+				"fpower": 4,
+				"armor": 4,
+				"cost": 38
+			},
+			"StuG III B": {
+				"images": "./assets/cards/stug_iii_b.png",
+				"type": 2,
+				"weight": 2,
+				"dateStart": {
+					"month": 4,
+					"year": 41
+				},
+				"dateEnd": {
+					"month": 7,
+					"year": 42
+				},
+				"speed": 5,
+				"range": 4,
+				"hp": 3,
+				"fpower": 4,
+				"armor": 4,
+				"cost": 45
+			},
+			"Marder II": {
+				"images": "./assets/cards/marder_ii.png",
+				"type": 2,
+				"weight": 1,
+				
+				"dateStart": {
+					"month": 4,
+					"year": 42
+				},
+				"dateEnd": {
+					"month": 12,
+					"year": 43
+				},
+				"speed": 4,
+				"range": 6,
+				"hp": 1,
+				"fpower": 6,
+				"armor": 2,
+				"cost": 48
+			},
+			"Pz III J": {
+				"images": "./assets/cards/pz_iii_j.png",
+				"type": 1,
+				"weight": 2,
+				
+				"dateStart": {
+					"month": 4,
+					"year": 41
+				},
+				"dateEnd": {
+					"month": 2,
+					"year": 42
+				},
+				"speed": 6,
+				"range": 3,
+				"hp": 3,
+				"fpower": 3,
+				"armor": 4,
+				"cost": 51
+			},
+			"Pz III J1": {
+				"images": "./assets/cards/pz_iii_j1.png",
+				"type": 1,
+				"weight": 2,
+				"dateStart": {
+					"month": 12,
+					"year": 41
+				},
+				"dateEnd": {
+					"month": 12,
+					"year": 42
+				},
+				"speed": 6,
+				"range": 4,
+				"hp": 3,
+				"fpower": 4,
+				"armor": 4,
+				"cost": 59
+			},
+			"Pz III M": {
+				"images": "./assets/cards/pz_iii_m.png",
+				"type": 1,
+				"weight": 2,
+				"dateStart": {
+					"month": 10,
+					"year": 42
+				},
+				"dateEnd": {
+					"month": 7,
+					"year": 43
+				},
+				"speed": 5,
+				"range": 4,
+				"hp": 3,
+				"fpower": 4,
+				"armor": 5,
+				"cost": 60
+			},
 			"Hetzer": {
 				"images": "./assets/cards/hetzer.png",
 				"type": 2,
@@ -122,295 +236,25 @@
 				"armor": 6,
 				"cost": 61
 			},
-			
-			"Pz III J1": {
-				"images": "./assets/cards/pz_iii_j1.png",
+			"Pz IV F2": {
+				"images": "./assets/cards/pz_iv_f2.png",
 				"type": 1,
-				"weight": 2,
-				"dateStart": {
-					"month": 12,
-					"year": 41
-				},
-				"dateEnd": {
-					"month": 12,
-					"year": 42
-				},
-				"speed": 6,
-				"range": 4,
-				"hp": 3,
-				"fpower": 4,
-				"armor": 4,
-				"cost": 59
-			},
-			
-			"Pz IV H": {
-				"images": "./assets/cards/pz_iv_h.png",
-				"type": 1,
-				"weight": 2,
-				"dateStart": {
-					"month": 4,
-					"year": 43
-				},
-				"dateEnd": {
-					"month": 5,
-					"year": 45
-				},
-				"speed": 4,
-				"range": 6,
-				"hp": 3,
-				"fpower": 6,
-				"armor": 5,
-				"cost": 81
-			},
-			
-			"Pz III M": {
-				"images": "./assets/cards/pz_iii_m.png",
-				"type": 1,
-				"weight": 2,
-				"dateStart": {
-					"month": 10,
-					"year": 42
-				},
-				"dateEnd": {
-					"month": 7,
-					"year": 43
-				},
-				"speed": 5,
-				"range": 4,
-				"hp": 3,
-				"fpower": 4,
-				"armor": 5,
-				"cost": 60
-			},
-			
-			"Panther": {
-				"images": "./assets/cards/panther.png",
-				"type": 1,
-				"weight": 2,
-				"dateStart": {
-					"month": 1,
-					"year": 43
-				},
-				"dateEnd": {
-					"month": 5,
-					"year": 45
-				},
-				"speed": 5,
-				"range": 8,
-				"hp": 4,
-				"fpower": 8,
-				"armor": 8,
-				"cost": 199
-			},
-			
-			"Nashorn": {
-				"images": "./assets/cards/nashorn.png",
-				"type": 2,
 				"weight": 2,
 				"dateStart": {
 					"month": 3,
-					"year": 43
-				},
-				"dateEnd": {
-					"month": 5,
-					"year": 45
-				},
-				"speed": 4,
-				"range": 8,
-				"hp": 2,
-				"fpower": 10,
-				"armor": 2,
-				"cost": 109
-			},
-			
-			"Tiger": {
-				"images": "./assets/cards/tiger.png",
-				"type": 1,
-				"weight": 3,
-				"dateStart": {
-					"month": 9,
 					"year": 42
 				},
 				"dateEnd": {
-					"month": 7,
-					"year": 44
-				},
-				"speed": 4,
-				"range": 7,
-				"hp": 5,
-				"fpower": 9,
-				"armor": 10,
-				"cost": 282
-			},
-			
-			"Tiger II": {
-				"images": "./assets/cards/tiger_ii.png",
-				"type": 1,
-				"weight": 3,
-				
-				"dateStart": {
-					"month": 8,
-					"year": 44
-				},
-				"dateEnd": {
-					"month": 5,
-					"year": 45
-				},
-				"speed": 4,
-				"range": 8,
-				"hp": 5,
-				"fpower": 10,
-				"armor": 13,
-				"cost": 396
-			},
-			
-			"Jg Panther": {
-				"images": "./assets/cards/jg_panthre.png",
-				"type": 2,
-				"weight": 2,
-				
-				"dateStart": {
-					"month": 1,
-					"year": 44
-				},
-				"dateEnd": {
-					"month": 5,
-					"year": 45
-				},
-				"speed": 5,
-				"range": 8,
-				"hp": 4,
-				"fpower": 10,
-				"armor": 8,
-				"cost": 205
-			},
-			
-			"Jagtiger": {
-				"images": "./assets/cards/jagtiger.png",
-				"type": 1,
-				"weight": 3,
-				
-				"dateStart": {
-					"month": 2,
-					"year": 45
-				},
-				"dateEnd": {
-					"month": 5,
-					"year": 45
-				},
-				"speed": 3,
-				"range": 9,
-				"hp": 5,
-				"fpower": 12,
-				"armor": 14,
-				"cost": 474
-			},
-			
-			"Pz(38)t": {
-				"images": "./assets/cards/pz38t.png",
-				"type": 1,
-				"weight": 1,
-				
-				"dateStart": {
-					"month": 4,
-					"year": 41
-				},
-				"dateEnd": {
-					"month": 6,
-					"year": 42
-				},
-				"speed": 4,
-				"range": 3,
-				"hp": 2,
-				"fpower": 2,
-				"armor": 2,
-				"cost": 22
-			},
-			
-			"Jg Pz I": {
-				"images": "./assets/cards/jg_pz_i.png",
-				"type": 2,
-				"weight": 1,
-				
-				"dateStart": {
-					"month": 4,
-					"year": 41
-				},
-				"dateEnd": {
-					"month": 5,
-					"year": 42
-				},
-				"speed": 5,
-				"range": 4,
-				"hp": 1,
-				"fpower": 3,
-				"armor": 2,
-				"cost": 29
-			},
-			
-			"Marder II": {
-				"images": "./assets/cards/marder_ii.png",
-				"type": 2,
-				"weight": 1,
-				
-				"dateStart": {
-					"month": 4,
-					"year": 42
-				},
-				"dateEnd": {
-					"month": 12,
+					"month": 3,
 					"year": 43
 				},
 				"speed": 4,
 				"range": 6,
-				"hp": 1,
+				"hp": 3,
 				"fpower": 6,
-				"armor": 2,
-				"cost": 48
-			},
-			
-			"Pz IV C": {
-				"images": "./assets/cards/pz_iv_c.png",
-				"type": 1,
-				"weight": 2,
-				
-				"dateStart": {
-					"month": 4,
-					"year": 41
-				},
-				"dateEnd": {
-					"month": 9,
-					"year": 41
-				},
-				"speed": 4,
-				"range": 3,
-				"hp": 3,
-				"fpower": 4,
-				"armor": 2,
-				"cost": 30
-			},
-			
-			"Pz III J": {
-				"images": "./assets/cards/pz_iii_j.png",
-				"type": 1,
-				"weight": 2,
-				
-				"dateStart": {
-					"month": 4,
-					"year": 41
-				},
-				"dateEnd": {
-					"month": 2,
-					"year": 42
-				},
-				"speed": 6,
-				"range": 3,
-				"hp": 3,
-				"fpower": 3,
 				"armor": 4,
-				"cost": 51
+				"cost": 71
 			},
-			
 			"StuG III G": {
 				"images": "./assets/cards/stug_iii_g.png",
 				"type": 2,
@@ -431,7 +275,25 @@
 				"armor": 5,
 				"cost": 73
 			},
-			
+			"Pz IV H": {
+				"images": "./assets/cards/pz_iv_h.png",
+				"type": 1,
+				"weight": 2,
+				"dateStart": {
+					"month": 4,
+					"year": 43
+				},
+				"dateEnd": {
+					"month": 5,
+					"year": 45
+				},
+				"speed": 4,
+				"range": 6,
+				"hp": 3,
+				"fpower": 6,
+				"armor": 5,
+				"cost": 81
+			},
 			"Jg Pz IV": {
 				"images": "./assets/cards/jg_pz_iv.png",
 				"type": 2,
@@ -452,7 +314,25 @@
 				"armor": 6,
 				"cost": 85
 			},
-			
+			"Nashorn": {
+				"images": "./assets/cards/nashorn.png",
+				"type": 2,
+				"weight": 2,
+				"dateStart": {
+					"month": 3,
+					"year": 43
+				},
+				"dateEnd": {
+					"month": 5,
+					"year": 45
+				},
+				"speed": 4,
+				"range": 8,
+				"hp": 2,
+				"fpower": 10,
+				"armor": 2,
+				"cost": 109
+			},
 			"Pz IV(70)": {
 				"images": "./assets/cards/pz_iv70.png",
 				"type": 2,
@@ -473,7 +353,84 @@
 				"armor": 6,
 				"cost": 127
 			},
-			
+			"Panther": {
+				"images": "./assets/cards/panther.png",
+				"type": 1,
+				"weight": 2,
+				"dateStart": {
+					"month": 1,
+					"year": 43
+				},
+				"dateEnd": {
+					"month": 5,
+					"year": 45
+				},
+				"speed": 5,
+				"range": 8,
+				"hp": 4,
+				"fpower": 8,
+				"armor": 8,
+				"cost": 199
+			},
+			"Jg Panther": {
+				"images": "./assets/cards/jg_panthre.png",
+				"type": 2,
+				"weight": 2,
+				
+				"dateStart": {
+					"month": 1,
+					"year": 44
+				},
+				"dateEnd": {
+					"month": 5,
+					"year": 45
+				},
+				"speed": 5,
+				"range": 8,
+				"hp": 4,
+				"fpower": 10,
+				"armor": 8,
+				"cost": 205
+			},
+			"Tiger": {
+				"images": "./assets/cards/tiger.png",
+				"type": 1,
+				"weight": 3,
+				"dateStart": {
+					"month": 9,
+					"year": 42
+				},
+				"dateEnd": {
+					"month": 7,
+					"year": 44
+				},
+				"speed": 4,
+				"range": 7,
+				"hp": 5,
+				"fpower": 9,
+				"armor": 10,
+				"cost": 282
+			},
+			"Tiger II": {
+				"images": "./assets/cards/tiger_ii.png",
+				"type": 1,
+				"weight": 3,
+				
+				"dateStart": {
+					"month": 8,
+					"year": 44
+				},
+				"dateEnd": {
+					"month": 5,
+					"year": 45
+				},
+				"speed": 4,
+				"range": 8,
+				"hp": 5,
+				"fpower": 10,
+				"armor": 13,
+				"cost": 396
+			},
 			"Ferdinand": {
 				"images": "./assets/cards/ferdinand.png",
 				"type": 2,
@@ -494,7 +451,26 @@
 				"armor": 13,
 				"cost": 415
 			},
-			
+			"Jagtiger": {
+				"images": "./assets/cards/jagtiger.png",
+				"type": 1,
+				"weight": 3,
+				
+				"dateStart": {
+					"month": 2,
+					"year": 45
+				},
+				"dateEnd": {
+					"month": 5,
+					"year": 45
+				},
+				"speed": 3,
+				"range": 9,
+				"hp": 5,
+				"fpower": 12,
+				"armor": 14,
+				"cost": 474
+			},
 			"Maus": {
 				"images": "./assets/cards/maus.png",
 				"type": 1,
@@ -538,7 +514,6 @@
 				"armor": 2,
 				"cost": 16
 			},
-			
 			"T-60": {
 				"images": "./assets/cards/t60.png",
 				"type": 1,
@@ -559,7 +534,6 @@
 				"armor": 3,
 				"cost": 18
 			},
-		
 			"T-70": {
 				"images": "./assets/cards/t70.png",
 				"type": 1,
@@ -580,301 +554,6 @@
 				"armor": 4,
 				"cost": 23
 			},
-		
-			"БТ-7": {
-				"images": "./assets/cards/bt7.png",
-				"type": 1,
-				"weight": 1,
-				
-				"dateStart": {
-					"month": 4,
-					"year": 41
-				},
-				"dateEnd": {
-					"month": 2,
-					"year": 42
-				},
-				"speed": 8,
-				"range": 3,
-				"hp": 1,
-				"fpower": 3,
-				"armor": 2,
-				"cost": 69
-			},	
-		
-			"T-28": {
-				"images": "./assets/cards/t28.png",
-				"type": 1,
-				"weight": 2,
-				
-				"dateStart": {
-					"month": 4,
-					"year": 41
-				},
-				"dateEnd": {
-					"month": 3,
-					"year": 42
-				},
-				"speed": 5,
-				"range": 3,
-				"hp": 4,
-				"fpower": 4,
-				"armor": 3,
-				"cost": 46
-			},
-			
-			"T-34(40)": {
-				"images": "./assets/cards/t34_40.png",
-				"type": 1,
-				"weight": 2,
-				
-				"dateStart": {
-					"month": 4,
-					"year": 41
-				},
-				"dateEnd": {
-					"month": 9,
-					"year": 41
-				},
-				"speed": 6,
-				"range": 3,
-				"hp": 3,
-				"fpower": 4,
-				"armor": 6,
-				"cost": 76
-			},
-			
-			"T-34(41)": {
-				"images": "./assets/cards/t34_41.png",
-				"type": 1,
-				"weight": 2,
-				
-				"dateStart": {
-					"month": 10,
-					"year": 41
-				},
-				"dateEnd": {
-					"month": 8,
-					"year": 42
-				},
-				"speed": 6,
-				"range": 4,
-				"hp": 3,
-				"fpower": 5,
-				"armor": 6,
-				"cost": 86
-			},
-			
-			"T-34(42)": {
-				"images": "./assets/cards/t34_42.png",
-				"type": 1,
-				"weight": 2,
-				
-				"dateStart": {
-					"month": 4,
-					"year": 42
-				},
-				"dateEnd": {
-					"month": 9,
-					"year": 44
-				},
-				"speed": 6,
-				"range": 5,
-				"hp": 3,
-				"fpower": 5,
-				"armor": 6,
-				"cost": 93
-			},
-			
-			"T-34-85": {
-				"images": "./assets/cards/t34_85.png",
-				"type": 1,
-				"weight": 2,
-				
-				"dateStart": {
-					"month": 3,
-					"year": 44
-				},
-				"dateEnd": {
-					"month": 5,
-					"year": 45
-				},
-				"speed": 6,
-				"range": 6,
-				"hp": 3,
-				"fpower": 9,
-				"armor": 7,
-				"cost": 144
-			},
-			
-			"КВ-1(39)": {
-				"images": "./assets/cards/kv1_39.png",
-				"type": 1,
-				"weight": 3,
-				
-				"dateStart": {
-					"month": 4,
-					"year": 41
-				},
-				"dateEnd": {
-					"month": 10,
-					"year": 41
-				},
-				"speed": 3,
-				"range": 3,
-				"hp": 4,
-				"fpower": 4,
-				"armor": 8,
-				"cost": 113
-			},
-			
-			"КВ-1(41)": {
-				"images": "./assets/cards/kv1_41.png",
-				"type": 1,
-				"weight": 3,
-				
-				"dateStart": {
-					"month": 8,
-					"year": 41
-				},
-				"dateEnd": {
-					"month": 8,
-					"year": 42
-				},
-				"speed": 3,
-				"range": 4,
-				"hp": 4,
-				"fpower": 5,
-				"armor": 8,
-				"cost": 124
-			},
-			
-			"КВ-1С": {
-				"images": "./assets/cards/kv1s.png",
-				"type": 1,
-				"weight": 3,
-				
-				"dateStart": {
-					"month": 9,
-					"year": 42
-				},
-				"dateEnd": {
-					"month": 7,
-					"year": 43
-				},
-				"speed": 4,
-				"range": 5,
-				"hp": 4,
-				"fpower": 5,
-				"armor": 7,
-				"cost": 115
-			},
-			
-			"КВ-85": {
-				"images": "./assets/cards/kv85.png",
-				"type": 1,
-				"weight": 3,
-				
-				"dateStart": {
-					"month": 8,
-					"year": 43
-				},
-				"dateEnd": {
-					"month": 12,
-					"year": 43
-				},
-				"speed": 4,
-				"range": 6,
-				"hp": 4,
-				"fpower": 9,
-				"armor": 8,
-				"cost": 182
-			},
-			
-			"КВ-2": {
-				"images": "./assets/cards/kv2.png",
-				"type": 1,
-				"weight": 3,
-				
-				"dateStart": {
-					"month": 4,
-					"year": 41
-				},
-				"dateEnd": {
-					"month": 11,
-					"year": 41
-				},
-				"speed": 3,
-				"range": 4,
-				"hp": 4,
-				"fpower": 10,
-				"armor": 7,
-				"cost": 136
-			},
-			
-			"ИС-1": {
-				"images": "./assets/cards/is1.png",
-				"type": 1,
-				"weight": 3,
-				
-				"dateStart": {
-					"month": 10,
-					"year": 43
-				},
-				"dateEnd": {
-					"month": 12,
-					"year": 43
-				},
-				"speed": 4,
-				"range": 6,
-				"hp": 4,
-				"fpower": 9,
-				"armor": 10,
-				"cost": 222
-			},
-			
-			"ИС-2": {
-				"images": "./assets/cards/is2.png",
-				"type": 1,
-				"weight": 3,
-				
-				"dateStart": {
-					"month": 1,
-					"year": 44
-				},
-				"dateEnd": {
-					"month": 5,
-					"year": 44
-				},
-				"speed": 4,
-				"range": 7,
-				"hp": 4,
-				"fpower": 11,
-				"armor": 10,
-				"cost": 288
-			},
-			
-			"ИС-2М": {
-				"images": "./assets/cards/is2m.png",
-				"type": 1,
-				"weight": 3,
-				
-				"dateStart": {
-					"month": 6,
-					"year": 44
-				},
-				"dateEnd": {
-					"month": 5,
-					"year": 45
-				},
-				"speed": 4,
-				"range": 7,
-				"hp": 4,
-				"fpower": 11,
-				"armor": 11,
-				"cost": 306
-			},
-			
 			"СУ-76": {
 				"images": "./assets/cards/su76.png",
 				"type": 2,
@@ -895,7 +574,146 @@
 				"armor": 2,
 				"cost": 40
 			},
-			
+			"T-28": {
+				"images": "./assets/cards/t28.png",
+				"type": 1,
+				"weight": 2,
+				
+				"dateStart": {
+					"month": 4,
+					"year": 41
+				},
+				"dateEnd": {
+					"month": 3,
+					"year": 42
+				},
+				"speed": 5,
+				"range": 3,
+				"hp": 4,
+				"fpower": 4,
+				"armor": 3,
+				"cost": 46
+			},
+			"БТ-7": {
+				"images": "./assets/cards/bt7.png",
+				"type": 1,
+				"weight": 1,
+				
+				"dateStart": {
+					"month": 4,
+					"year": 41
+				},
+				"dateEnd": {
+					"month": 2,
+					"year": 42
+				},
+				"speed": 8,
+				"range": 3,
+				"hp": 1,
+				"fpower": 3,
+				"armor": 2,
+				"cost": 69
+			},
+			"T-34(40)": {
+				"images": "./assets/cards/t34_40.png",
+				"type": 1,
+				"weight": 2,
+				
+				"dateStart": {
+					"month": 4,
+					"year": 41
+				},
+				"dateEnd": {
+					"month": 9,
+					"year": 41
+				},
+				"speed": 6,
+				"range": 3,
+				"hp": 3,
+				"fpower": 4,
+				"armor": 6,
+				"cost": 76
+			},
+			"T-34(41)": {
+				"images": "./assets/cards/t34_41.png",
+				"type": 1,
+				"weight": 2,
+				
+				"dateStart": {
+					"month": 10,
+					"year": 41
+				},
+				"dateEnd": {
+					"month": 8,
+					"year": 42
+				},
+				"speed": 6,
+				"range": 4,
+				"hp": 3,
+				"fpower": 5,
+				"armor": 6,
+				"cost": 86
+			},
+			"T-34(42)": {
+				"images": "./assets/cards/t34_42.png",
+				"type": 1,
+				"weight": 2,
+				
+				"dateStart": {
+					"month": 4,
+					"year": 42
+				},
+				"dateEnd": {
+					"month": 9,
+					"year": 44
+				},
+				"speed": 6,
+				"range": 5,
+				"hp": 3,
+				"fpower": 5,
+				"armor": 6,
+				"cost": 93
+			},
+			"КВ-1(39)": {
+				"images": "./assets/cards/kv1_39.png",
+				"type": 1,
+				"weight": 3,
+				
+				"dateStart": {
+					"month": 4,
+					"year": 41
+				},
+				"dateEnd": {
+					"month": 10,
+					"year": 41
+				},
+				"speed": 3,
+				"range": 3,
+				"hp": 4,
+				"fpower": 4,
+				"armor": 8,
+				"cost": 113
+			},
+			"КВ-1С": {
+				"images": "./assets/cards/kv1s.png",
+				"type": 1,
+				"weight": 3,
+				
+				"dateStart": {
+					"month": 9,
+					"year": 42
+				},
+				"dateEnd": {
+					"month": 7,
+					"year": 43
+				},
+				"speed": 4,
+				"range": 5,
+				"hp": 4,
+				"fpower": 5,
+				"armor": 7,
+				"cost": 115
+			},
 			"СУ-85": {
 				"images": "./assets/cards/su85.png",
 				"type": 1,
@@ -916,7 +734,66 @@
 				"armor": 6,
 				"cost": 121
 			},
-			
+			"КВ-1(41)": {
+				"images": "./assets/cards/kv1_41.png",
+				"type": 1,
+				"weight": 3,
+				
+				"dateStart": {
+					"month": 8,
+					"year": 41
+				},
+				"dateEnd": {
+					"month": 8,
+					"year": 42
+				},
+				"speed": 3,
+				"range": 4,
+				"hp": 4,
+				"fpower": 5,
+				"armor": 8,
+				"cost": 124
+			},
+			"КВ-2": {
+				"images": "./assets/cards/kv2.png",
+				"type": 1,
+				"weight": 3,
+				
+				"dateStart": {
+					"month": 4,
+					"year": 41
+				},
+				"dateEnd": {
+					"month": 11,
+					"year": 41
+				},
+				"speed": 3,
+				"range": 4,
+				"hp": 4,
+				"fpower": 10,
+				"armor": 7,
+				"cost": 136
+			},
+			"T-34-85": {
+				"images": "./assets/cards/t34_85.png",
+				"type": 1,
+				"weight": 2,
+				
+				"dateStart": {
+					"month": 3,
+					"year": 44
+				},
+				"dateEnd": {
+					"month": 5,
+					"year": 45
+				},
+				"speed": 6,
+				"range": 6,
+				"hp": 3,
+				"fpower": 9,
+				"armor": 7,
+				"cost": 144
+			},
 			"СУ-100": {
 				"images": "./assets/cards/su100.png",
 				"type": 1,
@@ -937,7 +814,6 @@
 				"armor": 7,
 				"cost": 152
 			},
-			
 			"СУ-152": {
 				"images": "./assets/cards/su152.png",
 				"type": 2,
@@ -958,7 +834,26 @@
 				"armor": 7,
 				"cost": 169
 			},
-			
+			"КВ-85": {
+				"images": "./assets/cards/kv85.png",
+				"type": 1,
+				"weight": 3,
+				
+				"dateStart": {
+					"month": 8,
+					"year": 43
+				},
+				"dateEnd": {
+					"month": 12,
+					"year": 43
+				},
+				"speed": 4,
+				"range": 6,
+				"hp": 4,
+				"fpower": 9,
+				"armor": 8,
+				"cost": 182
+			},
 			"ИСУ-152": {
 				"images": "./assets/cards/isu152.png",
 				"type": 2,
@@ -978,430 +873,70 @@
 				"fpower": 10,
 				"armor": 9,
 				"cost": 211
+			},
+			"ИС-1": {
+				"images": "./assets/cards/is1.png",
+				"type": 1,
+				"weight": 3,
+				
+				"dateStart": {
+					"month": 10,
+					"year": 43
+				},
+				"dateEnd": {
+					"month": 12,
+					"year": 43
+				},
+				"speed": 4,
+				"range": 6,
+				"hp": 4,
+				"fpower": 9,
+				"armor": 10,
+				"cost": 222
+			},
+			"ИС-2": {
+				"images": "./assets/cards/is2.png",
+				"type": 1,
+				"weight": 3,
+				
+				"dateStart": {
+					"month": 1,
+					"year": 44
+				},
+				"dateEnd": {
+					"month": 5,
+					"year": 44
+				},
+				"speed": 4,
+				"range": 7,
+				"hp": 4,
+				"fpower": 11,
+				"armor": 10,
+				"cost": 288
+			},
+			"ИС-2М": {
+				"images": "./assets/cards/is2m.png",
+				"type": 1,
+				"weight": 3,
+				
+				"dateStart": {
+					"month": 6,
+					"year": 44
+				},
+				"dateEnd": {
+					"month": 5,
+					"year": 45
+				},
+				"speed": 4,
+				"range": 7,
+				"hp": 4,
+				"fpower": 11,
+				"armor": 11,
+				"cost": 306
 			}
 		},
 
 		"ALLIED": {
-			"M3 Lee": {
-				"images": "./assets/cards/m3lee.png",
-				"type": 1,
-				"weight": 2,
-				
-				"dateStart": {
-					"month": 4,
-					"year": 41
-				},
-				"dateEnd": {
-					"month": 12,
-					"year": 42
-				},
-				"speed": 4,
-				"range": 4,
-				"hp": 4,
-				"fpower": 4,
-				"armor": 5,
-				"cost": 81
-			},
-			
-			"M4A1": {
-				"images": "./assets/cards/m4a1.png",
-				"type": 1,
-				"weight": 2,
-				
-				"dateStart": {
-					"month": 6,
-					"year": 42
-				},
-				"dateEnd": {
-					"month": 12,
-					"year": 43
-				},
-				"speed": 4,
-				"range": 5,
-				"hp": 3,
-				"fpower": 5,
-				"armor": 6,
-				"cost": 75
-			},
-		
-			"M4A1(76)": {
-				"images": "./assets/cards/m4a1_76.png",
-				"type": 1,
-				"weight": 2,
-				
-				"dateStart": {
-					"month": 1,
-					"year": 43
-				},
-				"dateEnd": {
-					"month": 12,
-					"year": 44
-				},
-				"speed": 4,
-				"range": 6,
-				"hp": 4,
-				"fpower": 7,
-				"armor": 6,
-				"cost": 100
-			},
-		
-			"M4A3E8": {
-				"images": "./assets/cards/m4a3e8.png",
-				"type": 1,
-				"weight": 2,
-				
-				"dateStart": {
-					"month": 8,
-					"year": 44
-				},
-				"dateEnd": {
-					"month": 5,
-					"year": 45
-				},
-				"speed": 5,
-				"range": 6,
-				"hp": 3,
-				"fpower": 7,
-				"armor": 7,
-				"cost": 110
-			},	
-		
-			"Jumbo": {
-				"images": "./assets/cards/jumbo.png",
-				"type": 1,
-				"weight": 3,
-				
-				"dateStart": {
-					"month": 3,
-					"year": 44
-				},
-				"dateEnd": {
-					"month": 5,
-					"year": 45
-				},
-				"speed": 3,
-				"range": 5,
-				"hp": 3,
-				"fpower": 5,
-				"armor": 12,
-				"cost": 151
-			},
-			
-			"Jumbo(76)": {
-				"images": "./assets/cards/jumbo76.png",
-				"type": 1,
-				"weight": 3,
-				
-				"dateStart": {
-					"month": 1,
-					"year": 45
-				},
-				"dateEnd": {
-					"month": 5,
-					"year": 45
-				},
-				"speed": 3,
-				"range": 6,
-				"hp": 3,
-				"fpower": 7,
-				"armor": 12,
-				"cost": 178
-			},
-			
-			"Firefly": {
-				"images": "./assets/cards/firefly.png",
-				"type": 1,
-				"weight": 2,
-				
-				"dateStart": {
-					"month": 12,
-					"year": 43
-				},
-				"dateEnd": {
-					"month": 5,
-					"year": 45
-				},
-				"speed": 4,
-				"range": 8,
-				"hp": 3,
-				"fpower": 8,
-				"armor": 6,
-				"cost": 139
-			},
-			
-			"Matilda": {
-				"images": "./assets/cards/matilda.png",
-				"type": 1,
-				"weight": 2,
-				
-				"dateStart": {
-					"month": 4,
-					"year": 41
-				},
-				"dateEnd": {
-					"month": 2,
-					"year": 43
-				},
-				"speed": 2,
-				"range": 3,
-				"hp": 3,
-				"fpower": 4,
-				"armor": 7,
-				"cost": 55
-			},
-			
-			"Comet": {
-				"images": "./assets/cards/comet.png",
-				"type": 1,
-				"weight": 2,
-				
-				"dateStart": {
-					"month": 12,
-					"year": 44
-				},
-				"dateEnd": {
-					"month": 5,
-					"year": 45
-				},
-				"speed": 5,
-				"range": 7,
-				"hp": 3,
-				"fpower": 8,
-				"armor": 5,
-				"cost": 122
-			},
-			
-			"Cromwell": {
-				"images": "./assets/cards/cromwell.png",
-				"type": 1,
-				"weight": 2,
-				
-				"dateStart": {
-					"month": 11,
-					"year": 42
-				},
-				"dateEnd": {
-					"month": 5,
-					"year": 45
-				},
-				"speed": 7,
-				"range": 5,
-				"hp": 3,
-				"fpower": 5,
-				"armor": 5,
-				"cost": 89
-			},
-			
-			"Churchill I": {
-				"images": "./assets/cards/churchill_i.png",
-				"type": 1,
-				"weight": 3,
-				
-				"dateStart": {
-					"month": 4,
-					"year": 41
-				},
-				"dateEnd": {
-					"month": 6,
-					"year": 42
-				},
-				"speed": 3,
-				"range": 3,
-				"hp": 5,
-				"fpower": 4,
-				"armor": 8,
-				"cost": 143
-			},
-			
-			"Churchill III": {
-				"images": "./assets/cards/churchill_iii.png",
-				"type": 1,
-				"weight": 3,
-				
-				"dateStart": {
-					"month": 7,
-					"year": 42
-				},
-				"dateEnd": {
-					"month": 12,
-					"year": 43
-				},
-				"speed": 3,
-				"range": 4,
-				"hp": 5,
-				"fpower": 5,
-				"armor": 8,
-				"cost": 155
-			},
-			
-			"Churchill VII": {
-				"images": "./assets/cards/churchill_vii.png",
-				"type": 1,
-				"weight": 3,
-				
-				"dateStart": {
-					"month": 1,
-					"year": 44
-				},
-				"dateEnd": {
-					"month": 5,
-					"year": 45
-				},
-				"speed": 3,
-				"range": 5,
-				"hp": 5,
-				"fpower": 6,
-				"armor": 11,
-				"cost": 245
-			},
-			
-			"Pershing": {
-				"images": "./assets/cards/pershing.png",
-				"type": 1,
-				"weight": 3,
-				
-				"dateStart": {
-					"month": 2,
-					"year": 45
-				},
-				"dateEnd": {
-					"month": 5,
-					"year": 45
-				},
-				"speed": 4,
-				"range": 7,
-				"hp": 4,
-				"fpower": 9,
-				"armor": 9,
-				"cost": 220
-			},
-			
-			"M3 Stuart": {
-				"images": "./assets/cards/m3_stuart.png",
-				"type": 1,
-				"weight": 1,
-				
-				"dateStart": {
-					"month": 4,
-					"year": 41
-				},
-				"dateEnd": {
-					"month": 9,
-					"year": 43
-				},
-				"speed": 6,
-				"range": 3,
-				"hp": 2,
-				"fpower": 2,
-				"armor": 3,
-				"cost": 40
-			},
-			
-			"M5 Stuart": {
-				"images": "./assets/cards/m5_stuart.png",
-				"type": 1,
-				"weight": 1,
-				
-				"dateStart": {
-					"month": 4,
-					"year": 42
-				},
-				"dateEnd": {
-					"month": 3,
-					"year": 44
-				},
-				"speed": 6,
-				"range": 3,
-				"hp": 3,
-				"fpower": 2,
-				"armor": 3,
-				"cost": 44
-			},
-			
-			"Chaffie": {
-				"images": "./assets/cards/chaffie.png",
-				"type": 1,
-				"weight": 1,
-				
-				"dateStart": {
-					"month": 4,
-					"year": 44
-				},
-				"dateEnd": {
-					"month": 5,
-					"year": 45
-				},
-				"speed": 6,
-				"range": 5,
-				"hp": 2,
-				"fpower": 5,
-				"armor": 3,
-				"cost": 55
-			},
-			
-			"Locust": {
-				"images": "./assets/cards/locust.png",
-				"type": 1,
-				"weight": 1,
-				
-				"dateStart": {
-					"month": 4,
-					"year": 43
-				},
-				"dateEnd": {
-					"month": 5,
-					"year": 45
-				},
-				"speed": 7,
-				"range": 3,
-				"hp": 1,
-				"fpower": 2,
-				"armor": 2,
-				"cost": 47
-			},
-			
-			"Valentine": {
-				"images": "./assets/cards/valentine.png",
-				"type": 1,
-				"weight": 1,
-				
-				"dateStart": {
-					"month": 4,
-					"year": 41
-				},
-				"dateEnd": {
-					"month": 3,
-					"year": 43
-				},
-				"speed": 3,
-				"range": 3,
-				"hp": 3,
-				"fpower": 4,
-				"armor": 6,
-				"cost": 43
-			},
-			
-			"Crusader": {
-				"images": "./assets/cards/crusader.png",
-				"type": 1,
-				"weight": 1,
-				
-				"dateStart": {
-					"month": 4,
-					"year": 41
-				},
-				"dateEnd": {
-					"month": 12,
-					"year": 42
-				},
-				"speed": 5,
-				"range": 3,
-				"hp": 3,
-				"fpower": 4,
-				"armor": 3,
-				"cost": 40
-			},
-			
 			"M8A1": {
 				"images": "./assets/cards/m8a1.png",
 				"type": 2,
@@ -1422,28 +957,146 @@
 				"armor": 3,
 				"cost": 34
 			},
-			
-			"Slugger": {
-				"images": "./assets/cards/slugger.png",
-				"type": 2,
-				"weight": 2,
+			"Crusader": {
+				"images": "./assets/cards/crusader.png",
+				"type": 1,
+				"weight": 1,
 				
 				"dateStart": {
-					"month": 11,
+					"month": 4,
+					"year": 41
+				},
+				"dateEnd": {
+					"month": 12,
+					"year": 42
+				},
+				"speed": 5,
+				"range": 3,
+				"hp": 3,
+				"fpower": 4,
+				"armor": 3,
+				"cost": 40
+			},
+			"M3 Stuart": {
+				"images": "./assets/cards/m3_stuart.png",
+				"type": 1,
+				"weight": 1,
+				
+				"dateStart": {
+					"month": 4,
+					"year": 41
+				},
+				"dateEnd": {
+					"month": 9,
+					"year": 43
+				},
+				"speed": 6,
+				"range": 3,
+				"hp": 2,
+				"fpower": 2,
+				"armor": 3,
+				"cost": 40
+			},
+			"Valentine": {
+				"images": "./assets/cards/valentine.png",
+				"type": 1,
+				"weight": 1,
+				
+				"dateStart": {
+					"month": 4,
+					"year": 41
+				},
+				"dateEnd": {
+					"month": 3,
+					"year": 43
+				},
+				"speed": 3,
+				"range": 3,
+				"hp": 3,
+				"fpower": 4,
+				"armor": 6,
+				"cost": 43
+			},
+			"M5 Stuart": {
+				"images": "./assets/cards/m5_stuart.png",
+				"type": 1,
+				"weight": 1,
+				
+				"dateStart": {
+					"month": 4,
+					"year": 42
+				},
+				"dateEnd": {
+					"month": 3,
+					"year": 44
+				},
+				"speed": 6,
+				"range": 3,
+				"hp": 3,
+				"fpower": 2,
+				"armor": 3,
+				"cost": 44
+			},
+			"Locust": {
+				"images": "./assets/cards/locust.png",
+				"type": 1,
+				"weight": 1,
+				
+				"dateStart": {
+					"month": 4,
 					"year": 43
 				},
 				"dateEnd": {
 					"month": 5,
 					"year": 45
 				},
-				"speed": 5,
-				"range": 7,
-				"hp": 2,
-				"fpower": 9,
-				"armor": 5,
-				"cost": 103
+				"speed": 7,
+				"range": 3,
+				"hp": 1,
+				"fpower": 2,
+				"armor": 2,
+				"cost": 47
 			},
-			
+			"Chaffie": {
+				"images": "./assets/cards/chaffie.png",
+				"type": 1,
+				"weight": 1,
+				
+				"dateStart": {
+					"month": 4,
+					"year": 44
+				},
+				"dateEnd": {
+					"month": 5,
+					"year": 45
+				},
+				"speed": 6,
+				"range": 5,
+				"hp": 2,
+				"fpower": 5,
+				"armor": 3,
+				"cost": 55
+			},
+			"Matilda": {
+				"images": "./assets/cards/matilda.png",
+				"type": 1,
+				"weight": 2,
+				
+				"dateStart": {
+					"month": 4,
+					"year": 41
+				},
+				"dateEnd": {
+					"month": 2,
+					"year": 43
+				},
+				"speed": 2,
+				"range": 3,
+				"hp": 3,
+				"fpower": 4,
+				"armor": 7,
+				"cost": 55
+			},
 			"Wolverine": {
 				"images": "./assets/cards/wolverine.png",
 				"type": 2,
@@ -1464,7 +1117,6 @@
 				"armor": 4,
 				"cost": 58
 			},
-		
 			"Hellcat": {
 				"images": "./assets/cards/hellcat.png",
 				"type": 2,
@@ -1484,6 +1136,286 @@
 				"fpower": 7,
 				"armor": 2,
 				"cost": 71
+			},
+			"M4A1": {
+				"images": "./assets/cards/m4a1.png",
+				"type": 1,
+				"weight": 2,
+				
+				"dateStart": {
+					"month": 6,
+					"year": 42
+				},
+				"dateEnd": {
+					"month": 12,
+					"year": 43
+				},
+				"speed": 4,
+				"range": 5,
+				"hp": 3,
+				"fpower": 5,
+				"armor": 6,
+				"cost": 75
+			},
+			"M3 Lee": {
+				"images": "./assets/cards/m3lee.png",
+				"type": 1,
+				"weight": 2,
+				
+				"dateStart": {
+					"month": 4,
+					"year": 41
+				},
+				"dateEnd": {
+					"month": 12,
+					"year": 42
+				},
+				"speed": 4,
+				"range": 4,
+				"hp": 4,
+				"fpower": 4,
+				"armor": 5,
+				"cost": 81
+			},
+			"Cromwell": {
+				"images": "./assets/cards/cromwell.png",
+				"type": 1,
+				"weight": 2,
+				
+				"dateStart": {
+					"month": 11,
+					"year": 42
+				},
+				"dateEnd": {
+					"month": 5,
+					"year": 45
+				},
+				"speed": 7,
+				"range": 5,
+				"hp": 3,
+				"fpower": 5,
+				"armor": 5,
+				"cost": 89
+			},
+			"M4A1(76)": {
+				"images": "./assets/cards/m4a1_76.png",
+				"type": 1,
+				"weight": 2,
+				
+				"dateStart": {
+					"month": 1,
+					"year": 43
+				},
+				"dateEnd": {
+					"month": 12,
+					"year": 44
+				},
+				"speed": 4,
+				"range": 6,
+				"hp": 4,
+				"fpower": 7,
+				"armor": 6,
+				"cost": 100
+			},
+			"Slugger": {
+				"images": "./assets/cards/slugger.png",
+				"type": 2,
+				"weight": 2,
+				
+				"dateStart": {
+					"month": 11,
+					"year": 43
+				},
+				"dateEnd": {
+					"month": 5,
+					"year": 45
+				},
+				"speed": 5,
+				"range": 7,
+				"hp": 2,
+				"fpower": 9,
+				"armor": 5,
+				"cost": 103
+			},
+			"M4A3E8": {
+				"images": "./assets/cards/m4a3e8.png",
+				"type": 1,
+				"weight": 2,
+				
+				"dateStart": {
+					"month": 8,
+					"year": 44
+				},
+				"dateEnd": {
+					"month": 5,
+					"year": 45
+				},
+				"speed": 5,
+				"range": 6,
+				"hp": 3,
+				"fpower": 7,
+				"armor": 7,
+				"cost": 110
+			},
+			"Comet": {
+				"images": "./assets/cards/comet.png",
+				"type": 1,
+				"weight": 2,
+				
+				"dateStart": {
+					"month": 12,
+					"year": 44
+				},
+				"dateEnd": {
+					"month": 5,
+					"year": 45
+				},
+				"speed": 5,
+				"range": 7,
+				"hp": 3,
+				"fpower": 8,
+				"armor": 5,
+				"cost": 122
+			},
+			"Firefly": {
+				"images": "./assets/cards/firefly.png",
+				"type": 1,
+				"weight": 2,
+				
+				"dateStart": {
+					"month": 12,
+					"year": 43
+				},
+				"dateEnd": {
+					"month": 5,
+					"year": 45
+				},
+				"speed": 4,
+				"range": 8,
+				"hp": 3,
+				"fpower": 8,
+				"armor": 6,
+				"cost": 139
+			},
+			"Churchill I": {
+				"images": "./assets/cards/churchill_i.png",
+				"type": 1,
+				"weight": 3,
+				
+				"dateStart": {
+					"month": 4,
+					"year": 41
+				},
+				"dateEnd": {
+					"month": 6,
+					"year": 42
+				},
+				"speed": 3,
+				"range": 3,
+				"hp": 5,
+				"fpower": 4,
+				"armor": 8,
+				"cost": 143
+			},
+			"Jumbo": {
+				"images": "./assets/cards/jumbo.png",
+				"type": 1,
+				"weight": 3,
+				
+				"dateStart": {
+					"month": 3,
+					"year": 44
+				},
+				"dateEnd": {
+					"month": 5,
+					"year": 45
+				},
+				"speed": 3,
+				"range": 5,
+				"hp": 3,
+				"fpower": 5,
+				"armor": 12,
+				"cost": 151
+			},
+			"Churchill III": {
+				"images": "./assets/cards/churchill_iii.png",
+				"type": 1,
+				"weight": 3,
+				
+				"dateStart": {
+					"month": 7,
+					"year": 42
+				},
+				"dateEnd": {
+					"month": 12,
+					"year": 43
+				},
+				"speed": 3,
+				"range": 4,
+				"hp": 5,
+				"fpower": 5,
+				"armor": 8,
+				"cost": 155
+			},
+			"Jumbo(76)": {
+				"images": "./assets/cards/jumbo76.png",
+				"type": 1,
+				"weight": 3,
+				
+				"dateStart": {
+					"month": 1,
+					"year": 45
+				},
+				"dateEnd": {
+					"month": 5,
+					"year": 45
+				},
+				"speed": 3,
+				"range": 6,
+				"hp": 3,
+				"fpower": 7,
+				"armor": 12,
+				"cost": 178
+			},
+			"Pershing": {
+				"images": "./assets/cards/pershing.png",
+				"type": 1,
+				"weight": 3,
+				
+				"dateStart": {
+					"month": 2,
+					"year": 45
+				},
+				"dateEnd": {
+					"month": 5,
+					"year": 45
+				},
+				"speed": 4,
+				"range": 7,
+				"hp": 4,
+				"fpower": 9,
+				"armor": 9,
+				"cost": 220
+			},
+			"Churchill VII": {
+				"images": "./assets/cards/churchill_vii.png",
+				"type": 1,
+				"weight": 3,
+				
+				"dateStart": {
+					"month": 1,
+					"year": 44
+				},
+				"dateEnd": {
+					"month": 5,
+					"year": 45
+				},
+				"speed": 3,
+				"range": 5,
+				"hp": 5,
+				"fpower": 6,
+				"armor": 11,
+				"cost": 245
 			}
 		}
 	},

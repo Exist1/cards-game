@@ -12,6 +12,16 @@
 			content: attr(data-player) '!'
 		.starting-army.is-completed &::before
 			content: 'Ваша армия сформирована, '
+		.starting-army.is-shop &
+			&::before
+				content: 'Магазин техники '
+			&::after
+				content: attr(data-name-country) '!'
+		.starting-army.is-completed.is-shop &
+			&::before
+				content: 'Поздравляем с покупкой, '
+			&::after
+				content: attr(data-player) '!'
 	&__date
 		+resp-font(50, 28)
 		&::after
@@ -22,6 +32,10 @@
 		&::before
 			content: 'Наберите боевые единицы на доступное количество очков!'
 		.starting-army.is-completed &::before
+			content: 'Вы приобрели:'
+		.starting-army.is-shop &::before
+			content: 'Спланируйте бюджет и усильте армию!'
+		.starting-army.is-completed.is-shop &::before
 			content: 'Вы приобрели:'
 	&__body
 		display: flex
@@ -49,6 +63,16 @@
 			opacity: 1
 			pointer-events: all
 			z-index: 2
+		&::-webkit-scrollbar-track
+			background: $bgDecorDefault
+			background-size: $gridDecor
+			+size-calc('border-radius', 'r', $GBDRAIUS/2)
+		&::-webkit-scrollbar-thumb
+			background: $bgDecorLight
+			background-size: $gridDecor
+			+size-calc('border-radius', 'r', $GBDRAIUS/2)
+		&::-webkit-scrollbar
+			+size-calc('width', 'r', $GOFFSET/2)
 	&__box
 		flex-basis: calc(100%/2.0625)
 		margin-bottom: calc((#{$GOFFSET/2}*100vw)/#{$GWIDTH})
@@ -56,7 +80,7 @@
 			background: $bgDecorDefault
 			background-size: $gridDecor
 		&.is-old
-			.is-shop &
+			.starting-army.is-shop &
 				display: none
 	&__card
 		height: 100%
@@ -217,6 +241,8 @@
 		&::after
 			content: 'Очков престижа'
 			+size-calc('padding-bottom', 'r', $GOFFSET/4)
+		.starting-army.is-shop &::before
+			content: 'Покупка обойдётся в:'
 	&__buttons
 		margin-left: auto
 		width: $startArmyList
@@ -256,6 +282,8 @@
 			display: block
 		&__tab
 			+size-calc('padding-right', 'r', $GOFFSET/2)
+			&::-webkit-scrollbar-track, &::-webkit-scrollbar-thumb
+				background-size: $gridTabletDecor
 		&__list
 			height: calc(100vh - #{$GOFFSET*0.6375}rem)
 		&__card
@@ -324,6 +352,10 @@
 			height: calc(100vh - #{$GOFFSET*0.55}rem)
 		&__tab
 			padding-right: 0
+			&::-webkit-scrollbar-track, &::-webkit-scrollbar-thumb
+				background-size: $gridMobileDecor
+			&::-webkit-scrollbar
+				+size-calc('width', 'r', $GOFFSET/4)
 		&__box
 			flex-basis: 100%
 			&::before

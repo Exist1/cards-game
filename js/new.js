@@ -52,7 +52,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		currentFpower, currentArmor, currentCube, // Выбор огневой мощи, защищенности и что выпало на кубиках, в режиме "стрельба".
 		currentFirst, currentSecond, currentLast, // Номера первого, второго и последнего игрока после жеребьевки.
 		nextPlayer = true, // Есть ли следующий игрок.
-		playerNotLast = true; // Игрорк не последний, если участвуют все три игрока.
+		playerNotLast = true, // Игрорк не последний, если участвуют все три игрока.
+		numberShop; // Номер игрока, зашедшего в магазин.
 
 	// Кеширование длины массивов элементов.
 	let issCaching = iSettingsSwitch.length,
@@ -364,7 +365,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			if (!screens[2].classList.contains(isCompleted)) {
 				screens[2].classList.add(isCompleted);
 				changeActiveClass(satCaching - 1, startArmyTab);
-				if (!nextPlayer) screens[2].classList.add(isEnd);
+				if (!nextPlayer || screens[2].classList.contains('is-shop')) screens[2].classList.add(isEnd);
 
 			} else {
 				if (!nextPlayer) {
@@ -379,7 +380,7 @@ document.addEventListener('DOMContentLoaded', function() {
 					for (let gp = 0; gp < gpCaching; gp++) {
 						let gparam = globalParam[gp],
 							paramSvg = gparam.querySelector('.global__svg use'),
-							paramText = gparam.querySelector('span'), 
+							paramText = gparam.querySelector('span'),
 							linkSvg = ['#germany', '#ussr', '#allies'],
 							classCountry = ['global__param_germany', 'global__param_ussr', 'global__param_allies'];
 
@@ -459,19 +460,28 @@ document.addEventListener('DOMContentLoaded', function() {
 			screens[2].classList.remove(isCompleted);
 			screens[2].classList.remove(isEnd);
 
-			if (counterPlayer === 1) {
-				nextPlayer ? changeActiveClass(+localStorage.getItem('country-' + currentFirst), startArmyTab) : changeActiveClass(+localStorage.getItem('country-' + currentLast), startArmyTab);
-
-			} else if (counterPlayer === 2) {
-				if (nextPlayer && playerNotLast) {
-					changeActiveClass(+localStorage.getItem('country-' + currentFirst), startArmyTab);
-				} else if (nextPlayer && !playerNotLast) {
-					changeActiveClass(+localStorage.getItem('country-' + currentSecond), startArmyTab);
-				} else if (!nextPlayer && !playerNotLast) {
-					changeActiveClass(+localStorage.getItem('country-' + currentLast), startArmyTab);
+			if (!screens[2].classList.contains('is-shop')) {
+				if (counterPlayer === 1) {
+					if (nextPlayer) {
+						changeActiveClass(+localStorage.getItem('country-' + currentFirst), startArmyTab);
+					} else {
+						changeActiveClass(+localStorage.getItem('country-' + currentLast), startArmyTab);
+					};
+	
+				} else if (counterPlayer === 2) {
+					if (nextPlayer && playerNotLast) {
+						changeActiveClass(+localStorage.getItem('country-' + currentFirst), startArmyTab);
+					} else if (nextPlayer && !playerNotLast) {
+						changeActiveClass(+localStorage.getItem('country-' + currentSecond), startArmyTab);
+					} else if (!nextPlayer && !playerNotLast) {
+						changeActiveClass(+localStorage.getItem('country-' + currentLast), startArmyTab);
+					};
 				};
+
+			} else {
+				console.log(numberShop, +localStorage.getItem('country-' + numberShop));
+				changeActiveClass(+localStorage.getItem('country-' + numberShop), startArmyTab);
 			};
-			// changeActiveClass(+localStorage.getItem('side-' + currentPlayer) - 1, startArmyTab);
 		});
 
 		// Управление перезапуском игры.
@@ -503,8 +513,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 					nextPlayer = true;
 					playerNotLast = true;
-					screens[2].classList.remove(isCompleted);
-					screens[2].classList.remove(isEnd);
+					screens[2].className = 'screen starting-army';
 
 					clearInputPlayer();
 
@@ -636,7 +645,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		// Кнопки запуска магазина.
 		for (let gbs = 0; gbs < globalBtnShop.length; gbs++) {
-			let btnShop = globalBtnShop[gbs];
+			let btnShop = globalBtnShop[gbs],
+				listNameCountry = ['Германии', 'СССР', 'Союзников'];
 
 			btnShop.addEventListener('click', function() {
 				for (let sat = 0; sat < satCaching; sat++) {
@@ -645,16 +655,47 @@ document.addEventListener('DOMContentLoaded', function() {
 
 				generationVehicleCards();
 
-				screens[2].classList.remove(isCompleted);
-				screens[2].classList.remove(isEnd);
+				screens[2].className = 'screen starting-army';
 				screens[2].classList.add('is-shop');
 
-				changeActiveClass(+localStorage.getItem('country-' + gbs), startArmyTab);
+				if (gbs === 0) {
+					numberShop = currentFirst;
+					startArmyTitle.setAttribute('data-player', localStorage.getItem('player-' + currentFirst));
+					startArmyTitle.setAttribute('data-name-country', listNameCountry[localStorage.getItem('country-' + currentFirst)]);
+					changeActiveClass(+localStorage.getItem('country-' + currentFirst), startArmyTab);
+
+				} else if (gbs === 1) {
+					if (counterPlayer === 1) {
+						numberShop = currentLast;
+						startArmyTitle.setAttribute('data-player', localStorage.getItem('player-' + currentLast));
+						startArmyTitle.setAttribute('data-name-country', listNameCountry[localStorage.getItem('country-' + currentLast)]);
+						changeActiveClass(+localStorage.getItem('country-' + currentLast), startArmyTab);
+
+					} else if (counterPlayer === 2) {
+						numberShop = currentSecond;
+						startArmyTitle.setAttribute('data-player', localStorage.getItem('player-' + currentSecond));
+						startArmyTitle.setAttribute('data-name-country', listNameCountry[localStorage.getItem('country-' + currentSecond)]);
+						changeActiveClass(+localStorage.getItem('country-' + currentSecond), startArmyTab);
+					};
+
+				} else {
+					if (counterPlayer === 2) {
+						numberShop = currentLast;
+						startArmyTitle.setAttribute('data-player', localStorage.getItem('player-' + currentLast));
+						startArmyTitle.setAttribute('data-name-country', listNameCountry[localStorage.getItem('country-' + currentLast)]);
+						changeActiveClass(+localStorage.getItem('country-' + currentLast), startArmyTab);
+					};
+				};
+
+				startArmyResources.textContent = '0';
+
 				switchSections(this);
 			});
 		};
 
-		/* Ошипка выбора варианта на стрельбе.
+
+
+		/* Ошибка выбора варианта, на стрельбе.
 			@param {object} list - где была выбор, который еще не открыт. */
 		function showErrorAttack(list) {
 			list.classList.add(isError);
@@ -830,16 +871,16 @@ document.addEventListener('DOMContentLoaded', function() {
 					// Блокировка кнопки, при невозможности покупки техники.
 					countBuy = Math.floor(+startArmyResources.textContent/saPrice);
 
-					if (countBuy <= 1) {
+					if (!screens[2].classList.contains('is-shop') && countBuy <= 1) {
 						saPlus.classList.add(isEnd);
 						countBuy = 1;
 					};
 
-					if (!screens[2].classList.contains('is-shop') && +startArmyResources.textContent - saPrice > 0) {
+					if (!screens[2].classList.contains('is-shop') && +startArmyResources.textContent - saPrice > 0 || screens[2].classList.contains('is-shop')) {
 						currentCount >= 999 ? currentCount = 999 : currentCount++;
 						saText.textContent = currentCount;
 
-						startArmyResources.textContent = +startArmyResources.textContent - saPrice;
+						!screens[2].classList.contains('is-shop') ? startArmyResources.textContent = +startArmyResources.textContent - saPrice : startArmyResources.textContent = +startArmyResources.textContent + saPrice;
 
 						// Клонирование карточки.
 						if (currentCount === 1 && !clonedCard) {
@@ -872,9 +913,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 						if (currentCount < 1) saMinus.classList.add(isEnd);
 
-						if (!screens[2].classList.contains('is-shop')) {
-							startArmyResources.textContent = +startArmyResources.textContent + saPrice;
-						}
+						!screens[2].classList.contains('is-shop') ? startArmyResources.textContent = +startArmyResources.textContent + saPrice : startArmyResources.textContent = +startArmyResources.textContent - saPrice;
 
 						countBuy = Math.floor(+startArmyResources.textContent/saPrice);
 						if (countBuy > 0) saPlus.classList.remove(isEnd);
