@@ -377,11 +377,40 @@ document.addEventListener('DOMContentLoaded', function() {
 
 					// Установка игроков.
 					for (let gp = 0; gp < gpCaching; gp++) {
-						let getСountry = localStorage.getItem('country-' + gp); // Страна игрока.
+						let gparam = globalParam[gp],
+							paramSvg = gparam.querySelector('.global__svg use'),
+							paramText = gparam.querySelector('span'), 
+							linkSvg = ['#germany', '#ussr', '#allies'],
+							classCountry = ['global__param_germany', 'global__param_ussr', 'global__param_allies'];
 
-						if (getСountry !== null) {
-							globalParam[getСountry].parentElement.classList.add(isActive);
-							globalParam[getСountry].querySelector('span').textContent = localStorage.getItem('player-' + getСountry);
+						if (gp === 0) {
+							gparam.classList.add(classCountry[localStorage.getItem('country-' + currentFirst)]);
+							gparam.setAttribute('data-base', localStorage.getItem('base-' + currentFirst));
+							paramSvg.setAttribute('xlink:href', linkSvg[localStorage.getItem('country-' + currentFirst)]);
+							paramText.textContent = localStorage.getItem('player-' + currentFirst);
+
+						} else if (gp === 1) {
+							if (counterPlayer === 1) {
+								gparam.classList.add(classCountry[localStorage.getItem('country-' + currentLast)]);
+								gparam.setAttribute('data-base', localStorage.getItem('base-' + currentLast));
+								paramSvg.setAttribute('xlink:href', linkSvg[localStorage.getItem('country-' + currentLast)]);
+								paramText.textContent = localStorage.getItem('player-' + currentLast);
+
+							} else if (counterPlayer === 2) {
+								gparam.classList.add(classCountry[localStorage.getItem('country-' + currentSecond)]);
+								gparam.setAttribute('data-base', localStorage.getItem('base-' + currentSecond));
+								paramSvg.setAttribute('xlink:href', linkSvg[localStorage.getItem('country-' + currentSecond)]);
+								paramText.textContent = localStorage.getItem('player-' + currentSecond);
+							};
+
+						} else {
+							if (counterPlayer === 2) {
+								gparam.parentElement.classList.add(isActive);
+								gparam.classList.add(classCountry[localStorage.getItem('country-' + currentLast)]);
+								gparam.setAttribute('data-base', localStorage.getItem('base-' + currentLast));
+								paramSvg.setAttribute('xlink:href', linkSvg[classCountry[localStorage.getItem('country-' + currentLast)]]);
+								paramText.textContent = localStorage.getItem('player-' + currentLast);
+							};
 						};
 					};
 
@@ -481,6 +510,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
 					for (let sat = 0; sat < satCaching; sat++) {
 						startArmyTab[sat].innerHTML = '';
+					};
+
+					for (let gp = 0; gp < gpCaching; gp++) {
+						let gparam = globalParam[gp],
+							paramSvg = gparam.querySelector('.global__svg use'),
+							paramText = gparam.querySelector('span');
+	
+						if (gp === 2) gparam.parentElement.classList.remove(isActive);
+	
+						gparam.className = 'screen__decor global__param';
+						gparam.setAttribute('data-base', '?');
+						paramSvg.setAttribute('xlink:href', '#');
+						paramText.textContent = '';
 					};
 				}, 500);
 			});
@@ -594,11 +636,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		// Кнопки запуска магазина.
 		for (let gbs = 0; gbs < globalBtnShop.length; gbs++) {
-			const btnShop = globalBtnShop[gbs];
-			
-		}
+			let btnShop = globalBtnShop[gbs];
 
+			btnShop.addEventListener('click', function() {
+				for (let sat = 0; sat < satCaching; sat++) {
+					startArmyTab[sat].innerHTML = '';
+				};
 
+				generationVehicleCards();
+
+				screens[2].classList.remove(isCompleted);
+				screens[2].classList.remove(isEnd);
+				screens[2].classList.add('is-shop');
+
+				changeActiveClass(+localStorage.getItem('country-' + gbs), startArmyTab);
+				switchSections(this);
+			});
+		};
 
 		/* Ошипка выбора варианта на стрельбе.
 			@param {object} list - где была выбор, который еще не открыт. */
@@ -643,6 +697,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 				// На какой базе будет стартовать.
 				localStorage.setItem('base-' + sls, basePositions[base]);
+				basePositions.splice(base, 1);
 			};
 		};
 
@@ -674,7 +729,7 @@ document.addEventListener('DOMContentLoaded', function() {
 						progressFpower = Math.round((((parameter.range/6)*isPROGRESS.firepower[parameter.fpower])*100)/780), // Прогрес бар на "вооружение".
 						progressArmor, // Прогрес бар на "живучесть".
 						totalProductStart = (+parameter.dateStart.year*12) + +parameter.dateStart.month, // Перевод в месяца, дату начала производства техники.
-						totalProductCurent = (+Object.keys(isRESOURCES)[currentYear]*12) + (currentMonth + 1), // Перевод в месяца, дату сражения.
+						totalProductCurent = (+Object.keys(isRESOURCES)[currentYear]*12) + currentMonth, // Перевод в месяца, дату сражения.
 						totalProductEnd = (+parameter.dateEnd.year*12) + +parameter.dateEnd.month, // Перевод в месяца, дату конца производства техники.
 						typeItem, // Тип техники.
 						productionItem, isOld; // Есть ли производство техники.
@@ -780,9 +835,10 @@ document.addEventListener('DOMContentLoaded', function() {
 						countBuy = 1;
 					};
 
-					if (+startArmyResources.textContent - saPrice > 0) {
-						currentCount >= 99 ? currentCount = 99 : currentCount++;
+					if (!screens[2].classList.contains('is-shop') && +startArmyResources.textContent - saPrice > 0) {
+						currentCount >= 999 ? currentCount = 999 : currentCount++;
 						saText.textContent = currentCount;
+
 						startArmyResources.textContent = +startArmyResources.textContent - saPrice;
 
 						// Клонирование карточки.
@@ -816,7 +872,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 						if (currentCount < 1) saMinus.classList.add(isEnd);
 
-						startArmyResources.textContent = +startArmyResources.textContent + saPrice;
+						if (!screens[2].classList.contains('is-shop')) {
+							startArmyResources.textContent = +startArmyResources.textContent + saPrice;
+						}
 
 						countBuy = Math.floor(+startArmyResources.textContent/saPrice);
 						if (countBuy > 0) saPlus.classList.remove(isEnd);
