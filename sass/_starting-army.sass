@@ -87,6 +87,29 @@
 		padding: calc((#{$GOFFSET/4}*100vw)/#{$GWIDTH}) calc((#{$GOFFSET/2}*100vw)/#{$GWIDTH})
 		position: relative
 		width: 100%
+		&::before, &::after
+			background-position: right center
+			background-repeat: no-repeat
+			background-size: auto 100%
+			content: ''
+			display: block
+			height: 100%
+			pointer-events: none
+			position: absolute
+			top: 0
+			width: 50%
+		&_tank, &_pt-sau
+			&::before
+				left: 0
+				transform: scaleX(-1)
+			&::after
+				right: 0
+		&_tank
+			&::before, &::after
+				background-image: url('../assets/decor-cards/decor_tank.svg')
+		&_pt-sau
+			&::before, &::after
+				background-image: url('../assets/decor-cards/decor_pt_sau.svg')
 	&__picture
 		align-items: center
 		display: flex

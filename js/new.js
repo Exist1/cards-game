@@ -490,7 +490,6 @@ document.addEventListener('DOMContentLoaded', function() {
 				};
 
 			} else {
-				console.log(numberShop, +localStorage.getItem('country-' + numberShop));
 				changeActiveClass(+localStorage.getItem('country-' + numberShop), startArmyTab);
 			};
 		});
@@ -784,7 +783,8 @@ document.addEventListener('DOMContentLoaded', function() {
 						totalProductCurent = (+Object.keys(isRESOURCES)[currentYear]*12) + currentMonth, // Перевод в месяца, дату сражения.
 						totalProductEnd = (+parameter.dateEnd.year*12) + +parameter.dateEnd.month, // Перевод в месяца, дату конца производства техники.
 						typeItem, // Тип техники.
-						productionItem, isOld; // Есть ли производство техники.
+						viewItem, // Вид техники.
+						productionItem; // Есть ли производство техники.
 
 					// Корректировка парамтра.
 					+parameter.armor === 22 ? progressArmor = Math.round((((parameter.hp/3)*isPROGRESS.armor[parameter.armor - 5])*100)/1100) : progressArmor = Math.round((((parameter.hp/3)*isPROGRESS.armor[parameter.armor])*100)/1100);
@@ -793,14 +793,34 @@ document.addEventListener('DOMContentLoaded', function() {
 					tabItem.classList.add('screen__decor', 'starting-army__box');
 
 					// Определение танков.
-					if (parameter.type === 1 && parameter.weight === 1) typeItem = 'Лёгкий танк';
-					if (parameter.type === 1 && parameter.weight === 2) typeItem = 'Средний танк';
-					if (parameter.type === 1 && parameter.weight === 3) typeItem = 'Тяжёлый танк';
+					if (parameter.type === 1) {
+						viewItem = 'starting-army__card_tank';
+
+						if (parameter.weight === 1) {
+							typeItem = 'Лёгкий танк';
+
+						} else if (parameter.weight === 2) {
+							typeItem = 'Средний танк';
+
+						} else if (parameter.weight === 3) {
+							typeItem = 'Тяжёлый танк';
+						};
+					};
 
 					// Определение ПТ-САУ.
-					if (parameter.type === 2 && parameter.weight === 1) typeItem = 'Лёгкая ПТ-САУ';
-					if (parameter.type === 2 && parameter.weight === 2) typeItem = 'Средняя ПТ-САУ';
-					if (parameter.type === 2 && parameter.weight === 3) typeItem = 'Тяжёлая ПТ-САУ';
+					if (parameter.type === 2) {
+						viewItem = 'starting-army__card_pt-sau';
+
+						if (parameter.weight === 1) {
+							typeItem = 'Лёгкая ПТ-САУ';
+
+						} else if (parameter.weight === 2) {
+							typeItem = 'Средняя ПТ-САУ';
+
+						} else if (parameter.weight === 3) {
+							typeItem = 'Тяжёлая ПТ-САУ';
+						};
+					};
 
 					// Определения выпускается ещё техника или нет.
 					if (totalProductStart < totalProductCurent) {
@@ -814,7 +834,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 					// Html-разметка карточки. 
 					tabItem.innerHTML = `
-						<div class="starting-army__card">
+						<div class="starting-army__card ${viewItem}">
 							<picture class="starting-army__picture">
 								<!-- <source srcset="" type="image/webp">  -->
 								<img class="starting-army__image" src="${parameter.images}">
