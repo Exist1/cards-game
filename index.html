@@ -206,123 +206,30 @@
 	</section>
 
 	<!-- 4. Экран расчёта результата атаки на противника. -->
-	<section class="screen attack-table">
-		<div class="screen__wrap attack-table__wrap">
-			<ul class="screen__decor attack-table__panel-up">
-				<li class="attack-table__tab attack-table__tab_fpower is-active">
-					<svg class="attack-table__svg-panel"><use xlink:href="#fpower"></use></svg>
-					<span>?</span>
-				</li>
-				<li class="attack-table__tab attack-table__tab_armor">
-					<svg class="attack-table__svg-panel"><use xlink:href="#armor"></use></svg>
-					<span>?</span>
-				</li>
-				<li class="attack-table__tab attack-table__tab_cube">
-					<svg class="attack-table__svg-panel"><use xlink:href="#cubes"></use></svg>
-					<span>?</span>
-				</li>
-				<li class="attack-table__arrow">
-					<span class="screen__decor attack-table__arrow_start"></span>
-					<span class="screen__decor attack-table__arrow_end"></span>
-				</li>
-			</ul>
+	<section class="screen shooting">
+		<div class="screen__wrap shooting__wrap shooting__step-0">
 
-			<!-- Выбор огневой мощи атакующего. -->
-			<div class="attack-table__item is-active">
-				<h2 class="attack-table__title">
-					<svg class="attack-table__svg-panel"><use xlink:href="#fpower"></use></svg>
+			<article class="shooting__article shooting__article_fpower is-active">
+				<h2 class="shooting__title">
+					<svg class="shooting__svg-title"><use xlink:href="#fpower"></use></svg>
 					<span>?</span>
 				</h2>
+			</article>
 
-				<ul class="attack-table__list attack-table__list_fpower is-active">
-					<li class="screen__decor attack-table__buttons"><span>0</span></li>
-					<li class="screen__decor attack-table__buttons"><span>1</span></li>
-					<li class="screen__decor attack-table__buttons"><span>2</span></li>
-					<li class="screen__decor attack-table__buttons"><span>3</span></li>
-					<li class="screen__decor attack-table__buttons"><span>4</span></li>
-					<li class="screen__decor attack-table__buttons"><span>5</span></li>
-					<li class="screen__decor attack-table__buttons"><span>6</span></li>
-					<li class="screen__decor attack-table__buttons"><span>7</span></li>
-					<li class="screen__decor attack-table__buttons"><span>8</span></li>
-					<li class="screen__decor attack-table__buttons"><span>9</span></li>
-					<li class="screen__decor attack-table__buttons"><span>10</span></li>
-					<li class="screen__decor attack-table__buttons"><span>11</span></li>
-					<li class="screen__decor attack-table__buttons"><span>12</span></li>
-					<li class="screen__decor attack-table__buttons"><span>13</span></li>
-					<li class="screen__decor attack-table__buttons"><span>ПЕХ.</span></li>
-					<li class="screen__decor attack-table__buttons attack-table__buttons_close"></li>
-				</ul>
-
-				<button class="screen__button screen__decor attack-table__back" data-switch="3">
-					<svg><use xlink:href="#back"></use></svg>
-					<span>Назад</span>
-				</button>
-			</div>
-
-			<!-- Выбор защищённости атакуемого. -->
-			<div class="attack-table__item">
-				<h2 class="attack-table__title">
-					<svg class="attack-table__svg-panel"><use xlink:href="#armor"></use></svg>
+			<article class="shooting__article shooting__article_armor">
+				<h2 class="shooting__title">
+					<svg class="shooting__svg-title"><use xlink:href="#armor"></use></svg>
 					<span>?</span>
 				</h2>
+			</article>
 
-				<div class="attack-table__info">
-					<p class="attack-table__text attack-table__chance" data-chance="0">Шанс поразить цель: </p>
-					<p class="attack-table__text attack-table__max-damage" data-damage="0">Максимальный урон: </p>
-				</div>
-
-				<ul class="attack-table__list attack-table__list_armor" data-message="Выберите сначала «огенвую мощь» атакующего!">
-					<li class="screen__decor attack-table__buttons"><span>0</span></li>
-					<li class="screen__decor attack-table__buttons"><span>1</span></li>
-					<li class="screen__decor attack-table__buttons"><span>2</span></li>
-					<li class="screen__decor attack-table__buttons"><span>3</span></li>
-					<li class="screen__decor attack-table__buttons"><span>4</span></li>
-					<li class="screen__decor attack-table__buttons"><span>5</span></li>
-					<li class="screen__decor attack-table__buttons"><span>6</span></li>
-					<li class="screen__decor attack-table__buttons"><span>7</span></li>
-					<li class="screen__decor attack-table__buttons"><span>8</span></li>
-					<li class="screen__decor attack-table__buttons"><span>9</span></li>
-					<li class="screen__decor attack-table__buttons"><span>10</span></li>
-					<li class="screen__decor attack-table__buttons"><span>11</span></li>
-					<li class="screen__decor attack-table__buttons"><span>12</span></li>
-					<li class="screen__decor attack-table__buttons"><span>13</span></li>
-					<li class="screen__decor attack-table__buttons"><span>14</span></li>
-					<li class="screen__decor attack-table__buttons"><span>15</span></li>
-					<li class="screen__decor attack-table__buttons"><span>16</span></li>
-					<li class="screen__decor attack-table__buttons"><span>22</span></li>
-					<li class="screen__decor attack-table__buttons attack-table__buttons_close"></li>
-					<li class="screen__decor attack-table__buttons attack-table__buttons_close"></li>
-				</ul>
-			</div>
-
-			<!-- Выбор результата кубиков. -->
-			<div class="attack-table__item">
-				<h2 class="attack-table__title">
-					<svg class="attack-table__svg-panel"><use xlink:href="#cubes"></use></svg>
+			<article class="shooting__article shooting__article_cube">
+				<h2 class="shooting__title">
+					<svg class="shooting__svg-title"><use xlink:href="#cubes"></use></svg>
 					<span>?</span>
 				</h2>
+			</article>
 
-				<ul class="attack-table__list attack-table__list_cube" data-message="Выберите сначала «защищённость» атакуемого!">
-					<li class="screen__decor attack-table__buttons"><span>2</span></li>
-					<li class="screen__decor attack-table__buttons"><span>3</span></li>
-					<li class="screen__decor attack-table__buttons"><span>4</span></li>
-					<li class="screen__decor attack-table__buttons"><span>5</span></li>
-					<li class="screen__decor attack-table__buttons"><span>6</span></li>
-					<li class="screen__decor attack-table__buttons"><span>7</span></li>
-					<li class="screen__decor attack-table__buttons"><span>8</span></li>
-					<li class="screen__decor attack-table__buttons"><span>9</span></li>
-					<li class="screen__decor attack-table__buttons"><span>10</span></li>
-					<li class="screen__decor attack-table__buttons"><span>11</span></li>
-					<li class="screen__decor attack-table__buttons"><span>12</span></li>
-					<li class="screen__decor attack-table__buttons attack-table__buttons_close"></li>
-				</ul>
-
-				<button class="screen__button screen__button_action attack-table__random-cube">
-					<span>Случайное число</span>
-				</button>
-
-				<h3 class="attack-table__result">?</h3>
-			</div>
 		</div>
 	</section>
 

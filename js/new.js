@@ -26,12 +26,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		globalSubtitle = document.querySelector('.global__subtitle'), // Подзаголовок показывающий кто первый, а кто последний.
 		globalParam = document.querySelectorAll('.global__param'), // Места для вывода имен очереди.
 		globalAttack = document.querySelector('.global__attack'), // Кнопка прехода на стрельбу.
-		attackTableBack = document.querySelector('.attack-table__back'), // Кнопка возврата на главный экран со стрельбы.
-		attackList = document.querySelectorAll('.attack-table__list'), 
-		attackRandomCube = document.querySelector('.attack-table__random-cube'), // Кнопка случайного выбора значения кубика.
-		attackChance = document.querySelector('.attack-table__chance'), // Место указывающее какой шанс поражения противника.
-		attackDamage = document.querySelector('.attack-table__max-damage'), // Место указывающее какой максимальный урон.
-		attackResult = document.querySelector('.attack-table__result'),
 		globalBtnShop = document.querySelectorAll('.global__shop'),
 		globalPrestigePoints = document.querySelectorAll('.global__prestige-points'), // Награды.
 		tableSettings = {
@@ -62,7 +56,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		ispCaching = iSettingsPlayer.length,
 		satCaching = startArmyTab.length,
 		gpCaching = globalParam.length,
-		alCaching = attackList.length,
 		gbsCaching = globalBtnShop.length,
 		gppCaching = globalPrestigePoints.length;
 
@@ -80,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			isPROGRESS = isJSON.PROGRESS; // Параметр таблицы прогрес баров, в карточках техники.
 
 		// Активация стартового экрана (секции).
-		screens[0].classList.add(isActive);
+		screens[4].classList.add(isActive);
 
 		// Управление кнопкой "начать игру", расположенную на стартовом экране.
 		startScreenNext.addEventListener('click', function() {
@@ -552,106 +545,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			switchSections(this);
 		});
 
-		// Управление кнопкой "назад", расположенную на экране расчёта атаки на протиника.
-		attackTableBack.addEventListener('click', function() {
-			switchSections(this);
-		});
-
-		// Управление разделом "стрельба".
-		for (let al = 0; al < alCaching; al++) {
-			let list = attackList[al],
-				btnList = list.querySelectorAll('.attack-table__buttons'),
-				blCaching = btnList.length;
-
-			for (let bl = 0; bl < blCaching; bl++) {
-				let btn = btnList[bl],
-					listTitle = btn.parentElement.parentElement.querySelector('.attack-table__title span');
-
-				btn.addEventListener('click', function() {
-					if (list.classList.contains(isActive)) {
-						if (!btn.classList.contains('attack-table__buttons_close')) {
-							changeActiveClass(bl, btnList);
-							if (al !== 2) {
-								attackList[al + 1].classList.add(isActive);
-								attackList[al + 1].parentElement.classList.add(isActive);
-							};
-
-							listTitle.textContent = bl;
-
-							if (al === 0) {
-								currentFpower = bl;
-								if (bl === 14) listTitle.textContent = 'пехота';
-
-							} else if (al === 1) {
-								currentArmor = bl;
-								if (bl === 17) listTitle.textContent = bl + 5;
-
-								attackChance.setAttribute('data-chance', isSHOOTING['firepower-' + currentFpower]['armor-' + currentArmor].chance);
-								attackDamage.setAttribute('data-damage', Math.min.apply(Math, isSHOOTING['firepower-' + currentFpower]['armor-' + currentArmor]['cube']));
-
-							} else {
-								currentCube = bl;
-								listTitle.textContent = bl + 2;
-
-								let totalResult = isSHOOTING['firepower-' + currentFpower]['armor-' + currentArmor]['cube'][currentCube];
-
-								if (totalResult > 0 && totalResult !== 66 && totalResult !== 77 && totalResult !== 99) {
-									attackResult.textContent = miss[randomInteger(0, miss.length - 1)];
-
-								} else if (totalResult === 66) {
-									attackResult.textContent = 'пехота убита';
-
-								} else if (totalResult === 77) {
-									attackResult.textContent = 'убит противник';
-
-								} else if (totalResult === 99) {
-									attackResult.textContent = 'оба скопытились';
-
-								} else {
-									attackResult.textContent = totalResult;
-								};
-							};
-
-						};
-
-					} else {
-						showErrorAttack(list);
-					};
-				});
-			};
-		};
-
-		// Управление кнопкой "случайное число", расположенную на экране расчёта атаки на протиника.
-		attackRandomCube.addEventListener('click', function() {
-			if (attackRandomCube.parentElement.classList.contains(isActive)) {
-				currentCube = randomInteger(0, 10);
-
-				let totalResult = isSHOOTING['firepower-' + currentFpower]['armor-' + currentArmor]['cube'][currentCube];
-
-				changeActiveClass(currentCube, attackRandomCube.parentElement.querySelectorAll('.attack-table__buttons'))
-				attackRandomCube.parentElement.querySelector('.attack-table__title span').textContent = currentCube + 2;
-
-
-				if (totalResult > 0 && totalResult !== 66 && totalResult !== 77 && totalResult !== 99) {
-					attackResult.textContent = miss[randomInteger(0, miss.length - 1)];
-
-				} else if (totalResult === 66) {
-					attackResult.textContent = 'пехота убита';
-
-				} else if (totalResult === 77) {
-					attackResult.textContent = 'убит противник';
-
-				} else if (totalResult === 99) {
-					attackResult.textContent = 'оба скопытились';
-
-				} else {
-					attackResult.textContent = totalResult;
-				};
-
-			} else {
-				showErrorAttack(attackRandomCube.parentElement.querySelector('.attack-table__list'));
-			};
-		});
+		// 
 
 		// Кнопки запуска магазина.
 		for (let gbs = 0; gbs < gbsCaching; gbs++) {

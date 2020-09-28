@@ -1,0 +1,83 @@
+.shooting
+	&__wrap
+		align-items: center
+		display: flex
+		height: 100%
+		margin: 0
+	&__article
+		align-items: center
+		display: flex
+		flex-wrap: wrap
+		padding: 0 calc((#{$GOFFSET/2}*100vw)/#{$GWIDTH})
+		&_fpower
+			.shooting__step-0 &
+				flex-basis: 70%
+			.shooting__step-1 &
+				flex-basis: 42.5%
+			.shooting__step-2 &
+				flex-basis: calc(100%/3)
+		&_armor
+			border:
+				left: 1px solid $COLOR_separator
+				right: 1px solid $COLOR_separator
+			.shooting__step-0 &
+				flex-basis: 15%
+			.shooting__step-1 &
+				flex-basis: 42.5%
+			.shooting__step-2 &
+				flex-basis: calc(100%/3)
+		&_cube
+			.shooting__step-0 &
+				flex-basis: 15%
+			.shooting__step-1 &
+				flex-basis: 15%
+			.shooting__step-2 &
+				flex-basis: calc(100%/3)
+	&__title
+		position: relative
+		flex-basis: 100%
+		span
+			+resp-font(65, 28)
+			left: 50%
+			position: absolute
+			top: 50%
+			transform: translate(-50%, -50%)
+			z-index: 1
+	&__svg-title
+		fill: $COLOR_grey
+		height: calc((#{$GOFFSET*3.75}*100vw)/#{$GWIDTH})
+		width: 100%
+	@media screen and ( max-width: #{$GTABLET}px )
+		&__wrap
+			display: block
+			position: relative
+		&__article
+			align-items: flex-start
+			flex-basis: 100% !important
+			height: 100%
+			left: 0
+			overflow-x: hidden
+			padding: 0
+			position: absolute
+			pointer-events: none
+			top: 0
+			width: 100%
+			z-index: 1
+			&_fpower
+			&_armor
+				border: none
+				.shooting__title
+					margin-left: calc(100%/3)
+			&_cube
+				.shooting__title
+					margin-left: calc(100%/1.5)
+			&.is-active
+				pointer-events: all
+				z-index: 2
+		&__title
+			flex-basis: calc(100%/3)
+		&__svg-title
+			+size-calc('height', 'r', $GOFFSET*2.5)
+	@media screen and ( max-width: #{$GMOBILE}px )
+		&__svg-title
+			+size-calc('height', 'r', $GOFFSET*1.5)
