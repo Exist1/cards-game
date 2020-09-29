@@ -8,6 +8,7 @@
 		align-items: center
 		display: flex
 		flex-wrap: wrap
+		overflow: hidden
 		padding: 0 calc((#{$GOFFSET/2}*100vw)/#{$GWIDTH})
 		&_fpower
 			.shooting__step-0 &
@@ -27,8 +28,7 @@
 			.shooting__step-2 &
 				flex-basis: calc(100%/3)
 		&_cube
-			.shooting__step-0 &
-				flex-basis: 15%
+			.shooting__step-0 &,
 			.shooting__step-1 &
 				flex-basis: 15%
 			.shooting__step-2 &
@@ -37,7 +37,7 @@
 		position: relative
 		flex-basis: 100%
 		span
-			+resp-font(65, 28)
+			+resp-font(62, 22)
 			left: 50%
 			position: absolute
 			top: 50%
@@ -45,14 +45,60 @@
 			z-index: 1
 	&__svg-title
 		fill: $COLOR_grey
-		height: calc((#{$GOFFSET*3.75}*100vw)/#{$GWIDTH})
+		height: calc((#{$GOFFSET*3}*100vw)/#{$GWIDTH})
 		width: 100%
+	&__content
+		flex-basis: 100%
+		margin-top: calc((#{$GOFFSET*0.375}*100vw)/#{$GWIDTH})
+		max-height: 0
+		opacity: 0
+		overflow: hidden
+		pointer-events: none
+		.shooting__step-0 .shooting__article_fpower &,
+		.shooting__step-1 .shooting__article_armor &,
+		.shooting__step-2 .shooting__article_cube &
+			max-height: 50rem
+			opacity: 1
+			pointer-events: all
+			transition-delay: $TRS_time*1.5
+	&__list
+		display: flex
+		flex-wrap: wrap
+		justify-content: space-between
+		.shooting__step-0 .shooting__article_fpower &
+			margin: 0 auto
+			width: 75%
+		.shooting__step-1 .shooting__article_fpower &,
+		.shooting__step-2 .shooting__article_fpower &
+			margin: 0
+			width: 100%
+	&__item
+		cursor: pointer
+		flex-basis: calc(100%/4.5)
+		+resp-font(26, 18)
+		line-height: 2.125
+		text-align: center
+		&::before
+			background: $bgDecorLight
+			background-size: $gridDecor
+		&_null
+			cursor: no-drop
+			&::before
+				background: $bgDecorDefault
+				background-size: $gridDecor
+		&:not(:nth-last-child(-n + 4))
+			margin-bottom: calc((#{$GOFFSET*0.375}*100vw)/#{$GWIDTH})
+		&.is-active
+			&::before
+				background: $GCOLOR_white none
+			span
+				color: $GCOLOR_black
 	@media screen and ( max-width: #{$GTABLET}px )
 		&__wrap
 			display: block
 			position: relative
 		&__article
-			align-items: flex-start
+			align-content: flex-start
 			flex-basis: 100% !important
 			height: 100%
 			left: 0
@@ -78,6 +124,31 @@
 			flex-basis: calc(100%/3)
 		&__svg-title
 			+size-calc('height', 'r', $GOFFSET*2.5)
+		&__content
+			+size-calc('margin-top', 'r', $GOFFSET*0.375)
+			.shooting__step-0 .shooting__article_fpower &,
+			.shooting__step-1 .shooting__article_armor &,
+			.shooting__step-2 .shooting__article_cube &
+				opacity: 0
+				pointer-events: none
+			.shooting__step-0 .shooting__article_fpower.is-active &,
+			.shooting__step-1 .shooting__article_armor.is-active &,
+			.shooting__step-2 .shooting__article_cube.is-active &
+				opacity: 1
+				pointer-events: all
+				transition-delay: $TRS_time*1.5
+		&__item
+			&::before
+				background-size: $gridTabletDecor
+			&_null
+				&::before
+					background-size: $gridTabletDecor
 	@media screen and ( max-width: #{$GMOBILE}px )
 		&__svg-title
 			+size-calc('height', 'r', $GOFFSET*1.5)
+		&__item
+			&::before
+				background-size: $gridMobileDecor
+			&_null
+				&::before
+					background-size: $gridMobileDecor
