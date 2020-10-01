@@ -48,6 +48,7 @@
 		<symbol id="germany" viewBox="0 0 3386.66 3386.66" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd"><path d="M1495.35 3311.62h-388.52V2280.57H23.4v-388.53h1471.95zM1495.35 75.05h-388.52v1031.06H23.4v388.52h1471.95zM1891.33 3311.62h388.52V2280.57h1083.42v-388.53H1891.33zM1891.33 75.05h388.52v1031.06h1083.42v388.52H1891.33z" fill="#E8432A"></path></symbol>
 		<symbol id="ussr" viewBox="0 0 3386.66 3386.66" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd"><path d="M2094.28 659.22h-922.5l-821.05 824.82 463.54 454.32 393.99-392.29 1020.12 1025.04c-556.63 279.53-1071.28 223.38-1547.4-140.82L53.97 3053.91l279.97 279.97 472.78-472.34c558.46 398.74 1156.39 443.82 1799.68 82.58l384.75 389.76 278.29-280.81-358.77-363.79C3971.66 1405.21 2835.51-27.8 1668.39 56.32c1294.81 203.97 1525.8 1564.72 866.75 2261.58L1487.31 1266.75l606.97-607.53z" fill="#3ECF6E"></path></symbol>
 		<symbol id="allies" viewBox="0 0 3386.66 3386.66" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd"><path d="M2492.2 3121.14c-485.67 261.65-1012.43 295.63-1598.69-.12l189.67-139.55c417.32 176.75 817.02 150.64 1204.74-13.32l204.28 152.99zm139.26-97.36l-356.94-1114.95 953.16-704.08H2047.5L1676.83 75.07l-372.15 1121.31H126.46l947.25 703.57-356.47 1123.83 959.83-687.95 954.39 687.95zm171.67-121.58c402.01-377.79 601.08-866.66 506.24-1516.41l-192.44 135.7c35.48 451.82-115.89 822.66-394.21 1138.49l80.41 242.22zm395.14-1915.67c-242.71-495.41-651.33-829.56-1300.22-930.17l73.05 223.85c442.24 99.09 752.1 352.9 972.02 711.86l255.15-5.54zm-3003.68 0C437.31 491.12 845.92 156.97 1494.81 56.36l-73.04 223.85C979.52 379.3 669.66 633.12 449.74 992.07l-255.15-5.54zM583.53 2902.2C181.52 2524.41-17.55 2035.54 77.29 1385.79l192.44 135.7c-35.48 451.82 115.89 822.66 394.21 1138.49l-80.41 242.22z" fill="#1F98FC"></path></symbol>
+		<symbol id="arrow" viewBox="0 -32 426.667 426" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd"><path d="M213.332 181.668c0 4.266-1.277 8.531-3.625 11.73l-106.668 160C99.2 359.16 92.801 363 85.332 363h-64C9.602 363 0 353.398 0 341.668c0-4.27 1.281-8.535 3.625-11.734l98.773-148.266L3.625 33.398C1.281 30.2 0 25.934 0 21.668 0 9.934 9.602.332 21.332.332h64c7.469 0 13.867 3.84 17.707 9.602l106.668 160c2.348 3.199 3.625 7.464 3.625 11.734zm0 0M426.668 181.668c0 4.266-1.281 8.531-3.629 11.73l-106.664 160c-3.84 5.762-10.242 9.602-17.707 9.602h-64c-11.734 0-21.336-9.602-21.336-21.332 0-4.27 1.281-8.535 3.629-11.734l98.773-148.266-98.773-148.27c-2.348-3.199-3.629-7.464-3.629-11.73 0-11.734 9.602-21.336 21.336-21.336h64c7.465 0 13.867 3.84 17.707 9.602l106.664 160c2.348 3.199 3.629 7.464 3.629 11.734zm0 0" fill="inherit"></path></symbol>
 	</svg>
 
 	<!-- Если отключен javascript! -->
@@ -209,6 +210,8 @@
 	<section class="screen shooting">
 		<div class="screen__wrap shooting__wrap shooting__step-0">
 
+			<button class="shooting__btn shooting__btn_left is-end"><svg class="shooting__arrow shooting__arrow_left"><use xlink:href="#arrow"></use></svg></button>
+
 			<article class="shooting__article shooting__article_fpower is-active">
 				<h2 class="shooting__title">
 					<svg class="shooting__svg-title"><use xlink:href="#fpower"></use></svg>
@@ -234,6 +237,11 @@
 						<li class="screen__decor shooting__item"><span>13</span></li>
 						<li class="screen__decor shooting__item shooting__item_null"></li>
 					</ul>
+
+					<button class="screen__button screen__decor shooting__back" data-switch>
+						<svg><use xlink:href="#back"></use></svg>
+						<span>Назад</span>
+					</button>
 				</div>
 			</article>
 
@@ -244,6 +252,11 @@
 				</h2>
 
 				<div class="shooting__content">
+					<ul class="shooting__info">
+						<li class="shooting__text" data-info="0">Шанс поразить цель: </li>
+						<li class="shooting__text" data-info="0">Максимальный урон: </li>
+					</ul>
+
 					<ul class="shooting__list">
 						<li class="screen__decor shooting__item"><span>0</span></li>
 						<li class="screen__decor shooting__item"><span>1</span></li>
@@ -290,8 +303,14 @@
 						<li class="screen__decor shooting__item"><span>12</span></li>
 						<li class="screen__decor shooting__item shooting__item_null"></li>
 					</ul>
+
+					<button class="screen__button screen__button_action shooting__random"><span>Случайное число</span></button>
+
+					<p class="shooting__result">?</p>
 				</div>
 			</article>
+
+			<button class="shooting__btn shooting__btn_right is-end"><svg class="shooting__arrow shooting__arrow_right"><use xlink:href="#arrow"></use></svg></button>
 
 		</div>
 	</section>

@@ -28,6 +28,13 @@ document.addEventListener('DOMContentLoaded', function() {
 		globalAttack = document.querySelector('.global__attack'), // Кнопка прехода на стрельбу.
 		globalBtnShop = document.querySelectorAll('.global__shop'),
 		globalPrestigePoints = document.querySelectorAll('.global__prestige-points'), // Награды.
+		shootingWrap = document.querySelector('.shooting__wrap'), // Раздел стрельбы.
+		shootingArticle = document.querySelectorAll('.shooting__article'), // Разделы выбора параметра для атаки.
+		btnBack = document.querySelector('.shooting__back'), // Кнопка назад в разделе стрельбы.
+		shootingText = document.querySelectorAll('.shooting__text'), // Место информации шанса и саксимального урона.
+		shootingResult = document.querySelector('.shooting__result'), // Место итогово результата стрельбы.
+		shootingRandom = document.querySelector('.shooting__random'), // Кнопка выбора случайного числа кубика.
+		shootingBtn = document.querySelectorAll('.shooting__btn'), // Кнопки переключения шага выбора параметров стрельбы.
 		tableSettings = {
 			"month": ["X", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"], // Массив обозначения месяца на странице.
 			"resources": {
@@ -36,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
 				"max": 1000 // Максимальная процентная добавка.
 			} // Настройки диапазона и шага ресурсов.
 		}, // Таблица данных для предварительных настроек игры.
-		miss = ['промах', 'мазила', 'рукожоп', 'мимо'],
+		miss = ['промах', 'мазила', 'рукожоп', 'мимо', 'каак, карл?'],
 		minNumber = 0, // Минимальное постоянное значение.
 		minMonth = 4, // Минимальный месяц, если выбран минимальный год (41-ый).
 		maxMonth = 5, // Максимальный месяц, если выбран последний год (45-ый).
@@ -48,7 +55,9 @@ document.addEventListener('DOMContentLoaded', function() {
 		currentFirst, currentSecond, currentLast, // Номера первого, второго и последнего игрока после жеребьевки.
 		nextPlayer = true, // Есть ли следующий игрок.
 		playerNotLast = true, // Игрорк не последний, если участвуют все три игрока.
-		numberShop; // Номер игрока, зашедшего в магазин.
+		numberShop, // Номер игрока, зашедшего в магазин.
+		classStep = 'shooting__step-', // Класс шага.
+		counterStep = 0; // Счётчик шага.
 
 	// Кеширование длины массивов элементов.
 	let issCaching = iSettingsSwitch.length,
@@ -57,7 +66,9 @@ document.addEventListener('DOMContentLoaded', function() {
 		satCaching = startArmyTab.length,
 		gpCaching = globalParam.length,
 		gbsCaching = globalBtnShop.length,
-		gppCaching = globalPrestigePoints.length;
+		gppCaching = globalPrestigePoints.length,
+		saCaching = shootingArticle.length,
+		sbCaching = shootingBtn.length;
 
 	// Получение данных из файла с конфигурацией игры.
 	request.open('GET', jsonUrl);
@@ -543,9 +554,123 @@ document.addEventListener('DOMContentLoaded', function() {
 		// Управление кнопкой "атаковать", расположенную на главном экране.
 		globalAttack.addEventListener('click', function() {
 			switchSections(this);
+			btnBack.setAttribute('data-switch', 3);
 		});
 
-		// 
+		// Управление кнопкой "назад", расположенную в разделе "стрельба".
+		btnBack.addEventListener('click', function() {
+			switchSections(this);
+		});
+
+		// Управление кнопками переключения шага выбора в разделе "стрельба".
+		for (let sb = 0; sb < sbCaching; sb++) {
+			let shBtn = shootingBtn[sb];
+
+			shBtn.addEventListener('click', function() {
+				if (!shBtn.classList.contains(isEnd)) {
+					if (shBtn.classList.contains('shooting__btn_left')) { // Кнопка переключения шага назад.
+						counterStep <= 0 ? counterStep = 0 : counterStep--;
+
+						if (counterStep === 0) {
+							shBtn.classList.add(isEnd);
+
+							if (shootingWrap.classList.contains(classStep + '1') && currentArmor === undefined) shootingBtn[1].classList.remove(isEnd);
+
+						} else if (shootingWrap.classList.contains(classStep + '2') && counterStep === 1) {
+							shootingBtn[1].classList.remove(isEnd);
+						};
+
+					} else if (shBtn.classList.contains('shooting__btn_right')) { // Кнопка переключения шага вперёд.
+						shootingWrap.classList.add(classStep + (counterStep + 1));
+
+						if (shootingWrap.classList.contains(classStep + '1') && currentArmor === undefined || shootingWrap.classList.contains(classStep + '2') && counterStep === 1) {
+							shBtn.classList.add(isEnd);
+							shootingBtn[0].classList.remove(isEnd);
+
+						};
+
+						if (shootingWrap.classList.contains(classStep + '2') && counterStep === 0) shootingBtn[0].classList.remove(isEnd);
+
+						counterStep >= 2 ? counterStep = 2 : counterStep++;
+					};
+	
+					changeActiveClass(counterStep, shootingArticle);
+				};
+			});
+		};
+
+		// Управление разделом "стрельба".
+		for (let sa = 0; sa < saCaching; sa++) {
+			let shArticle = shootingArticle[sa],
+				articleTitle = shArticle.querySelector('.shooting__title span'), // Место вывода результата выбранного.
+				articleItem = shArticle.querySelectorAll('.shooting__item'); // Кнопки выбора параметра для атаки.
+
+			for (let ai = 0; ai < articleItem.length; ai++) {
+				let aItem = articleItem[ai];
+
+				aItem.addEventListener('click', function() {
+					if (!aItem.classList.contains('shooting__item_null')) {
+						articleTitle.textContent = aItem.querySelector('span').textContent;
+
+						if (sa === 0) {
+							shootingBtn[0].classList.remove(isEnd);
+
+							if (shootingWrap.classList.contains(classStep + '1') && currentArmor === undefined) shootingBtn[1].classList.add(isEnd);
+
+							currentFpower = ai;
+
+							if (ai === 0) articleTitle.textContent = 'ПЕХОТА'; // Корректировка значения.
+
+							// Обновление информации.
+							if (currentArmor !== undefined) shootingUpdate(true);
+
+							// Обновление результата.
+							if (currentCube !== undefined) shootingUpdate(false);
+
+						} else if (sa === 1) {
+							if (shootingWrap.classList.contains(classStep + '2') && counterStep === 1) shootingBtn[1].classList.add(isEnd);
+
+							currentArmor = ai;
+
+							if (ai === 17) articleTitle.textContent = '22'; // Корректировка значения.
+
+							// Подстановка информации.
+							shootingUpdate(true);
+
+							// Обновление результата.
+							if (currentCube !== undefined) shootingUpdate(false);
+
+						} else {
+							currentCube = ai;
+
+							// Подстановка результата.
+							shootingUpdate(false);
+						};
+
+						changeActiveClass(ai, articleItem);
+
+						// Переключение на следующий шаг.
+						if (sa !== 2) {
+							shootingWrap.classList.add(classStep + (sa + 1));
+							counterStep = sa + 1;
+							changeActiveClass(counterStep, shootingArticle);
+						};
+					};
+				});
+			};
+		};
+
+		// Управление кнопкой "случайное число", расположенную в разделе "стрельба".
+		shootingRandom.addEventListener('click', function() {
+			let blockParent = shootingRandom.parentElement; // Родительский блок кнопки.
+
+			currentCube = randomInteger(0, 10);
+
+			blockParent.parentElement.querySelector('.shooting__title span').textContent = blockParent.querySelectorAll('.shooting__item span')[currentCube].textContent;
+
+			changeActiveClass(currentCube, blockParent.querySelectorAll('.shooting__item'));
+			shootingUpdate(false);
+		});
 
 		// Кнопки запуска магазина.
 		for (let gbs = 0; gbs < gbsCaching; gbs++) {
@@ -598,6 +723,58 @@ document.addEventListener('DOMContentLoaded', function() {
 		};
 
 
+
+		/* Подстановка (обновление) информации (результата) о стрельбе.
+			@param {boolean} isInfo - работаем с информационным блоком или нет. */
+		function shootingUpdate(isInfo) {
+			if (isInfo) {
+				let maxDamage = Math.min.apply(Math, isSHOOTING['firepower-' + currentFpower]['armor-' + currentArmor]['cube']), // Максимальный урон.
+					attrInfo = 'data-info'; // Атрибут лдя информации.
+
+				shootingText[0].setAttribute(attrInfo, isSHOOTING['firepower-' + currentFpower]['armor-' + currentArmor].chance); // Шанс пораженя.
+
+				if (maxDamage === -99) {
+					shootingText[1].setAttribute(attrInfo, 'оба убиты');
+
+				}	else {
+					shootingText[1].setAttribute(attrInfo, maxDamage);
+				};
+
+			} else {
+				let totalResult = isSHOOTING['firepower-' + currentFpower]['armor-' + currentArmor]['cube'][currentCube]; // Полученный результат стрельбы.
+
+				// Цветовая коррекция значения.
+				if (totalResult === 0 || totalResult === -66) {
+					shootingResult.style.color = '#E8432A';
+
+				} else if (totalResult === -1 || totalResult === -77) {
+					shootingResult.style.color = '#3ECF6E';
+
+				} else if (totalResult === -2 || totalResult === -3 || totalResult === -4 || totalResult === -5 || totalResult === -99) {
+					shootingResult.style.color = '#EBEB2C';
+
+				} else if (totalResult === 1) {
+					shootingResult.style.color = '#757373';
+				}
+
+				// Коррекция подставляемого значения.
+				if (totalResult === -66) {
+					shootingResult.textContent = 'вы убиты';
+
+				} else if (totalResult === -77) {
+					shootingResult.textContent = 'враг убит';
+
+				} else if (totalResult === -99) {
+					shootingResult.textContent = 'оба убиты';
+
+				} else if (totalResult === 1) {
+					shootingResult.textContent = miss[randomInteger(0, miss.length - 1)];
+
+				} else {
+					shootingResult.textContent = totalResult;
+				};
+			};
+		};
 
 		/* Ошибка выбора варианта, на стрельбе.
 			@param {object} list - где была выбор, который еще не открыт. */

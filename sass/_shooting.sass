@@ -13,19 +13,25 @@
 		&_fpower
 			.shooting__step-0 &
 				flex-basis: 70%
+				.shooting__content
+					max-height: calc((#{$GOFFSET*12}*100vw)/#{$GWIDTH})
 			.shooting__step-1 &
 				flex-basis: 42.5%
 			.shooting__step-2 &
 				flex-basis: calc(100%/3)
 		&_armor
 			border:
-				left: 1px solid $COLOR_separator
-				right: 1px solid $COLOR_separator
+				left: 1px solid $GCOLOR_null
+				right: 1px solid $GCOLOR_null
 			.shooting__step-0 &
 				flex-basis: 15%
 			.shooting__step-1 &
+				border-left-color: $COLOR_separator
 				flex-basis: 42.5%
+				.shooting__content
+					max-height: calc((#{$GOFFSET*12}*100vw)/#{$GWIDTH})
 			.shooting__step-2 &
+				border-right-color: $COLOR_separator
 				flex-basis: calc(100%/3)
 		&_cube
 			.shooting__step-0 &,
@@ -33,49 +39,51 @@
 				flex-basis: 15%
 			.shooting__step-2 &
 				flex-basis: calc(100%/3)
+				.shooting__content
+					max-height: calc((#{$GOFFSET*12}*100vw)/#{$GWIDTH})
 	&__title
 		position: relative
 		flex-basis: 100%
 		span
-			+resp-font(62, 22)
+			color: $COLOR_grey
+			+resp-font(62, 20)
 			left: 50%
 			position: absolute
+			text-shadow: 4px 4px 4px rgba($GCOLOR_black, 0.8)
 			top: 50%
 			transform: translate(-50%, -50%)
 			z-index: 1
+		.shooting__step-0 .shooting__article_fpower & span,
+		.shooting__step-1 .shooting__article_armor & span,
+		.shooting__step-2 .shooting__article_cube & span
+			color: $GCOLOR_white
 	&__svg-title
-		fill: $COLOR_grey
+		fill: $COLOR_bgDefault
 		height: calc((#{$GOFFSET*3}*100vw)/#{$GWIDTH})
 		width: 100%
+		.shooting__step-0 .shooting__article_fpower &,
+		.shooting__step-1 .shooting__article_armor &,
+		.shooting__step-2 .shooting__article_cube &
+			fill: $COLOR_grey
 	&__content
 		flex-basis: 100%
 		margin-top: calc((#{$GOFFSET*0.375}*100vw)/#{$GWIDTH})
 		max-height: 0
-		opacity: 0
 		overflow: hidden
-		pointer-events: none
-		.shooting__step-0 .shooting__article_fpower &,
-		.shooting__step-1 .shooting__article_armor &,
-		.shooting__step-2 .shooting__article_cube &
-			max-height: 50rem
-			opacity: 1
-			pointer-events: all
-			transition-delay: $TRS_time*1.5
 	&__list
 		display: flex
 		flex-wrap: wrap
 		justify-content: space-between
+		margin: 0 auto
+		width: 100%
 		.shooting__step-0 .shooting__article_fpower &
-			margin: 0 auto
-			width: 75%
-		.shooting__step-1 .shooting__article_fpower &,
-		.shooting__step-2 .shooting__article_fpower &
-			margin: 0
+			width: 60%
+		.shooting__step-1 .shooting__article_fpower &
 			width: 100%
 	&__item
 		cursor: pointer
 		flex-basis: calc(100%/4.5)
-		+resp-font(26, 18)
+		+resp-font(26, 20)
 		line-height: 2.125
 		text-align: center
 		&::before
@@ -93,6 +101,68 @@
 				background: $GCOLOR_white none
 			span
 				color: $GCOLOR_black
+	&__back
+		align-items: center
+		display: flex
+		justify-content: center
+		margin: calc((#{$GOFFSET*1.875}*100vw)/#{$GWIDTH}) auto 0
+		.shooting__step-0 .shooting__article_fpower &
+			width: 60%
+		.shooting__step-1 .shooting__article_fpower &
+			width: 100%
+		svg
+			height: calc((#{$GOFFSET}*100vw)/#{$GWIDTH})
+			margin-right: calc((#{$GOFFSET/2}*100vw)/#{$GWIDTH})
+			width: calc((#{$GOFFSET}*100vw)/#{$GWIDTH})
+	&__info
+		margin-bottom: calc((#{$GOFFSET*0.375}*100vw)/#{$GWIDTH})
+	&__text
+		+resp-font(18, 16)
+		&::after
+			color: $COLOR_yellow
+			content: attr(data-info)
+			text-transform: uppercase
+		&:first-child::after
+			content: attr(data-info) '%'
+	&__random
+		margin-top: calc((#{$GOFFSET*0.375}*100vw)/#{$GWIDTH})
+	&__result
+		font-family: $GFONT_bold
+		font-weight: bold
+		+resp-font(50, 26)
+		margin-top: calc((28*100vw)/#{$GWIDTH})
+		text-align: center
+		text-transform: uppercase
+		transition: color 0s $TRS_standart
+		&::before
+			color: $GCOLOR_white !important
+			content: 'Результат:'
+			display: block
+			font-family: $GFONT_regular
+			font-weight: normal
+			+resp-font(24, 18)
+	&__btn
+		+size-calc('height', 'r', $GOFFSET*2.5)
+		opacity: 0
+		pointer-events: none
+		position: absolute
+		top: 0
+		+size-calc('width', 'r', $GOFFSET)
+		z-index: 999
+		&_left
+			left: 0
+		&_right
+			right: 0
+		&.is-end
+			cursor: no-drop
+	&__arrow
+		fill: $GCOLOR_white
+		height: 100%
+		width: 100%
+		&_left
+			transform: scaleX(-1)
+		.shooting__btn.is-end &
+			fill: $COLOR_bgDefault
 	@media screen and ( max-width: #{$GTABLET}px )
 		&__wrap
 			display: block
@@ -110,45 +180,80 @@
 			width: 100%
 			z-index: 1
 			&_fpower
+				.shooting__title
+					+size-calc('margin-left', 'r', $GOFFSET)
 			&_armor
-				border: none
+				border: none !important
 				.shooting__title
 					margin-left: calc(100%/3)
 			&_cube
 				.shooting__title
-					margin-left: calc(100%/1.5)
+					margin-left: calc((100%/1.5) - #{$GOFFSET/10}rem)
 			&.is-active
 				pointer-events: all
 				z-index: 2
+				.shooting__content
+					opacity: 1
+					pointer-events: all
+					transition-delay: $TRS_time*1.5
 		&__title
 			flex-basis: calc(100%/3)
 		&__svg-title
 			+size-calc('height', 'r', $GOFFSET*2.5)
 		&__content
-			+size-calc('margin-top', 'r', $GOFFSET*0.375)
-			.shooting__step-0 .shooting__article_fpower &,
-			.shooting__step-1 .shooting__article_armor &,
-			.shooting__step-2 .shooting__article_cube &
-				opacity: 0
-				pointer-events: none
-			.shooting__step-0 .shooting__article_fpower.is-active &,
-			.shooting__step-1 .shooting__article_armor.is-active &,
-			.shooting__step-2 .shooting__article_cube.is-active &
-				opacity: 1
-				pointer-events: all
-				transition-delay: $TRS_time*1.5
+			max-height: 100rem !important
+			+size-calc('margin-top', 'r', $GOFFSET/2)
+			opacity: 0
+			pointer-events: none
+		&__list, &__back
+			.shooting__step-0 .shooting__article_fpower &
+				width: 100%
 		&__item
+			line-height: 2.5
 			&::before
 				background-size: $gridTabletDecor
 			&_null
 				&::before
 					background-size: $gridTabletDecor
+			&:not(:nth-last-child(-n + 4))
+				+size-calc('margin-bottom', 'r', $GOFFSET*0.375)
+		&__back
+			+size-calc('margin', 'rxx', $GOFFSET*0.75, $GHEIGHT, auto)
+			svg
+				+size-calc('height', 'r', $GOFFSET)
+				+size-calc('margin-right', 'r', $GOFFSET/2)
+				+size-calc('width', 'r', $GOFFSET)
+		&__info
+			+size-calc('margin-bottom', 'r', $GOFFSET*0.375)
+		&__random
+			+size-calc('margin-top', 'r', $GOFFSET*0.375)
+		&__result
+			+size-calc('margin-top', 'r', $GOFFSET/2)
+		&__btn
+			opacity: 1
+			pointer-events: all
 	@media screen and ( max-width: #{$GMOBILE}px )
 		&__svg-title
-			+size-calc('height', 'r', $GOFFSET*1.5)
+			+size-calc('height', 'r', $GOFFSET*1.25)
+		&__article
+			&_fpower
+				.shooting__title
+					+size-calc('margin-left', 'r', $GOFFSET/2)
+			&_cube
+				.shooting__title
+					margin-left: calc((100%/1.5) - #{$GOFFSET/20}rem)
+		&__content
+			+size-calc('margin-top', 'r', $GOFFSET*0.375)
 		&__item
 			&::before
 				background-size: $gridMobileDecor
 			&_null
 				&::before
 					background-size: $gridMobileDecor
+			&:not(:nth-last-child(-n + 4))
+				+size-calc('margin-bottom', 'r', $GOFFSET/4)
+		&__random
+			+size-calc('padding', 'r', $GOFFSET*0.375)
+		&__btn
+			+size-calc('height', 'r', $GOFFSET*1.25)
+			+size-calc('width', 'r', $GOFFSET/2)
