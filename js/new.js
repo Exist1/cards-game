@@ -547,6 +547,33 @@ document.addEventListener('DOMContentLoaded', function() {
 						paramSvg.setAttribute('xlink:href', '#');
 						paramText.textContent = '';
 					};
+
+					shootingWrap.className = 'screen__wrap shooting__wrap shooting__step-0';
+					counterStep = 0;
+					changeActiveClass(counterStep, shootingArticle);
+
+					for (let sa = 0; sa < saCaching; sa++) {
+						let shArticle = shootingArticle[sa],
+							articleTitle = shArticle.querySelector('.shooting__title span'), // Место вывода результата выбранного.
+							articleItem = shArticle.querySelectorAll('.shooting__item'); // Кнопки выбора параметра для атаки.
+
+						articleTitle.textContent = '?';
+
+						for (let ai = 0; ai < articleItem.length; ai++) {
+							let aItem = articleItem[ai];
+
+							aItem.classList.remove(isActive);
+						};
+					};
+
+					shootingBtn[0].classList.add(isEnd);
+					shootingBtn[1].classList.add(isEnd);
+
+					shootingText[0].setAttribute('data-info', 0);
+					shootingText[1].setAttribute('data-info', 0);
+
+					shootingResult.style.color = '#fbfbfb';
+					shootingResult.textContent = '?';
 				}, 500);
 			});
 		};
