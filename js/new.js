@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			isPROGRESS = isJSON.PROGRESS; // Параметр таблицы прогрес баров, в карточках техники.
 
 		// Активация стартового экрана (секции).
-		screens[4].classList.add(isActive);
+		screens[0].classList.add(isActive);
 
 		// Управление кнопкой "начать игру", расположенную на стартовом экране.
 		startScreenNext.addEventListener('click', function() {
