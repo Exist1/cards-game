@@ -1,0 +1,134 @@
+.info
+	&__header
+		align-items: center
+		display: flex
+		margin-bottom: calc((#{$GOFFSET/2}*100vw)/#{$GWIDTH})
+	&__back
+		flex-basis: calc(100%/3.5)
+		margin: 0
+	&__title
+		+resp-font(38, 20)
+		margin-left: calc((#{$GOFFSET/2}*100vw)/#{$GWIDTH})
+	&__sort, &__tab
+		align-items: center
+		display: flex
+		justify-content: space-between
+	&__sort
+		margin-bottom: calc((#{$GOFFSET/2}*100vw)/#{$GWIDTH})
+		&_type
+			border-bottom: 1px solid $COLOR_separator
+			padding-bottom: calc((#{$GOFFSET/2}*100vw)/#{$GWIDTH})
+		&_table
+			justify-content: flex-start
+	&__tab
+		position: relative
+		&_name
+			flex-basis: 30%
+		&_class
+			flex-basis: 20%
+		&_specifications
+			flex-basis: 20%
+		&_quality
+			flex-basis: 15%
+		&_price
+			flex-basis: 15%
+		.info__sort_type &:nth-child(2)
+			border:
+				left: 1px solid $COLOR_separator
+				right: 1px solid $COLOR_separator
+			padding: 0 calc((#{$GOFFSET*0.375}*100vw)/#{$GWIDTH})
+		.info__sort_table &
+			&:first-child .info__text
+				margin-left: 0
+			&:not(:first-child) .info__text
+				margin-left: calc((#{$GOFFSET*0.375}*100vw)/#{$GWIDTH})
+			&:not(:last-child)
+				border-right: 1px solid $COLOR_separator
+				padding-right: calc((#{$GOFFSET*0.375}*100vw)/#{$GWIDTH})
+	&__label
+		align-items: center
+		display: flex
+		position: relative
+		&:not(:last-child)
+			margin-right: calc((#{$GOFFSET*0.375}*100vw)/#{$GWIDTH})
+	&__checkbox
+		height: 100%
+		left: 0
+		opacity: 0
+		position: absolute
+		top: 0
+		width: 100%
+		z-index: 1
+		&:checked ~ 
+			.info
+				&__text
+					color: $GCOLOR_white
+				&__icon
+					fill: $COLOR_green
+					.info__label_germany &
+						fill: $COLOR_red
+					.info__label_allies &
+						fill: $COLOR_blue
+	&__icon
+		fill: darken($COLOR_green, $infoIconDarken)
+		height: calc((#{$GOFFSET*0.75}*100vw)/#{$GWIDTH})
+		transition: fill 0s $TRS_standart
+		width: calc((#{$GOFFSET*0.75}*100vw)/#{$GWIDTH})
+		.info__label_germany &
+			fill: darken($COLOR_red, $infoIconDarken)
+		.info__label_allies &
+			fill: darken($COLOR_blue, $infoIconDarken)
+		.info__sort_table &
+			height: calc((#{$GOFFSET/2}*100vw)/#{$GWIDTH})
+			width: calc((#{$GOFFSET/2}*100vw)/#{$GWIDTH})
+	&__text
+		color: $COLOR_grey
+		+resp-font(20, $GFONT_min)
+		+size-calc('margin-left', 'r', $GOFFSET/4)
+		.info__sort_table &
+			+resp-font(18, $GFONT_min)
+	@media screen and ( max-width: #{$GTABLET}px )
+		&__header
+			+size-calc('margin-bottom', 'r', $GOFFSET/2)
+		&__title
+			+size-calc('margin-left', 'r', $GOFFSET/2)
+		&__sort
+			display: block
+			+size-calc('margin-bottom', 'r', $GOFFSET/2)
+			padding: 0
+			&_type
+				border-top: 1px solid $COLOR_separator
+			&_table
+				display: none
+		&__tab
+			+size-calc('padding', 'rx', $GOFFSET/4)
+			.info__sort_type &:nth-child(2)
+				border:
+					bottom: 1px solid $COLOR_separator
+					left: none
+					right: none
+					top: 1px solid $COLOR_separator
+				+size-calc('padding', 'rx', $GOFFSET/4)
+		&__label:not(:last-child)
+			margin-right: 0
+	@media screen and ( max-width: #{$GMOBILE}px )
+		&__header
+			+size-calc('margin-bottom', 'r', $GOFFSET*0.375)
+		&__back
+			+size-calc('flex-basis', 'r', $GOFFSET*1.75)
+			svg
+				+size-calc('height', 'r', $GOFFSET*0.75)
+				margin: 0
+				+size-calc('width', 'r', $GOFFSET*0.75)
+			span
+				display: none
+		&__title
+			justify-content: flex-start
+			text-align: left
+		&__sort
+			+size-calc('margin-bottom', 'r', $GOFFSET*0.375)
+		&__icon
+			+size-calc('height', 'r', $GOFFSET*0.375)
+			+size-calc('width', 'r', $GOFFSET*0.375)
+		&__text
+			+size-calc('margin-left', 'r', $GOFFSET/8)

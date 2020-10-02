@@ -25,16 +25,18 @@ document.addEventListener('DOMContentLoaded', function() {
 		globalDate = document.querySelector('.global__date'), // Глобальная дата сражения.
 		globalSubtitle = document.querySelector('.global__subtitle'), // Подзаголовок показывающий кто первый, а кто последний.
 		globalParam = document.querySelectorAll('.global__param'), // Места для вывода имен очереди.
-		globalAttack = document.querySelector('.global__attack'), // Кнопка прехода на стрельбу.
+		globalAttack = document.querySelectorAll('.global__attack'), // Кнопки прехода на стрельбу.
+		globalTechnics = document.querySelectorAll('.global__technics'), // Кнопки прехода на стрельбу.
 		globalBtnShop = document.querySelectorAll('.global__shop'),
 		globalPrestigePoints = document.querySelectorAll('.global__prestige-points'), // Награды.
 		shootingWrap = document.querySelector('.shooting__wrap'), // Раздел стрельбы.
 		shootingArticle = document.querySelectorAll('.shooting__article'), // Разделы выбора параметра для атаки.
-		btnBack = document.querySelector('.shooting__back'), // Кнопка назад в разделе стрельбы.
+		btnBack = document.querySelectorAll('.shooting__back'), // Кнопка назад в разделе стрельбы.
 		shootingText = document.querySelectorAll('.shooting__text'), // Место информации шанса и саксимального урона.
 		shootingResult = document.querySelector('.shooting__result'), // Место итогово результата стрельбы.
 		shootingRandom = document.querySelector('.shooting__random'), // Кнопка выбора случайного числа кубика.
 		shootingBtn = document.querySelectorAll('.shooting__btn'), // Кнопки переключения шага выбора параметров стрельбы.
+		infoTab = document.querySelectorAll('.info__tab'), // Все параметры сортировки в разделе информации.
 		tableSettings = {
 			"month": ["X", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"], // Массив обозначения месяца на странице.
 			"resources": {
@@ -51,7 +53,9 @@ document.addEventListener('DOMContentLoaded', function() {
 		currentYear = minNumber, // Текущий год.
 		currentResources = 100, // Текущий процент добавки ресурсов.
 		counterPlayer = minNumber, // Количество играющих.
-		currentFpower, currentArmor, currentCube, // Выбор огневой мощи, защищенности и что выпало на кубиках, в режиме "стрельба".
+		currentFpower = '', // Выбор огневой мощи.
+		currentArmor = '', // Выбор защищенности.
+		currentCube = '', // Выбор что выпало на кубиках, в режиме "стрельба".
 		currentFirst, currentSecond, currentLast, // Номера первого, второго и последнего игрока после жеребьевки.
 		nextPlayer = true, // Есть ли следующий игрок.
 		playerNotLast = true, // Игрорк не последний, если участвуют все три игрока.
@@ -68,7 +72,11 @@ document.addEventListener('DOMContentLoaded', function() {
 		gbsCaching = globalBtnShop.length,
 		gppCaching = globalPrestigePoints.length,
 		saCaching = shootingArticle.length,
-		sbCaching = shootingBtn.length;
+		sbCaching = shootingBtn.length,
+		gaCaching = globalAttack.length,
+		gtCaching = globalTechnics.length,
+		bbCaching = btnBack.length,
+		itCaching = infoTab.length;
 
 	// Получение данных из файла с конфигурацией игры.
 	request.open('GET', jsonUrl);
@@ -86,12 +94,48 @@ document.addEventListener('DOMContentLoaded', function() {
 		// Активация стартового экрана (секции).
 		screens[0].classList.add(isActive);
 
+		// Управление кнопкой "информация", расположенную на стартовом экране.
+		startScreenInfo.addEventListener('click', function() {
+			screens[0].classList.toggle('is-info');
+		});
+
 		// Управление кнопкой "начать игру", расположенную на стартовом экране.
 		startScreenNext.addEventListener('click', function() {
 			switchSections(this);
 
 			localStorage.clear(); // Очистка запомнившихся, в памяти браузера данных, с прошлой игры.
 			clearInputPlayer();
+
+			shootingWrap.className = 'screen__wrap shooting__wrap shooting__step-0';
+			counterStep = 0;
+			changeActiveClass(counterStep, shootingArticle);
+
+			for (let sa = 0; sa < saCaching; sa++) {
+				let shArticle = shootingArticle[sa],
+					articleTitle = shArticle.querySelector('.shooting__title span'), // Место вывода результата выбранного.
+					articleItem = shArticle.querySelectorAll('.shooting__item'); // Кнопки выбора параметра для атаки.
+
+				articleTitle.textContent = '?';
+
+				for (let ai = 0; ai < articleItem.length; ai++) {
+					let aItem = articleItem[ai];
+
+					aItem.classList.remove(isActive);
+				};
+			};
+
+			shootingBtn[0].classList.add(isEnd);
+			shootingBtn[1].classList.add(isEnd);
+
+			shootingText[0].setAttribute('data-info', 0);
+			shootingText[1].setAttribute('data-info', 0);
+
+			shootingResult.style.color = '#fbfbfb';
+			shootingResult.textContent = '?';
+
+			currentFpower = '';
+			currentArmor = '';
+			currentCube = '';
 		});
 
 		// Управление переключателями, расположенных на экране предваррительных настроек игры.
@@ -279,7 +323,7 @@ document.addEventListener('DOMContentLoaded', function() {
 					lastQueue = +localStorage.getItem('queue-2'); // Очередь последнего игрока.
 
 				switchSections(this);
-				generationVehicleCards();
+				generationVehicleCards(false);
 
 				// Оформление экрана (секции) для первого игрока.
 				startArmyDate.setAttribute('data-month', tableSettings.month[currentMonth]); // Подстановка месяца сражения.
@@ -574,20 +618,42 @@ document.addEventListener('DOMContentLoaded', function() {
 
 					shootingResult.style.color = '#fbfbfb';
 					shootingResult.textContent = '?';
+
+					currentFpower = '';
+					currentArmor = '';
+					currentCube = '';
 				}, 500);
 			});
 		};
 
-		// Управление кнопкой "атаковать", расположенную на главном экране.
-		globalAttack.addEventListener('click', function() {
-			switchSections(this);
-			btnBack.setAttribute('data-switch', 3);
-		});
+		// Управление кнопкой "атаковать", расположенную на стартовом и главном экране.
+		for (let ga = 0; ga < gaCaching; ga++) {
+			let btnAtack = globalAttack[ga];
 
-		// Управление кнопкой "назад", расположенную в разделе "стрельба".
-		btnBack.addEventListener('click', function() {
-			switchSections(this);
-		});
+			btnAtack.addEventListener('click', function() {
+				switchSections(this);
+				ga === 0 ? btnBack[0].setAttribute('data-switch', 0) : btnBack[0].setAttribute('data-switch', 3);
+			});
+		};
+
+		// Управление кнопкой "техника", расположенную на стартовом и главном экране.
+		for (let gt = 0; gt < gtCaching; gt++) {
+			let btnTechnics = globalTechnics[gt];
+
+			btnTechnics.addEventListener('click', function() {
+				switchSections(this);
+				gt === 0 ? btnBack[1].setAttribute('data-switch', 0) : btnBack[1].setAttribute('data-switch', 3);
+			});
+		};
+
+		// Управление кнопкой "назад", расположенную в разделе "стрельба" и информационном.
+		for (let bb = 0; bb < bbCaching; bb++) {
+			let back = btnBack[bb];
+
+			back.addEventListener('click', function() {
+				switchSections(this);
+			});
+		};
 
 		// Управление кнопками переключения шага выбора в разделе "стрельба".
 		for (let sb = 0; sb < sbCaching; sb++) {
@@ -642,17 +708,17 @@ document.addEventListener('DOMContentLoaded', function() {
 						if (sa === 0) {
 							shootingBtn[0].classList.remove(isEnd);
 
-							if (shootingWrap.classList.contains(classStep + '1') && currentArmor === undefined) shootingBtn[1].classList.add(isEnd);
+							if (shootingWrap.classList.contains(classStep + '1') && currentArmor === '') shootingBtn[1].classList.add(isEnd);
 
 							currentFpower = ai;
 
 							if (ai === 0) articleTitle.textContent = 'ПЕХОТА'; // Корректировка значения.
 
 							// Обновление информации.
-							if (currentArmor !== undefined) shootingUpdate(true);
+							if (currentArmor !== '') shootingUpdate(true);
 
 							// Обновление результата.
-							if (currentCube !== undefined) shootingUpdate(false);
+							if (currentCube !== '') shootingUpdate(false);
 
 						} else if (sa === 1) {
 							if (shootingWrap.classList.contains(classStep + '2') && counterStep === 1) shootingBtn[1].classList.add(isEnd);
@@ -665,7 +731,7 @@ document.addEventListener('DOMContentLoaded', function() {
 							shootingUpdate(true);
 
 							// Обновление результата.
-							if (currentCube !== undefined) shootingUpdate(false);
+							if (currentCube !== '') shootingUpdate(false);
 
 						} else {
 							currentCube = ai;
@@ -709,7 +775,7 @@ document.addEventListener('DOMContentLoaded', function() {
 					startArmyTab[sat].innerHTML = '';
 				};
 
-				generationVehicleCards();
+				generationVehicleCards(false);
 
 				screens[2].className = 'screen starting-army';
 				screens[2].classList.add('is-shop');
@@ -747,6 +813,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
 				switchSections(this);
 			});
+		};
+
+		// Управление параметрами соортировки, в разделе информации.
+		for (let it = 0; it < itCaching; it++) {
+			let tab = infoTab[it],
+				icheck = tab.querySelectorAll('.info__checkbox'), // Все пункты параметра.
+				icCaching = icheck.length,
+				randomNumber = randomInteger(0, icCaching - 1); // Рандомный номер.
+
+			if (it < 3) icheck[randomNumber].checked = true; // Рандомный выбор пункта параметра.
+			// console.log(icheck[randomNumber].getAttribute('name')); // Назначение классов списку, для сорттировки.
+
+			for (let ic = 0; ic < icCaching; ic++) {
+				let itemCheck = icheck[ic];
+
+				itemCheck.addEventListener('click', function() {
+					console.log(it, ic, itemCheck.getAttribute('name'));
+				});
+			};
 		};
 
 
@@ -803,16 +888,6 @@ document.addEventListener('DOMContentLoaded', function() {
 			};
 		};
 
-		/* Ошибка выбора варианта, на стрельбе.
-			@param {object} list - где была выбор, который еще не открыт. */
-		function showErrorAttack(list) {
-			list.classList.add(isError);
-
-			setTimeout(function() {
-				list.classList.remove(isError);
-			}, 1500);
-		};
-
 		/* Запоминание в памяти браузера. */
 		function setLocalStorage() {
 			let totalResources = Math.round((isRESOURCES[Object.keys(isRESOURCES)[currentYear]][currentMonth]*currentResources)/100), // Получаемые ресурсы с учётом выбранного бонуса к ним.
@@ -865,8 +940,9 @@ document.addEventListener('DOMContentLoaded', function() {
 			};
 		};
 
-		/* Генерация карточек техники. */
-		function generationVehicleCards() {
+		/* Генерация карточек техники. 
+			@param {boolean} isInfo - генерация будет произведена в раздел информации или нет. */
+		function generationVehicleCards(isInfo) {
 			for (let it = 0; it < Object.keys(isTECHNICS).length; it++) {
 				let side = Object.keys(isTECHNICS)[it]; // Сторона (страна), учавствующая в сражении.
 
@@ -888,11 +964,11 @@ document.addEventListener('DOMContentLoaded', function() {
 					+parameter.armor === 22 ? progressArmor = Math.round((((parameter.hp/3)*isPROGRESS.armor[parameter.armor - 5])*100)/1100) : progressArmor = Math.round((((parameter.hp/3)*isPROGRESS.armor[parameter.armor])*100)/1100);
 
 					// Общие классы карточки.
-					tabItem.classList.add('screen__decor', 'starting-army__box');
+					!isInfo ? tabItem.className = 'screen__decor starting-army__box' : tabItem.className = 'screen__decor';
 
 					// Определение танков.
 					if (parameter.type === 1) {
-						viewItem = 'starting-army__card_tank';
+						!isInfo ? viewItem = 'starting-army__card_tank' : viewItem = 'tank';
 
 						if (parameter.weight === 1) {
 							typeItem = 'Лёгкий танк';
@@ -907,7 +983,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 					// Определение ПТ-САУ.
 					if (parameter.type === 2) {
-						viewItem = 'starting-army__card_pt-sau';
+						!isInfo ? viewItem = 'starting-army__card_pt-sau' : viewItem = 'pt-sau';
 
 						if (parameter.weight === 1) {
 							typeItem = 'Лёгкая ПТ-САУ';
@@ -921,63 +997,76 @@ document.addEventListener('DOMContentLoaded', function() {
 					};
 
 					// Определения выпускается ещё техника или нет.
-					if (totalProductStart < totalProductCurent) {
-						if (totalProductEnd >= (totalProductCurent - 5)) {
-							if (totalProductEnd <= (totalProductCurent - 1)) {
-								productionItem = 'starting-army__type_old';
-								tabItem.classList.add('is-old');
+					if (!isInfo) {
+						if (totalProductStart < totalProductCurent) {
+							if (totalProductEnd >= (totalProductCurent - 5)) {
+								if (totalProductEnd <= (totalProductCurent - 1)) {
+									productionItem = 'starting-army__type_old';
+									tabItem.classList.add('is-old');
+								};
 							};
 						};
 					};
 
-					// Html-разметка карточки. 
-					tabItem.innerHTML = `
-						<div class="starting-army__card ${viewItem}">
-							<picture class="starting-army__picture">
-								<!-- <source srcset="" type="image/webp">  -->
-								<img class="starting-army__image" src="${parameter.images}">
-								<h3 class="starting-army__name">${nameTechnics}</h3>
-								<p class="starting-army__cost">${parameter.cost}</p>
-							</picture>
-							<ul class="starting-army__progress">
-								<li class="screen__decor starting-army__item" data-progress="Подвижность"><span class="starting-army__line" data-color="${progressMobility}" style="width: ${progressMobility}%;"></span></li>
-								<li class="screen__decor starting-army__item" data-progress="Вооружение"><span class="starting-army__line" data-color="${progressFpower}" style="width: ${progressFpower}%;"></span></li>
-								<li class="screen__decor starting-army__item" data-progress="Живучесть"><span class="starting-army__line" data-color="${progressArmor}" style="width: ${progressArmor}%;"></span></li>
-							</ul>
-							<p class="starting-army__type ${productionItem}">${typeItem}</p>
-							<div class="starting-army__footer">
-								<ul class="starting-army__params">
-									<li class="starting-army__param" data-quantity="${parameter.speed}"><svg class="starting-army__svg"><use xlink:href="#speed"></use></svg></li>
-									<li class="starting-army__param" data-quantity="${parameter.range}"><svg class="starting-army__svg"><use xlink:href="#range"></use></svg></li>
-									<li class="starting-army__param" data-quantity="${parameter.hp}"><svg class="starting-army__svg"><use xlink:href="#hp"></use></svg></li>
-									<li class="starting-army__param" data-quantity="${parameter.fpower}"><svg class="starting-army__svg" fill="#E8432A"><use xlink:href="#fpower"></use></svg></li>
-									<li class="starting-army__param" data-quantity="${parameter.armor}"><svg class="starting-army__svg" fill="#E8432A"><use xlink:href="#armor"></use></svg></li>
+					// Html-разметка карточки.
+					if (!isInfo) {
+						tabItem.innerHTML = `
+							<div class="starting-army__card ${viewItem}">
+								<picture class="starting-army__picture">
+									<!-- <source srcset="" type="image/webp">  -->
+									<img class="starting-army__image" src="${parameter.images}">
+									<h3 class="starting-army__name">${nameTechnics}</h3>
+									<p class="starting-army__cost">${parameter.cost}</p>
+								</picture>
+								<ul class="starting-army__progress">
+									<li class="screen__decor starting-army__item" data-progress="Подвижность"><span class="starting-army__line" data-color="${progressMobility}" style="width: ${progressMobility}%;"></span></li>
+									<li class="screen__decor starting-army__item" data-progress="Вооружение"><span class="starting-army__line" data-color="${progressFpower}" style="width: ${progressFpower}%;"></span></li>
+									<li class="screen__decor starting-army__item" data-progress="Живучесть"><span class="starting-army__line" data-color="${progressArmor}" style="width: ${progressArmor}%;"></span></li>
 								</ul>
-								<div class="starting-army__counter">
-									<button class="screen__button screen__button_action starting-army__btn starting-army__countMinus is-end"><span>-</span></button>
-									<p class="starting-army__number">0</p>
-									<button class="screen__button screen__button_action starting-army__btn starting-army__countPlus"><span>+</span></button>
+								<p class="starting-army__type ${productionItem}">${typeItem}</p>
+								<div class="starting-army__footer">
+									<ul class="starting-army__params">
+										<li class="starting-army__param" data-quantity="${parameter.speed}"><svg class="starting-army__svg"><use xlink:href="#speed"></use></svg></li>
+										<li class="starting-army__param" data-quantity="${parameter.range}"><svg class="starting-army__svg"><use xlink:href="#range"></use></svg></li>
+										<li class="starting-army__param" data-quantity="${parameter.hp}"><svg class="starting-army__svg"><use xlink:href="#hp"></use></svg></li>
+										<li class="starting-army__param" data-quantity="${parameter.fpower}"><svg class="starting-army__svg" fill="#E8432A"><use xlink:href="#fpower"></use></svg></li>
+										<li class="starting-army__param" data-quantity="${parameter.armor}"><svg class="starting-army__svg" fill="#E8432A"><use xlink:href="#armor"></use></svg></li>
+									</ul>
+									<div class="starting-army__counter">
+										<button class="screen__button screen__button_action starting-army__btn starting-army__countMinus is-end"><span>-</span></button>
+										<p class="starting-army__number">0</p>
+										<button class="screen__button screen__button_action starting-army__btn starting-army__countPlus"><span>+</span></button>
+									</div>
 								</div>
 							</div>
-						</div>
-					`;
+						`;
 
-					// Установка карточки в блок - кто на вооружении.
-					if (totalProductEnd >= totalProductCurent) {
-						if (totalProductStart <= totalProductCurent) {
-							startArmyTab[it].appendChild(tabItem);
-						};
+					} else {
+						tabItem.innerHTML = `
+
+						`;
 					};
 
-					// Установка карточки в блок - кто снят с производства.
-					if (totalProductStart < totalProductCurent) {
-						if (totalProductEnd >= (totalProductCurent - 5)) {
-							if (totalProductEnd <= (totalProductCurent - 1)) {
+					if (!isInfo) {
+						// Установка карточки в блок - кто на вооружении.
+						if (totalProductEnd >= totalProductCurent) {
+							if (totalProductStart <= totalProductCurent) {
 								startArmyTab[it].appendChild(tabItem);
 							};
 						};
-					};
 
+						// Установка карточки в блок - кто снят с производства.
+						if (totalProductStart < totalProductCurent) {
+							if (totalProductEnd >= (totalProductCurent - 5)) {
+								if (totalProductEnd <= (totalProductCurent - 1)) {
+									startArmyTab[it].appendChild(tabItem);
+								};
+							};
+						};
+
+					} else {
+						// .appendChild(tabItem);
+					};
 				};
 			};
 

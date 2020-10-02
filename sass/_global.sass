@@ -81,10 +81,16 @@
 			background-size: $gridDecor
 		&_germany
 			color: $COLOR_red
+			.global__svg
+				fill: $COLOR_red
 		&_ussr
 			color: $COLOR_green
+			.global__svg
+				fill: $COLOR_green
 		&_allies
 			color: $COLOR_blue
+			.global__svg
+				fill: $COLOR_blue
 		&::after
 			border-left: 1px solid $GCOLOR_white
 			color: $GCOLOR_white
@@ -215,12 +221,12 @@
 			&_buttons, &_players
 				+size-calc('margin-top', 'r', $GOFFSET/2)
 		&__line-info
-			+size-calc('padding-right', 'r', $GOFFSET*1.5)
+			+size-calc('padding-right', 'r', $GOFFSET*1.75)
 		&__player:not(:last-child)
 			+size-calc('margin-bottom', 'r', $GOFFSET/4)
 		&__param
 			flex-basis: calc(100% - #{$GOFFSET*0.15}rem)
-			+size-calc('padding', 'rr', $GOFFSET/4)
+			+size-calc('padding', 'r', $GOFFSET/4)
 			&::after
 				+size-calc('min-width', 'r', $GOFFSET)
 		&__shop
