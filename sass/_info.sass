@@ -15,7 +15,7 @@
 		justify-content: space-between
 	&__sort
 		margin-bottom: calc((#{$GOFFSET/2}*100vw)/#{$GWIDTH})
-		&_type
+		&_view
 			border-bottom: 1px solid $COLOR_separator
 			padding-bottom: calc((#{$GOFFSET/2}*100vw)/#{$GWIDTH})
 		&_table
@@ -32,12 +32,13 @@
 			flex-basis: 15%
 		&_price
 			flex-basis: 15%
-		.info__sort_type &:nth-child(2)
+		.info__sort_view &:nth-child(2)
 			border:
 				left: 1px solid $COLOR_separator
 				right: 1px solid $COLOR_separator
 			padding: 0 calc((#{$GOFFSET*0.375}*100vw)/#{$GWIDTH})
 		.info__sort_table &
+			justify-content: flex-start
 			&:first-child .info__text
 				margin-left: 0
 			&:not(:first-child) .info__text
@@ -64,7 +65,8 @@
 				&__text
 					color: $GCOLOR_white
 				&__icon
-					fill: $COLOR_green
+					.info__sort_view &
+						fill: $COLOR_green
 					.info__label_germany &
 						fill: $COLOR_red
 					.info__label_allies &
@@ -79,14 +81,27 @@
 		.info__label_allies &
 			fill: darken($COLOR_blue, $infoIconDarken)
 		.info__sort_table &
-			height: calc((#{$GOFFSET/2}*100vw)/#{$GWIDTH})
-			width: calc((#{$GOFFSET/2}*100vw)/#{$GWIDTH})
+			height: calc((#{$GOFFSET*0.375}*100vw)/#{$GWIDTH})
+			transform: rotate(90deg)
+			width: calc((#{$GOFFSET*0.375}*100vw)/#{$GWIDTH})
+			&:last-child
+				fill: darken($COLOR_red, $infoIconDarken)
+				transform: rotate(-90deg)
+		.info__tab.is-up &
+			fill: $COLOR_green
+			&:last-child
+				fill: darken($COLOR_red, $infoIconDarken)
+		.info__tab.is-down &
+			fill: darken($COLOR_green, $infoIconDarken)
+			&:last-child
+				fill: $COLOR_red
 	&__text
 		color: $COLOR_grey
 		+resp-font(20, $GFONT_min)
 		+size-calc('margin-left', 'r', $GOFFSET/4)
 		.info__sort_table &
 			+resp-font(18, $GFONT_min)
+			margin-right: auto
 	@media screen and ( max-width: #{$GTABLET}px )
 		&__header
 			+size-calc('margin-bottom', 'r', $GOFFSET/2)
@@ -102,7 +117,7 @@
 				display: none
 		&__tab
 			+size-calc('padding', 'rx', $GOFFSET/4)
-			.info__sort_type &:nth-child(2)
+			.info__sort_view &:nth-child(2)
 				border:
 					bottom: 1px solid $COLOR_separator
 					left: none

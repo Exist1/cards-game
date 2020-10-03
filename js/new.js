@@ -61,7 +61,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		playerNotLast = true, // Игрорк не последний, если участвуют все три игрока.
 		numberShop, // Номер игрока, зашедшего в магазин.
 		classStep = 'shooting__step-', // Класс шага.
-		counterStep = 0; // Счётчик шага.
+		counterStep = 0, // Счётчик шага.
+		currentInfoTab = 0; // Номер выбранного пункта сортировки таблицы.
 
 	// Кеширование длины массивов элементов.
 	let issCaching = iSettingsSwitch.length,
@@ -826,10 +827,28 @@ document.addEventListener('DOMContentLoaded', function() {
 			// console.log(icheck[randomNumber].getAttribute('name')); // Назначение классов списку, для сорттировки.
 
 			for (let ic = 0; ic < icCaching; ic++) {
-				let itemCheck = icheck[ic];
+				let itemCheck = icheck[ic],
+					parentBox = itemCheck.parentElement; // Блок в котором находится чекбокс.
 
 				itemCheck.addEventListener('click', function() {
-					console.log(it, ic, itemCheck.getAttribute('name'));
+					console.log(it, ic, itemCheck.getAttribute('name'), itemCheck.getAttribute('data-class'));
+					if (it > 2) {
+						if (it !== currentInfoTab) {
+							if (infoTab[currentInfoTab].classList.contains('is-up')) infoTab[currentInfoTab].classList.remove('is-up');
+							if (infoTab[currentInfoTab].classList.contains('is-down')) infoTab[currentInfoTab].classList.remove('is-down');
+							currentInfoTab = it;
+						};
+
+						if (!parentBox.classList.contains('is-up')) {
+							parentBox.classList.add('is-up');
+
+						} else if (parentBox.classList.contains('is-up') && !parentBox.classList.contains('is-down')) {
+							parentBox.classList.add('is-down');
+
+						} else if (parentBox.classList.contains('is-up') && parentBox.classList.contains('is-down')) {
+							parentBox.classList.remove('is-down');
+						};
+					};
 				});
 			};
 		};

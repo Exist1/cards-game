@@ -23,11 +23,21 @@
 		&__buttons
 			+size-calc('margin', 'rxx', $GOFFSET*0.75, $GHEIGHT, auto)
 			width: 80%
-		&__btn:first-child
-			+size-calc('margin-bottom', 'r', $GOFFSET*0.375)
+		&__btn
+			&:first-child
+				+size-calc('margin-bottom', 'r', $GOFFSET*0.375)
+			&:last-child
+				+size-calc('max-height', 'r', $GOFFSET*1.5)
+		&__information
+			+size-calc('margin-top', 'r', $GOFFSET*0.375)
+			.start-screen.is-info &
+				+size-calc('max-height', 'r', $GOFFSET*1.5)
 	@media screen and ( max-width: #{$GMOBILE}px )
 		&__buttons
 			+size-calc('margin', 'rxx', $GOFFSET*0.375, $GHEIGHT, auto)
 			width: 100%
 		&__btn:first-child
 			+size-calc('margin-bottom', 'r', $GOFFSET/4)
+		&__information
+			.start-screen.is-info &
+				+size-calc('max-height', 'r', $GOFFSET)
