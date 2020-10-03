@@ -37,6 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		shootingRandom = document.querySelector('.shooting__random'), // Кнопка выбора случайного числа кубика.
 		shootingBtn = document.querySelectorAll('.shooting__btn'), // Кнопки переключения шага выбора параметров стрельбы.
 		infoTab = document.querySelectorAll('.info__tab'), // Все параметры сортировки в разделе информации.
+		infoList = document.querySelector('.info__list'), // Список всей техники в разделе информации.
 		tableSettings = {
 			"month": ["X", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"], // Массив обозначения месяца на странице.
 			"resources": {
@@ -642,6 +643,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			let btnTechnics = globalTechnics[gt];
 
 			btnTechnics.addEventListener('click', function() {
+				generationVehicleCards(true);
 				switchSections(this);
 				gt === 0 ? btnBack[1].setAttribute('data-switch', 0) : btnBack[1].setAttribute('data-switch', 3);
 			});
@@ -1084,7 +1086,8 @@ document.addEventListener('DOMContentLoaded', function() {
 						};
 
 					} else {
-						// .appendChild(tabItem);
+						console.log(it, nameTechnics, parameter.cost);
+						// infoList.appendChild(tabItem);
 					};
 				};
 			};
