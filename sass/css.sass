@@ -70,7 +70,6 @@ body
 	position: relative
 	&::before
 		background: $bgDecorDark
-		background-size: $gridDecor
 		bottom: calc((#{$GOFFSET}*100vw)/#{$GWIDTH})
 		content: ''
 		display: block
@@ -79,12 +78,8 @@ body
 		right: calc((#{$GOFFSET}*100vw)/#{$GWIDTH})
 		top: calc((#{$GOFFSET}*100vw)/#{$GWIDTH})
 		z-index: 1
-	@media screen and ( max-width: #{$GTABLET}px )
-		&::before
-			background-size: $gridTabletDecor
-	@media screen and ( max-width: #{$GMOBILE}px )
-		&::before
-			background-size: $gridMobileDecor
+	// @media screen and ( max-width: #{$GTABLET}px )
+	// @media screen and ( max-width: #{$GMOBILE}px )
 
 .sprite
 	display: none

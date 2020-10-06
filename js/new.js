@@ -63,7 +63,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		numberShop, // Номер игрока, зашедшего в магазин.
 		classStep = 'shooting__step-', // Класс шага.
 		counterStep = 0, // Счётчик шага.
-		currentInfoTab = 0; // Номер выбранного пункта сортировки таблицы.
+		currentInfoTab = 0, // Номер выбранного пункта сортировки таблицы.
+		targetAttr = 'data-sort'; // Ориентировочное название атрибута для сортировки списка.
 
 	// Кеширование длины массивов элементов.
 	let issCaching = iSettingsSwitch.length,
@@ -94,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			isPROGRESS = isJSON.PROGRESS; // Параметр таблицы прогрес баров, в карточках техники.
 
 		// Активация стартового экрана (секции).
-		screens[0].classList.add(isActive);
+		screens[5].classList.add(isActive);
 
 		// Управление кнопкой "информация", расположенную на стартовом экране.
 		startScreenInfo.addEventListener('click', function() {
@@ -825,16 +826,20 @@ document.addEventListener('DOMContentLoaded', function() {
 				icCaching = icheck.length,
 				randomNumber = randomInteger(0, icCaching - 1); // Рандомный номер.
 
-			if (it < 3) icheck[randomNumber].checked = true; // Рандомный выбор пункта параметра.
-			// console.log(icheck[randomNumber].getAttribute('name')); // Назначение классов списку, для сорттировки.
+			if (it < 3) {
+				icheck[randomNumber].checked = true; // Рандомный выбор пункта параметра.
+				infoList.classList.add(icheck[randomNumber].getAttribute('name')); // Назначение классов списку, для сорттировки.
+			};
 
 			for (let ic = 0; ic < icCaching; ic++) {
 				let itemCheck = icheck[ic],
 					parentBox = itemCheck.parentElement; // Блок в котором находится чекбокс.
 
 				itemCheck.addEventListener('click', function() {
-					console.log(it, ic, itemCheck.getAttribute('name'), itemCheck.getAttribute('data-class'));
-					if (it > 2) {
+					if (it < 3) {
+						infoList.classList.toggle(itemCheck.getAttribute('name'));
+
+					} else if (it > 2) {
 						if (it !== currentInfoTab) {
 							if (infoTab[currentInfoTab].classList.contains('is-up')) infoTab[currentInfoTab].classList.remove('is-up');
 							if (infoTab[currentInfoTab].classList.contains('is-down')) infoTab[currentInfoTab].classList.remove('is-down');
@@ -979,17 +984,42 @@ document.addEventListener('DOMContentLoaded', function() {
 						totalProductEnd = (+parameter.dateEnd.year*12) + +parameter.dateEnd.month, // Перевод в месяца, дату конца производства техники.
 						typeItem, // Тип техники.
 						viewItem, // Вид техники.
-						productionItem; // Есть ли производство техники.
+						productionItem, // Есть ли производство техники.
+						sumLetters, sumSpecifications, sumQualities; // Сумма всех символов в названии, характеристик и качеств техники.
 
 					// Корректировка парамтра.
 					+parameter.armor === 22 ? progressArmor = Math.round((((parameter.hp/3)*isPROGRESS.armor[parameter.armor - 5])*100)/1100) : progressArmor = Math.round((((parameter.hp/3)*isPROGRESS.armor[parameter.armor])*100)/1100);
 
 					// Общие классы карточки.
-					!isInfo ? tabItem.className = 'screen__decor starting-army__box' : tabItem.className = 'screen__decor';
+					!isInfo ? tabItem.className = 'screen__decor starting-army__box' : tabItem.className = 'screen__decor info__item';
+
+					if (isInfo) {
+						// Определение классов страны, для раздла информации.
+						if (it === 0) {
+							tabItem.classList.add('info__item_germany');
+
+						} else if (it === 1) {
+							tabItem.classList.add('info__item_ussr');
+
+						} else {
+							tabItem.classList.add('info__item_allies');
+						};
+
+						// Определение по типу техники.
+						if (parameter.weight === 1) {
+							tabItem.classList.add('info__item_lungs');
+
+						} else if (parameter.weight === 2) {
+							tabItem.classList.add('info__item_average');
+
+						} else {
+							tabItem.classList.add('info__item_heavy');
+						};
+					};
 
 					// Определение танков.
 					if (parameter.type === 1) {
-						!isInfo ? viewItem = 'starting-army__card_tank' : viewItem = 'tank';
+						!isInfo ? viewItem = 'starting-army__card_tank' : tabItem.classList.add('info__item_tank');
 
 						if (parameter.weight === 1) {
 							typeItem = 'Лёгкий танк';
@@ -1004,7 +1034,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 					// Определение ПТ-САУ.
 					if (parameter.type === 2) {
-						!isInfo ? viewItem = 'starting-army__card_pt-sau' : viewItem = 'pt-sau';
+						!isInfo ? viewItem = 'starting-army__card_pt-sau' : tabItem.classList.add('info__item_pt-sau');
 
 						if (parameter.weight === 1) {
 							typeItem = 'Лёгкая ПТ-САУ';
@@ -1029,13 +1059,31 @@ document.addEventListener('DOMContentLoaded', function() {
 						};
 					};
 
+					if (isInfo) {
+						sumLetters = sumLettersNames(nameTechnics);
+						sumSpecifications = parameter.speed + parameter.range + parameter.hp + parameter.fpower + parameter.armor;
+
+						if (progressMobility > progressFpower) {
+							progressMobility > progressArmor ? sumQualities = progressMobility : sumQualities = progressArmor;
+
+						} else {
+							progressFpower > progressArmor ? sumQualities = progressFpower : sumQualities = progressArmor;
+						};
+
+						tabItem.setAttribute(targetAttr + '-name', sumLetters);
+						tabItem.setAttribute(targetAttr + '-class', parameter.weight);
+						tabItem.setAttribute(targetAttr + '-specifications', sumSpecifications);
+						tabItem.setAttribute(targetAttr + '-quality', sumQualities);
+						tabItem.setAttribute(targetAttr + '-price', parameter.cost);
+					};
+
 					// Html-разметка карточки.
 					if (!isInfo) {
 						tabItem.innerHTML = `
 							<div class="starting-army__card ${viewItem}">
 								<picture class="starting-army__picture">
-									<!-- <source srcset="" type="image/webp">  -->
-									<img class="starting-army__image" src="${parameter.images}">
+									<source srcset="${parameter.images}.webp" type="image/webp">
+									<img class="starting-army__image" src="${parameter.images}.png">
 									<h3 class="starting-army__name">${nameTechnics}</h3>
 									<p class="starting-army__cost">${parameter.cost}</p>
 								</picture>
@@ -1086,7 +1134,6 @@ document.addEventListener('DOMContentLoaded', function() {
 						};
 
 					} else {
-						console.log(it, nameTechnics, parameter.cost);
 						// infoList.appendChild(tabItem);
 					};
 				};
@@ -1172,6 +1219,60 @@ document.addEventListener('DOMContentLoaded', function() {
 					};
 				});
 			};
+		};
+
+		/* Определение суммы всех символов в названии техники.
+			@param {string} name - получаемое название техники.
+			@returns {number} - возвращаем сумму всех символов назания. */
+		function sumLettersNames(name) {
+			let listSymbols = {
+					'а': 1, 'a': 1,
+					'б': 2, 'b': 2,
+					'в': 3, 'c': 3,
+					'г': 4, 'd': 4,
+					'д': 5, 'e': 5,
+					'е': 6, 'f': 6,
+					'ё': 7, 'g': 7,
+					'ж': 8, 'h': 8,
+					'з': 9, 'i': 9,
+					'и': 10, 'j': 10,
+					'й': 11, 'k': 11,
+					'к': 12, 'l': 12,
+					'л': 13, 'm': 13,
+					'м': 14, 'n': 14,
+					'н': 15, 'o': 15,
+					'о': 16, 'p': 16,
+					'п': 17, 'q': 17,
+					'р': 18, 'r': 18,
+					'с': 19, 's': 19,
+					'т': 20, 't': 20,
+					'у': 21, 'u': 21,
+					'ф': 22, 'v': 22,
+					'х': 23, 'w': 23,
+					'ц': 24, 'x': 24,
+					'ч': 25, 'y': 25,
+					'ш': 26, 'z': 26,
+					'щ': 27, 'ъ': 28,
+					'ы': 29, 'ь': 30,
+					'э': 31, 'ю': 32,
+					'я': 33, '1': 1,
+					'2': 2, '3': 3,
+					'4': 4, '5': 5,
+					'6': 6, '7': 7,
+					'8': 8, '9': 9,
+					'0': 0, ' ': 0,
+					'-': 0, '(': 0,
+					')': 0
+				}, // Список сумм у символов.
+				totalSum = 0; // Сумма всех символов.
+
+			for (let n = 0; n < name.length; n++) {
+				let symbol = name[n].toLowerCase();
+
+				totalSum = totalSum + listSymbols[symbol];
+			};
+
+			return totalSum;
 		};
 
 		/* Получение рандомного числа из минимального и максимального значения.

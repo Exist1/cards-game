@@ -2,7 +2,7 @@
 	"TECHNICS": {
 		"AXIS": {
 			"Pz II": {
-				"images": "./assets/cards/pz_ii.png",
+				"images": "./assets/cards/pz_ii",
 				"type": 1,
 				"weight": 1,
 				"dateStart": {
@@ -21,7 +21,7 @@
 				"cost": 22
 			},
 			"Pz(38)t": {
-				"images": "./assets/cards/pz38t.png",
+				"images": "./assets/cards/pz38t",
 				"type": 1,
 				"weight": 1,
 				
@@ -41,7 +41,7 @@
 				"cost": 22
 			},
 			"Pz I": {
-				"images": "./assets/cards/pz_i.png",
+				"images": "./assets/cards/pz_i",
 				"type": 1,
 				"weight": 1,
 				"dateStart": {
@@ -60,7 +60,7 @@
 				"cost": 24
 			},
 			"Jg Pz I": {
-				"images": "./assets/cards/jg_pz_i.png",
+				"images": "./assets/cards/jg_pz_i",
 				"type": 2,
 				"weight": 1,
 				
@@ -80,7 +80,7 @@
 				"cost": 29
 			},
 			"Pz IV C": {
-				"images": "./assets/cards/pz_iv_c.png",
+				"images": "./assets/cards/pz_iv_c",
 				"type": 1,
 				"weight": 2,
 				
@@ -100,7 +100,7 @@
 				"cost": 30
 			},
 			"Pz IV F1": {
-				"images": "./assets/cards/pz_iv_f1.png",
+				"images": "./assets/cards/pz_iv_f1",
 				"type": 1,
 				"weight": 2,
 				"dateStart": {
@@ -119,7 +119,7 @@
 				"cost": 38
 			},
 			"StuG III B": {
-				"images": "./assets/cards/stug_iii_b.png",
+				"images": "./assets/cards/stug_iii_b",
 				"type": 2,
 				"weight": 2,
 				"dateStart": {
@@ -138,7 +138,7 @@
 				"cost": 45
 			},
 			"Marder II": {
-				"images": "./assets/cards/marder_ii.png",
+				"images": "./assets/cards/marder_ii",
 				"type": 2,
 				"weight": 1,
 				
@@ -158,7 +158,7 @@
 				"cost": 48
 			},
 			"Pz III J": {
-				"images": "./assets/cards/pz_iii_j.png",
+				"images": "./assets/cards/pz_iii_j",
 				"type": 1,
 				"weight": 2,
 				
@@ -178,7 +178,7 @@
 				"cost": 51
 			},
 			"Pz III J1": {
-				"images": "./assets/cards/pz_iii_j1.png",
+				"images": "./assets/cards/pz_iii_j1",
 				"type": 1,
 				"weight": 2,
 				"dateStart": {
@@ -197,7 +197,7 @@
 				"cost": 59
 			},
 			"Pz III M": {
-				"images": "./assets/cards/pz_iii_m.png",
+				"images": "./assets/cards/pz_iii_m",
 				"type": 1,
 				"weight": 2,
 				"dateStart": {
@@ -216,7 +216,7 @@
 				"cost": 60
 			},
 			"Hetzer": {
-				"images": "./assets/cards/hetzer.png",
+				"images": "./assets/cards/hetzer",
 				"type": 2,
 				"weight": 1,
 				"dateStart": {
@@ -237,7 +237,7 @@
 				"cost": 61
 			},
 			"Pz IV F2": {
-				"images": "./assets/cards/pz_iv_f2.png",
+				"images": "./assets/cards/pz_iv_f2",
 				"type": 1,
 				"weight": 2,
 				"dateStart": {
@@ -256,7 +256,7 @@
 				"cost": 71
 			},
 			"StuG III G": {
-				"images": "./assets/cards/stug_iii_g.png",
+				"images": "./assets/cards/stug_iii_g",
 				"type": 2,
 				"weight": 2,
 				
@@ -276,7 +276,7 @@
 				"cost": 73
 			},
 			"Pz IV H": {
-				"images": "./assets/cards/pz_iv_h.png",
+				"images": "./assets/cards/pz_iv_h",
 				"type": 1,
 				"weight": 2,
 				"dateStart": {
@@ -295,7 +295,7 @@
 				"cost": 81
 			},
 			"Jg Pz IV": {
-				"images": "./assets/cards/jg_pz_iv.png",
+				"images": "./assets/cards/jg_pz_iv",
 				"type": 2,
 				"weight": 2,
 				
@@ -315,7 +315,7 @@
 				"cost": 85
 			},
 			"Nashorn": {
-				"images": "./assets/cards/nashorn.png",
+				"images": "./assets/cards/nashorn",
 				"type": 2,
 				"weight": 2,
 				"dateStart": {
@@ -334,7 +334,7 @@
 				"cost": 109
 			},
 			"Pz IV(70)": {
-				"images": "./assets/cards/pz_iv70.png",
+				"images": "./assets/cards/pz_iv70",
 				"type": 2,
 				"weight": 2,
 				
@@ -354,7 +354,7 @@
 				"cost": 127
 			},
 			"Panther": {
-				"images": "./assets/cards/panther.png",
+				"images": "./assets/cards/panther",
 				"type": 1,
 				"weight": 2,
 				"dateStart": {
@@ -373,7 +373,7 @@
 				"cost": 199
 			},
 			"Jg Panther": {
-				"images": "./assets/cards/jg_panthre.png",
+				"images": "./assets/cards/jg_panthre",
 				"type": 2,
 				"weight": 2,
 				
@@ -393,7 +393,7 @@
 				"cost": 205
 			},
 			"Tiger": {
-				"images": "./assets/cards/tiger.png",
+				"images": "./assets/cards/tiger",
 				"type": 1,
 				"weight": 3,
 				"dateStart": {
@@ -412,7 +412,7 @@
 				"cost": 282
 			},
 			"Tiger II": {
-				"images": "./assets/cards/tiger_ii.png",
+				"images": "./assets/cards/tiger_ii",
 				"type": 1,
 				"weight": 3,
 				
@@ -432,7 +432,7 @@
 				"cost": 396
 			},
 			"Ferdinand": {
-				"images": "./assets/cards/ferdinand.png",
+				"images": "./assets/cards/ferdinand",
 				"type": 2,
 				"weight": 3,
 				
@@ -452,7 +452,7 @@
 				"cost": 415
 			},
 			"Jagtiger": {
-				"images": "./assets/cards/jagtiger.png",
+				"images": "./assets/cards/jagtiger",
 				"type": 1,
 				"weight": 3,
 				
@@ -472,7 +472,7 @@
 				"cost": 474
 			},
 			"Maus": {
-				"images": "./assets/cards/maus.png",
+				"images": "./assets/cards/maus",
 				"type": 1,
 				"weight": 3,
 				
@@ -495,7 +495,7 @@
 
 		"SOVIET": {
 			"T-26": {
-				"images": "./assets/cards/t26.png",
+				"images": "./assets/cards/t26",
 				"type": 1,
 				"weight": 1,
 				
@@ -515,7 +515,7 @@
 				"cost": 16
 			},
 			"T-60": {
-				"images": "./assets/cards/t60.png",
+				"images": "./assets/cards/t60",
 				"type": 1,
 				"weight": 1,
 				
@@ -535,7 +535,7 @@
 				"cost": 18
 			},
 			"T-70": {
-				"images": "./assets/cards/t70.png",
+				"images": "./assets/cards/t70",
 				"type": 1,
 				"weight": 1,
 				
@@ -555,7 +555,7 @@
 				"cost": 23
 			},
 			"СУ-76": {
-				"images": "./assets/cards/su76.png",
+				"images": "./assets/cards/su76",
 				"type": 2,
 				"weight": 1,
 				
@@ -575,7 +575,7 @@
 				"cost": 40
 			},
 			"T-28": {
-				"images": "./assets/cards/t28.png",
+				"images": "./assets/cards/t28",
 				"type": 1,
 				"weight": 2,
 				
@@ -595,7 +595,7 @@
 				"cost": 46
 			},
 			"БТ-7": {
-				"images": "./assets/cards/bt7.png",
+				"images": "./assets/cards/bt7",
 				"type": 1,
 				"weight": 1,
 				
@@ -615,7 +615,7 @@
 				"cost": 69
 			},
 			"T-34(40)": {
-				"images": "./assets/cards/t34_40.png",
+				"images": "./assets/cards/t34_40",
 				"type": 1,
 				"weight": 2,
 				
@@ -635,7 +635,7 @@
 				"cost": 76
 			},
 			"T-34(41)": {
-				"images": "./assets/cards/t34_41.png",
+				"images": "./assets/cards/t34_41",
 				"type": 1,
 				"weight": 2,
 				
@@ -655,7 +655,7 @@
 				"cost": 86
 			},
 			"T-34(42)": {
-				"images": "./assets/cards/t34_42.png",
+				"images": "./assets/cards/t34_42",
 				"type": 1,
 				"weight": 2,
 				
@@ -675,7 +675,7 @@
 				"cost": 93
 			},
 			"КВ-1(39)": {
-				"images": "./assets/cards/kv1_39.png",
+				"images": "./assets/cards/kv1_39",
 				"type": 1,
 				"weight": 3,
 				
@@ -695,7 +695,7 @@
 				"cost": 113
 			},
 			"КВ-1С": {
-				"images": "./assets/cards/kv1s.png",
+				"images": "./assets/cards/kv1s",
 				"type": 1,
 				"weight": 3,
 				
@@ -715,7 +715,7 @@
 				"cost": 115
 			},
 			"СУ-85": {
-				"images": "./assets/cards/su85.png",
+				"images": "./assets/cards/su85",
 				"type": 1,
 				"weight": 2,
 				
@@ -735,7 +735,7 @@
 				"cost": 121
 			},
 			"КВ-1(41)": {
-				"images": "./assets/cards/kv1_41.png",
+				"images": "./assets/cards/kv1_41",
 				"type": 1,
 				"weight": 3,
 				
@@ -755,7 +755,7 @@
 				"cost": 124
 			},
 			"КВ-2": {
-				"images": "./assets/cards/kv2.png",
+				"images": "./assets/cards/kv2",
 				"type": 1,
 				"weight": 3,
 				
@@ -775,7 +775,7 @@
 				"cost": 136
 			},
 			"T-34-85": {
-				"images": "./assets/cards/t34_85.png",
+				"images": "./assets/cards/t34_85",
 				"type": 1,
 				"weight": 2,
 				
@@ -795,7 +795,7 @@
 				"cost": 144
 			},
 			"СУ-100": {
-				"images": "./assets/cards/su100.png",
+				"images": "./assets/cards/su100",
 				"type": 1,
 				"weight": 2,
 				
@@ -815,7 +815,7 @@
 				"cost": 152
 			},
 			"СУ-152": {
-				"images": "./assets/cards/su152.png",
+				"images": "./assets/cards/su152",
 				"type": 2,
 				"weight": 3,
 				
@@ -835,7 +835,7 @@
 				"cost": 169
 			},
 			"КВ-85": {
-				"images": "./assets/cards/kv85.png",
+				"images": "./assets/cards/kv85",
 				"type": 1,
 				"weight": 3,
 				
@@ -855,7 +855,7 @@
 				"cost": 182
 			},
 			"ИСУ-152": {
-				"images": "./assets/cards/isu152.png",
+				"images": "./assets/cards/isu152",
 				"type": 2,
 				"weight": 3,
 				
@@ -875,7 +875,7 @@
 				"cost": 211
 			},
 			"ИС-1": {
-				"images": "./assets/cards/is1.png",
+				"images": "./assets/cards/is1",
 				"type": 1,
 				"weight": 3,
 				
@@ -895,7 +895,7 @@
 				"cost": 222
 			},
 			"ИС-2": {
-				"images": "./assets/cards/is2.png",
+				"images": "./assets/cards/is2",
 				"type": 1,
 				"weight": 3,
 				
@@ -915,7 +915,7 @@
 				"cost": 288
 			},
 			"ИС-2М": {
-				"images": "./assets/cards/is2m.png",
+				"images": "./assets/cards/is2m",
 				"type": 1,
 				"weight": 3,
 				
@@ -938,7 +938,7 @@
 
 		"ALLIED": {
 			"M8A1": {
-				"images": "./assets/cards/m8a1.png",
+				"images": "./assets/cards/m8a1",
 				"type": 2,
 				"weight": 1,
 				
@@ -958,7 +958,7 @@
 				"cost": 34
 			},
 			"Crusader": {
-				"images": "./assets/cards/crusader.png",
+				"images": "./assets/cards/crusader",
 				"type": 1,
 				"weight": 1,
 				
@@ -978,7 +978,7 @@
 				"cost": 40
 			},
 			"M3 Stuart": {
-				"images": "./assets/cards/m3_stuart.png",
+				"images": "./assets/cards/m3_stuart",
 				"type": 1,
 				"weight": 1,
 				
@@ -998,7 +998,7 @@
 				"cost": 40
 			},
 			"Valentine": {
-				"images": "./assets/cards/valentine.png",
+				"images": "./assets/cards/valentine",
 				"type": 1,
 				"weight": 1,
 				
@@ -1018,7 +1018,7 @@
 				"cost": 43
 			},
 			"M5 Stuart": {
-				"images": "./assets/cards/m5_stuart.png",
+				"images": "./assets/cards/m5_stuart",
 				"type": 1,
 				"weight": 1,
 				
@@ -1038,7 +1038,7 @@
 				"cost": 44
 			},
 			"Locust": {
-				"images": "./assets/cards/locust.png",
+				"images": "./assets/cards/locust",
 				"type": 1,
 				"weight": 1,
 				
@@ -1058,7 +1058,7 @@
 				"cost": 47
 			},
 			"Chaffie": {
-				"images": "./assets/cards/chaffie.png",
+				"images": "./assets/cards/chaffie",
 				"type": 1,
 				"weight": 1,
 				
@@ -1078,7 +1078,7 @@
 				"cost": 55
 			},
 			"Matilda": {
-				"images": "./assets/cards/matilda.png",
+				"images": "./assets/cards/matilda",
 				"type": 1,
 				"weight": 2,
 				
@@ -1098,7 +1098,7 @@
 				"cost": 55
 			},
 			"Wolverine": {
-				"images": "./assets/cards/wolverine.png",
+				"images": "./assets/cards/wolverine",
 				"type": 2,
 				"weight": 2,
 				
@@ -1118,7 +1118,7 @@
 				"cost": 58
 			},
 			"Hellcat": {
-				"images": "./assets/cards/hellcat.png",
+				"images": "./assets/cards/hellcat",
 				"type": 2,
 				"weight": 2,
 				
@@ -1138,7 +1138,7 @@
 				"cost": 71
 			},
 			"M4A1": {
-				"images": "./assets/cards/m4a1.png",
+				"images": "./assets/cards/m4a1",
 				"type": 1,
 				"weight": 2,
 				
@@ -1158,7 +1158,7 @@
 				"cost": 75
 			},
 			"M3 Lee": {
-				"images": "./assets/cards/m3lee.png",
+				"images": "./assets/cards/m3lee",
 				"type": 1,
 				"weight": 2,
 				
@@ -1178,7 +1178,7 @@
 				"cost": 81
 			},
 			"Cromwell": {
-				"images": "./assets/cards/cromwell.png",
+				"images": "./assets/cards/cromwell",
 				"type": 1,
 				"weight": 2,
 				
@@ -1198,7 +1198,7 @@
 				"cost": 89
 			},
 			"M4A1(76)": {
-				"images": "./assets/cards/m4a1_76.png",
+				"images": "./assets/cards/m4a1_76",
 				"type": 1,
 				"weight": 2,
 				
@@ -1218,7 +1218,7 @@
 				"cost": 100
 			},
 			"Slugger": {
-				"images": "./assets/cards/slugger.png",
+				"images": "./assets/cards/slugger",
 				"type": 2,
 				"weight": 2,
 				
@@ -1238,7 +1238,7 @@
 				"cost": 103
 			},
 			"M4A3E8": {
-				"images": "./assets/cards/m4a3e8.png",
+				"images": "./assets/cards/m4a3e8",
 				"type": 1,
 				"weight": 2,
 				
@@ -1258,7 +1258,7 @@
 				"cost": 110
 			},
 			"Comet": {
-				"images": "./assets/cards/comet.png",
+				"images": "./assets/cards/comet",
 				"type": 1,
 				"weight": 2,
 				
@@ -1278,7 +1278,7 @@
 				"cost": 122
 			},
 			"Firefly": {
-				"images": "./assets/cards/firefly.png",
+				"images": "./assets/cards/firefly",
 				"type": 1,
 				"weight": 2,
 				
@@ -1298,7 +1298,7 @@
 				"cost": 139
 			},
 			"Churchill I": {
-				"images": "./assets/cards/churchill_i.png",
+				"images": "./assets/cards/churchill_i",
 				"type": 1,
 				"weight": 3,
 				
@@ -1318,7 +1318,7 @@
 				"cost": 143
 			},
 			"Jumbo": {
-				"images": "./assets/cards/jumbo.png",
+				"images": "./assets/cards/jumbo",
 				"type": 1,
 				"weight": 3,
 				
@@ -1338,7 +1338,7 @@
 				"cost": 151
 			},
 			"Churchill III": {
-				"images": "./assets/cards/churchill_iii.png",
+				"images": "./assets/cards/churchill_iii",
 				"type": 1,
 				"weight": 3,
 				
@@ -1358,7 +1358,7 @@
 				"cost": 155
 			},
 			"Jumbo(76)": {
-				"images": "./assets/cards/jumbo76.png",
+				"images": "./assets/cards/jumbo76",
 				"type": 1,
 				"weight": 3,
 				
@@ -1378,7 +1378,7 @@
 				"cost": 178
 			},
 			"Pershing": {
-				"images": "./assets/cards/pershing.png",
+				"images": "./assets/cards/pershing",
 				"type": 1,
 				"weight": 3,
 				
@@ -1398,7 +1398,7 @@
 				"cost": 220
 			},
 			"Churchill VII": {
-				"images": "./assets/cards/churchill_vii.png",
+				"images": "./assets/cards/churchill_vii",
 				"type": 1,
 				"weight": 3,
 				

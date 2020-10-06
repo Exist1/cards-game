@@ -81,6 +81,7 @@
 		.shooting__step-1 .shooting__article_fpower &
 			width: 100%
 	&__item
+		background: $bgDecorLight
 		cursor: pointer
 		flex-basis: calc(100%/4.5)
 		+resp-font(26, 20)
@@ -88,12 +89,9 @@
 		text-align: center
 		&::before
 			background: $bgDecorLight
-			background-size: $gridDecor
 		&_null
+			background: $bgDecorDefault
 			cursor: no-drop
-			&::before
-				background: $bgDecorDefault
-				background-size: $gridDecor
 		&:not(:nth-last-child(-n + 4))
 			margin-bottom: calc((#{$GOFFSET*0.375}*100vw)/#{$GWIDTH})
 		&.is-active
@@ -210,11 +208,6 @@
 				width: 100%
 		&__item
 			line-height: 2.5
-			&::before
-				background-size: $gridTabletDecor
-			&_null
-				&::before
-					background-size: $gridTabletDecor
 			&:not(:nth-last-child(-n + 4))
 				+size-calc('margin-bottom', 'r', $GOFFSET*0.375)
 		&__back
@@ -244,12 +237,6 @@
 					margin-left: calc((100%/1.5) - #{$GOFFSET/20}rem)
 		&__content
 			+size-calc('margin-top', 'r', $GOFFSET*0.375)
-		&__item
-			&::before
-				background-size: $gridMobileDecor
-			&_null
-				&::before
-					background-size: $gridMobileDecor
 			&:not(:nth-last-child(-n + 4))
 				+size-calc('margin-bottom', 'r', $GOFFSET/4)
 		&__random

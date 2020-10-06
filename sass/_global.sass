@@ -70,15 +70,13 @@
 				margin-bottom: calc((#{$GOFFSET/2}*100vw)/#{$GWIDTH})
 	&__param
 		align-items: center
+		background: $bgDecorDefault
 		display: flex
 		flex-basis: 60%
 		font-family: inherit
 		font-size: inherit
 		font-weight: inherit
 		padding: calc((#{$GOFFSET/4}*100vw)/#{$GWIDTH}) calc((#{$GOFFSET*0.375}*100vw)/#{$GWIDTH})
-		&::before
-			background: $bgDecorDefault
-			background-size: $gridDecor
 		&_germany
 			color: $COLOR_red
 			.global__svg
@@ -100,6 +98,7 @@
 			text-align: center
 	&__shop
 		align-items: center
+		background: $bgDecorLight
 		display: flex
 		font-family: inherit
 		font-size: inherit
@@ -108,9 +107,6 @@
 		margin-left: auto
 		padding: calc((#{$GOFFSET/4}*100vw)/#{$GWIDTH}) calc((#{$GOFFSET/2}*100vw)/#{$GWIDTH})
 		width: 35%
-		&::before
-			background: $bgDecorLight
-			background-size: $gridDecor
 	&__prestige-points
 		display: block
 		font-family: $GFONT_bold
@@ -175,9 +171,6 @@
 		&__shop
 			+size-calc('padding', 'rr', $GOFFSET/4, $GHEIGHT, $GOFFSET*0.375)
 			width: 45%
-		&__param, &__shop
-			&::before
-				background-size: $gridTabletDecor
 		&__prestige-points
 			flex-basis: 50%
 			&:first-child
@@ -236,9 +229,6 @@
 				display: none
 			.global__svg
 				margin-right: 0
-		&__param, &__shop
-			&::before
-				background-size: $gridMobileDecor
 		&__prestige-points
 			&:first-child, &:last-child
 				border-bottom: 1px solid $GCOLOR_white

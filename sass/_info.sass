@@ -23,15 +23,15 @@
 	&__tab
 		position: relative
 		&_name
-			flex-basis: 30%
+			flex-basis: $infoSortLarge
 		&_class
-			flex-basis: 20%
+			flex-basis: $infoSortMiddle
 		&_specifications
-			flex-basis: 20%
+			flex-basis: $infoSortMiddle
 		&_quality
-			flex-basis: 15%
+			flex-basis: $infoSortLittle
 		&_price
-			flex-basis: 15%
+			flex-basis: $infoSortLittle
 		.info__sort_view &:nth-child(2)
 			border:
 				left: 1px solid $COLOR_separator
@@ -102,6 +102,86 @@
 		.info__sort_table &
 			+resp-font(18, $GFONT_min)
 			margin-right: auto
+	&__content
+		overflow: hidden
+		position: relative
+		&::before
+			content: ''
+			display: block
+			padding-bottom: 30%
+	&__list
+		display: flex
+		flex-direction: column
+		height: 100%
+		left: 0
+		overflow-x: hidden
+		position: absolute
+		top: 0
+		width: 100%
+		+size-calc('padding-right', 'r', $GOFFSET*0.375)
+		&::-webkit-scrollbar-track
+			background: $bgDecorDefault
+			+size-calc('border-radius', 'r', $GBDRAIUS/2)
+		&::-webkit-scrollbar-thumb
+			background: $bgDecorLight
+			+size-calc('border-radius', 'r', $GBDRAIUS/2)
+		&::-webkit-scrollbar
+			+size-calc('width', 'r', $GOFFSET*0.375)
+	&__item
+		align-items: center
+		background: $bgDecorDefault
+		display: flex
+		margin-bottom: calc((#{$GOFFSET*0.375}*100vw)/#{$GWIDTH}) // временно
+		max-height: 100% // временно
+		opacity: 1 // временно
+		overflow: hidden
+		padding: calc((#{$GOFFSET*0.375}*100vw)/#{$GWIDTH}) // временно
+		&_germany .info__color
+			color: $COLOR_red
+		&_ussr .info__color
+			color: $COLOR_green
+		&_allies .info__color
+			color: $COLOR_blue
+	&__picture
+		align-items: center
+		border-right: 1px solid $COLOR_separator
+		display: flex
+		flex-basis: $infoSortLarge
+	&__image
+		height: auto
+		margin-right: calc((#{$GOFFSET/4}*100vw)/#{$GWIDTH})
+		width: 25%
+	&__name
+		+resp-font(32, 18)
+	&__class, &__specifications
+		padding: 0 calc((#{$GOFFSET*0.375}*100vw)/#{$GWIDTH})
+	&__class
+		+resp-font(20, 18)
+		flex-basis: $infoSortMiddle
+	&__specifications
+		align-items: center
+		border:
+			left: 1px solid $COLOR_separator
+			right: 1px solid $COLOR_separator
+		display: flex
+		flex-basis: $infoSortMiddle
+		justify-content: space-between
+	&__characteristic
+		flex-basis: calc(100%/5.5)
+		position: relative
+		&::before
+			content: attr(data-name)
+			font-family: $GFONT_bold
+			font-weight: bold
+			+resp-font(22, 18)
+			left: 50%
+			position: absolute
+			top: 50%
+			transform: translate(-50%, -50%)
+			z-index: 1
+	&__svg
+		height: calc((#{$GOFFSET*2}*100vw)/#{$GWIDTH})
+		width: 100%
 	@media screen and ( max-width: #{$GTABLET}px )
 		&__header
 			+size-calc('margin-bottom', 'r', $GOFFSET/2)
@@ -126,6 +206,7 @@
 				+size-calc('padding', 'rx', $GOFFSET/4)
 		&__label:not(:last-child)
 			margin-right: 0
+		&__list
 	@media screen and ( max-width: #{$GMOBILE}px )
 		&__header
 			+size-calc('margin-bottom', 'r', $GOFFSET*0.375)
@@ -147,3 +228,7 @@
 			+size-calc('width', 'r', $GOFFSET*0.375)
 		&__text
 			+size-calc('margin-left', 'r', $GOFFSET/8)
+		&__list
+			+size-calc('padding-right', 'r', $GOFFSET/4)
+			&::-webkit-scrollbar
+				+size-calc('width', 'r', $GOFFSET/4)

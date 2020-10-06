@@ -26,41 +26,23 @@
 		+size-calc('border-radius', 'r', $GBDRAIUS)
 		overflow: hidden
 		position: relative
-		&::before
-			content: ''
-			display: block
-			height: 100%
-			left: 0
-			position: absolute
-			top: 0
-			width: 100%
-			z-index: 1
-		*
-			position: relative
-			z-index: 1
 	&__button
+		background: $bgDecorLight
 		+size-calc('border-radius', 'r', $GBDRAIUS)
 		+resp-font(28, 16)
 		overflow: hidden
 		padding: calc((#{$GOFFSET/4}*100vw)/#{$GWIDTH})
 		position: relative
-		&::before
-			background: $bgDecorLight
-			background-size: $gridDecor
 		&_action
-			background-color: $GCOLOR_white
+			background: $GCOLOR_white
 			color: $GCOLOR_black
 	@media screen and ( max-width: #{$GTABLET}px )
 		&__wrap
 			margin: 0
 		&__button
 			+size-calc('padding', 'r', $GOFFSET/4)
-			&::before
-				background-size: $gridTabletDecor
 	@media screen and ( max-width: #{$GMOBILE}px )
 		&__title br
 			display: none
 		&__button
 			+size-calc('padding', 'r', $GOFFSET/8)
-			&::before
-				background-size: $gridMobileDecor

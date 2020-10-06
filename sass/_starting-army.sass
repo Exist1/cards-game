@@ -65,20 +65,16 @@
 			z-index: 2
 		&::-webkit-scrollbar-track
 			background: $bgDecorDefault
-			background-size: $gridDecor
 			+size-calc('border-radius', 'r', $GBDRAIUS/2)
 		&::-webkit-scrollbar-thumb
 			background: $bgDecorLight
-			background-size: $gridDecor
 			+size-calc('border-radius', 'r', $GBDRAIUS/2)
 		&::-webkit-scrollbar
 			+size-calc('width', 'r', $GOFFSET/2)
 	&__box
+		background: $bgDecorDefault
 		flex-basis: calc(100%/2.0625)
 		margin-bottom: calc((#{$GOFFSET/2}*100vw)/#{$GWIDTH})
-		&::before
-			background: $bgDecorDefault
-			background-size: $gridDecor
 		&.is-old
 			.starting-army.is-shop &
 				display: none
@@ -98,6 +94,10 @@
 			position: absolute
 			top: 0
 			width: 50%
+			z-index: 1
+		*
+			position: relative
+			z-index: 2
 		&_tank, &_pt-sau
 			&::before
 				left: 0
@@ -139,10 +139,8 @@
 	&__progress
 		margin-bottom: calc((#{$GOFFSET/2}*100vw)/#{$GWIDTH})
 	&__item
+		background: $bgDecorDark
 		+size-calc('margin-bottom', 'r', $GOFFSET/8)
-		&::before
-			background: $bgDecorDark
-			background-size: $gridDecor
 		&::after
 			content: attr(data-progress)
 			display: block
@@ -305,10 +303,8 @@
 			display: block
 		&__tab
 			+size-calc('padding-right', 'r', $GOFFSET/2)
-			&::-webkit-scrollbar-track, &::-webkit-scrollbar-thumb
-				background-size: $gridTabletDecor
 		&__list
-			height: calc(100vh - #{$GOFFSET*0.6375}rem)
+			height: 60vh
 		&__card
 			+size-calc('padding', 'rr', $GOFFSET/4, $GHEIGHT, $GOFFSET/2)
 		&__progress
@@ -327,6 +323,7 @@
 			+size-calc('width', 'r', $GOFFSET/2)
 		&__money
 			align-items: center
+			background: $bgDecorDefault
 			border-radius: 0
 			bottom: 0
 			flex-direction: row
@@ -335,9 +332,6 @@
 			position: absolute
 			width: 100%
 			z-index: 999
-			&::before
-				background: $bgDecorDefault
-				background-size: $gridTabletDecor
 			.starting-army.is-completed &
 				align-items: flex-start
 				flex-wrap: wrap
@@ -353,6 +347,8 @@
 				content: ' очков.'
 			.starting-army.is-completed &
 				+size-calc('margin-bottom', 'r', $GOFFSET/4)
+			.starting-army.is-shop &::before
+				content: 'Покупка: '
 		&__buttons
 			.starting-army.is-completed &
 				display: flex
@@ -363,8 +359,6 @@
 				+size-calc('margin-right', 'r', $GOFFSET/2)
 		&__box
 			+size-calc('margin-bottom', 'r', $GOFFSET/2)
-			&::before
-				background-size: $gridTabletDecor
 	@media screen and ( max-width: #{$GMOBILE}px )
 		&__wrap
 			margin: 0
@@ -372,17 +366,13 @@
 			+size-calc('padding-bottom', 'r', $GOFFSET*0.375)
 			+size-calc('margin-bottom', 'r', $GOFFSET*0.375)
 		&__list
-			height: calc(100vh - #{$GOFFSET*0.55}rem)
+			height: 50vh
 		&__tab
 			padding-right: 0
-			&::-webkit-scrollbar-track, &::-webkit-scrollbar-thumb
-				background-size: $gridMobileDecor
 			&::-webkit-scrollbar
 				+size-calc('width', 'r', $GOFFSET/4)
 		&__box
 			flex-basis: 100%
-			&::before
-				background-size: $gridMobileDecor
 		&__card
 			+size-calc('padding', 'r', $GOFFSET/4)
 		&__progress
@@ -391,5 +381,3 @@
 			+size-calc('padding-left', 'r', $GOFFSET/4)
 		&__svg
 			+size-calc('height', 'r', $GOFFSET*0.75)
-		&__money::before
-			background-size: $gridMobileDecor

@@ -13,10 +13,12 @@
 				max-height: 0
 				padding: 0
 	&__information
-		overflow: hidden
 		max-height: 0
+		opacity: 0
+		overflow: hidden
 		.start-screen.is-info &
-			max-height: calc((#{$GOFFSET*2}*100vw)/#{$GWIDTH})
+			max-height: calc((#{$GOFFSET*1.5}*100vw)/#{$GWIDTH})
+			opacity: 1
 	@media screen and ( max-width: #{$GTABLET}px )
 		&__wrap
 			margin: auto 0

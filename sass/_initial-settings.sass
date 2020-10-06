@@ -58,14 +58,12 @@
 		&.is-end::before
 			border-bottom-color: $COLOR_bgDefault
 	&__text
+		background: $bgDecorDefault
 		font-family: $GFONT_bold
 		font-weight: bold
 		+resp-font(50, 28)
 		+size-calc('margin', 'rx', $GOFFSET/4)
 		text-align: center
-		&::before
-			background: $bgDecorDefault
-			background-size: $gridDecor
 	&__prev
 		&::before
 			border-top-color: $COLOR_bgLight
@@ -73,15 +71,12 @@
 		&.is-end::before
 			border-top-color: $COLOR_bgDefault
 	&__label
+		background: $bgDecorDefault
 		display: block
 		&:not(:last-child)
 			margin-bottom: calc((#{$GOFFSET/4}*100vw)/#{$GWIDTH})
-		&::before
-			background: $bgDecorDefault
-			background-size: $gridDecor
-		&.is-error::before
+		&.is-error
 			background: $bgDecorError
-			background-size: $gridDecor
 	&__player
 		+resp-font(20, $GFONT_min)
 		z-index: 1
@@ -117,9 +112,6 @@
 				order: 2
 		&__date
 			+size-calc('margin-bottom', 'r', $GOFFSET/2)
-		&__text, &__label, &__label.is-error
-			&::before
-				background-size: $gridTabletDecor
 		&__label:not(:last-child)
 			+size-calc('margin-bottom', 'r', $GOFFSET/4)
 		&__btn
@@ -132,6 +124,3 @@
 				+size-calc('margin-bottom', 'r', $GOFFSET/4)
 			&:not(:last-child)
 				+size-calc('margin-bottom', 'r', $GOFFSET*0.375)
-		&__text, &__label, &__label.is-error
-			&::before
-				background-size: $gridMobileDecor
