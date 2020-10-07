@@ -127,15 +127,67 @@
 			+size-calc('border-radius', 'r', $GBDRAIUS/2)
 		&::-webkit-scrollbar
 			+size-calc('width', 'r', $GOFFSET*0.375)
+		&.is-germany
+			.info__item_germany,
+			&.is-sau .info__item_germany.info__item_pt-sau,
+			&.is-tank .info__item_germany.info__item_tank,
+			&.is-light .info__item_germany.info__item_light,
+			&.is-middle .info__item_germany.info__item_middle,
+			&.is-heavy .info__item_germany.info__item_heavy,
+			&.is-light.is-sau .info__item_germany.info__item_pt-sau.info__item_light,
+			&.is-middle.is-sau .info__item_germany.info__item_pt-sau.info__item_middle,
+			&.is-heavy.is-sau .info__item_germany.info__item_pt-sau.info__item_heavy,
+			&.is-light.is-tank .info__item_germany.info__item_tank.info__item_light,
+			&.is-middle.is-tank .info__item_germany.info__item_tank.info__item_middle,
+			&.is-heavy.is-tank .info__item_germany.info__item_tank.info__item_heavy
+				@extend .info__item_view
+		&.is-ussr
+			.info__item_ussr,
+			&.is-sau .info__item_ussr.info__item_pt-sau,
+			&.is-tank .info__item_ussr.info__item_tank,
+			&.is-light .info__item_ussr.info__item_light,
+			&.is-middle .info__item_ussr.info__item_middle,
+			&.is-heavy .info__item_ussr.info__item_heavy,
+			&.is-light.is-sau .info__item_ussr.info__item_pt-sau.info__item_light,
+			&.is-middle.is-sau .info__item_ussr.info__item_pt-sau.info__item_middle,
+			&.is-heavy.is-sau .info__item_ussr.info__item_pt-sau.info__item_heavy,
+			&.is-light.is-tank .info__item_ussr.info__item_tank.info__item_light,
+			&.is-middle.is-tank .info__item_ussr.info__item_tank.info__item_middle,
+			&.is-heavy.is-tank .info__item_ussr.info__item_tank.info__item_heavy
+				@extend .info__item_view
+		&.is-allies
+			.info__item_allies,
+			&.is-sau .info__item_allies.info__item_pt-sau,
+			&.is-tank .info__item_allies.info__item_tank,
+			&.is-light .info__item_allies.info__item_light,
+			&.is-middle .info__item_allies.info__item_middle,
+			&.is-heavy .info__item_allies.info__item_heavy,
+			&.is-light.is-sau .info__item_allies.info__item_pt-sau.info__item_light,
+			&.is-middle.is-sau .info__item_allies.info__item_pt-sau.info__item_middle,
+			&.is-heavy.is-sau .info__item_allies.info__item_pt-sau.info__item_heavy,
+			&.is-light.is-tank .info__item_allies.info__item_tank.info__item_light,
+			&.is-middle.is-tank .info__item_allies.info__item_tank.info__item_middle,
+			&.is-heavy.is-tank .info__item_allies.info__item_tank.info__item_heavy
+				@extend .info__item_view
+		&.is-germany, &.is-ussr, &.is-allies
+			&.is-sau, &.is-tank, &.is-light, &.is-middle, &.is-heavy,
+			&.is-light.is-sau, &.is-middle.is-sau, &.is-heavy.is-sau,
+			&.is-light.is-tank, &.is-middle.is-tank, &.is-heavy.is-tank
+				.info__item
+					margin-bottom: 0
+					max-height: 0
+					opacity: 0
+					padding: 0
 	&__item
 		align-items: center
 		background: $bgDecorDefault
 		display: flex
-		margin-bottom: calc((#{$GOFFSET*0.375}*100vw)/#{$GWIDTH}) // временно
-		max-height: 100% // временно
-		opacity: 1 // временно
 		overflow: hidden
-		padding: calc((#{$GOFFSET*0.375}*100vw)/#{$GWIDTH}) // временно
+		&_view
+			margin-bottom: calc((#{$GOFFSET*0.375}*100vw)/#{$GWIDTH})
+			max-height: 100%
+			opacity: 1
+			padding: calc((#{$GOFFSET*0.375}*100vw)/#{$GWIDTH})
 		&_germany .info__color
 			color: $COLOR_red
 		&_ussr .info__color
@@ -182,6 +234,11 @@
 	&__svg
 		height: calc((#{$GOFFSET*2}*100vw)/#{$GWIDTH})
 		width: 100%
+	&__quality
+		flex-basis: $infoSortLittle
+	&__price
+		+resp-font(28, 22)
+		margin-left: auto
 	@media screen and ( max-width: #{$GTABLET}px )
 		&__header
 			+size-calc('margin-bottom', 'r', $GOFFSET/2)
@@ -206,7 +263,12 @@
 				+size-calc('padding', 'rx', $GOFFSET/4)
 		&__label:not(:last-child)
 			margin-right: 0
-		&__list
+		&__content::before
+			padding-bottom: 50%
+		&__item
+			&_view
+				+size-calc('margin-bottom', 'r', $GOFFSET*0.375)
+				+size-calc('padding', 'r', $GOFFSET*0.375)
 	@media screen and ( max-width: #{$GMOBILE}px )
 		&__header
 			+size-calc('margin-bottom', 'r', $GOFFSET*0.375)

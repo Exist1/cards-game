@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			isPROGRESS = isJSON.PROGRESS; // Параметр таблицы прогрес баров, в карточках техники.
 
 		// Активация стартового экрана (секции).
-		screens[5].classList.add(isActive);
+		screens[0].classList.add(isActive);
 
 		// Управление кнопкой "информация", расположенную на стартовом экране.
 		startScreenInfo.addEventListener('click', function() {
@@ -1007,10 +1007,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 						// Определение по типу техники.
 						if (parameter.weight === 1) {
-							tabItem.classList.add('info__item_lungs');
+							tabItem.classList.add('info__item_light');
 
 						} else if (parameter.weight === 2) {
-							tabItem.classList.add('info__item_average');
+							tabItem.classList.add('info__item_middle');
 
 						} else {
 							tabItem.classList.add('info__item_heavy');
@@ -1134,7 +1134,7 @@ document.addEventListener('DOMContentLoaded', function() {
 						};
 
 					} else {
-						// infoList.appendChild(tabItem);
+						infoList.appendChild(tabItem);
 					};
 				};
 			};
