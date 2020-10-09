@@ -153,18 +153,36 @@
 		left: 0
 		position: absolute
 		top: 0
-		@for $a from 0 through 25
+		@for $a from 0 through 10
 			&[data-color="#{$a}"]
-				background-color: #803525
-		@for $b from 26 through 50
+				background: linear-gradient(90deg, $COLOR_red 0%, #df5231 100%)
+		@for $b from 11 through 20
 			&[data-color="#{$b}"]
-				background-color: #825e24
-		@for $c from 51 through 75
+				background: linear-gradient(90deg, #df552f 0%, #df6f2e 100%)
+		@for $c from 21 through 30
 			&[data-color="#{$c}"]
-				background-color: #827524
-		@for $d from 76 through 100
+				background: linear-gradient(90deg, #df722e 0%, #de8b2b 100%)
+		@for $d from 31 through 40
 			&[data-color="#{$d}"]
-				background-color: #20E327
+				background: linear-gradient(90deg, #de8e2a 0%, #dea829 100%)
+		@for $e from 41 through 50
+			&[data-color="#{$e}"]
+				background: linear-gradient(90deg, #ddaa29 0%, #ddc426 100%)
+		@for $f from 51 through 60
+			&[data-color="#{$f}"]
+				background: linear-gradient(90deg, #d9c327 0%, #bbbd2d 100%)
+		@for $g from 61 through 70
+			&[data-color="#{$g}"]
+				background: linear-gradient(90deg, #b7bd2e 0%, #97b634 100%)
+		@for $h from 71 through 80
+			&[data-color="#{$h}"]
+				background: linear-gradient(90deg, #94b634 0%, #76b03b 100%)
+		@for $i from 81 through 90
+			&[data-color="#{$i}"]
+				background: linear-gradient(90deg, #6ea939 0%, #53a941 100%)
+		@for $j from 91 through 100
+			&[data-color="#{$j}"]
+				background: linear-gradient(90deg,#50a842 0%, #2fa248 100%)
 	&__type
 		border-bottom: 1px solid $COLOR_separator
 		display: flex

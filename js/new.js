@@ -833,9 +833,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
 			for (let ic = 0; ic < icCaching; ic++) {
 				let itemCheck = icheck[ic],
-					parentBox = itemCheck.parentElement; // Блок в котором находится чекбокс.
+					parentBox = itemCheck.parentElement, // Блок в котором находится чекбокс.
+					listChildren, // Список всей техники в списке.
+					lcCaching;
 
 				itemCheck.addEventListener('click', function() {
+					showMessageSort();
+
 					if (it < 3) {
 						infoList.classList.toggle(itemCheck.getAttribute('name'));
 
@@ -847,13 +851,25 @@ document.addEventListener('DOMContentLoaded', function() {
 						};
 
 						if (!parentBox.classList.contains('is-up')) {
+							listChildren = infoList.children;
+							lcCaching = listChildren.length;
+
 							parentBox.classList.add('is-up');
 
-						} else if (parentBox.classList.contains('is-up') && !parentBox.classList.contains('is-down')) {
-							parentBox.classList.add('is-down');
+							for (let lc = 0; lc < lcCaching; lc++) {
+								let item = listChildren[lc];
 
-						} else if (parentBox.classList.contains('is-up') && parentBox.classList.contains('is-down')) {
-							parentBox.classList.remove('is-down');
+								item.style.order = +item.getAttribute(itemCheck.getAttribute('data-sort'));
+							};
+
+						} else {
+							parentBox.classList.toggle('is-down');
+
+							for (let lc = 0; lc < lcCaching; lc++) {
+								let item = listChildren[lc];
+
+								parentBox.classList.contains('is-down') ? item.style.order = '-' + +item.getAttribute(itemCheck.getAttribute('data-sort')) : item.style.order = +item.getAttribute(itemCheck.getAttribute('data-sort'));
+							};
 						};
 					};
 				});
@@ -966,6 +982,29 @@ document.addEventListener('DOMContentLoaded', function() {
 			};
 		};
 
+		/* Сообщение о сортировке или не выборе пареметров для сортировки. */
+		function showMessageSort() {
+			let message = document.querySelector('.info__message'), // Блок сообщения.
+				icheck = document.querySelectorAll('.info__checkbox'); // Позиции сортировки.
+
+			for (let i = 0; i < 8; i++) {
+				setTimeout(function() {
+					if (icheck[0].checked === false && icheck[1].checked === false && icheck[2].checked === false && icheck[3].checked === false && icheck[4].checked === false && icheck[5].checked === false && icheck[6].checked === false && icheck[7].checked === false) {
+						message.classList.add(isError);
+						message.classList.add(isActive);
+
+					} else {
+						message.classList.remove(isError);
+						message.classList.add(isActive);
+
+						setTimeout(function() {
+							message.classList.remove(isActive);
+						}, 800);
+					};
+				}, 200);
+			};
+		};
+
 		/* Генерация карточек техники. 
 			@param {boolean} isInfo - генерация будет произведена в раздел информации или нет. */
 		function generationVehicleCards(isInfo) {
@@ -1062,13 +1101,7 @@ document.addEventListener('DOMContentLoaded', function() {
 					if (isInfo) {
 						sumLetters = sumLettersNames(nameTechnics);
 						sumSpecifications = parameter.speed + parameter.range + parameter.hp + parameter.fpower + parameter.armor;
-
-						if (progressMobility > progressFpower) {
-							progressMobility > progressArmor ? sumQualities = progressMobility : sumQualities = progressArmor;
-
-						} else {
-							progressFpower > progressArmor ? sumQualities = progressFpower : sumQualities = progressArmor;
-						};
+						sumQualities = progressMobility + progressFpower + progressArmor;
 
 						tabItem.setAttribute(targetAttr + '-name', sumLetters);
 						tabItem.setAttribute(targetAttr + '-class', parameter.weight);
@@ -1112,7 +1145,30 @@ document.addEventListener('DOMContentLoaded', function() {
 
 					} else {
 						tabItem.innerHTML = `
+							<picture class="info__path info__picture">
+								<source srcset="${parameter.images}.webp" type="image/webp">
+								<img class="info__image" src="${parameter.images}.png">
 
+								<h3 class="info__color info__name">${nameTechnics}</h3>
+							</picture>
+
+							<p class="info__path info__color info__class">${typeItem}</p>
+
+							<ul class="info__path info__characteristics">
+								<li class="info__param" data-param="${parameter.speed}"><svg class="info__svg"><use xlink:href="#speed"></use></svg></li>
+								<li class="info__param" data-param="${parameter.range}"><svg class="info__svg"><use xlink:href="#range"></use></svg></li>
+								<li class="info__param" data-param="${parameter.hp}"><svg class="info__svg"><use xlink:href="#hp"></use></svg></li>
+								<li class="info__param" data-param="${parameter.fpower}"><svg class="info__svg" fill="#E8432A"><use xlink:href="#fpower"></use></svg></li>
+								<li class="info__param" data-param="${parameter.armor}"><svg class="info__svg" fill="#E8432A"><use xlink:href="#armor"></use></svg></li>
+							</ul>
+
+							<ul class="info__path info__quality">
+								<li class="screen__decor info__property" data-name="Подвижность"><span class="info__line" data-width="${progressMobility}" style="width: ${progressMobility}%;"></span></li>
+								<li class="screen__decor info__property" data-name="Вооружение"><span class="info__line" data-width="${progressFpower}" style="width: ${progressFpower}%;"></span></li>
+								<li class="screen__decor info__property" data-name="Живучесть"><span class="info__line" data-width="${progressArmor}" style="width: ${progressArmor}%;"></span></li>
+							</ul>
+
+							<p class="info__path info__color info__price">${parameter.cost}</p>
 						`;
 					};
 

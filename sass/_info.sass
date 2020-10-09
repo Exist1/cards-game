@@ -20,16 +20,15 @@
 			padding-bottom: calc((#{$GOFFSET/2}*100vw)/#{$GWIDTH})
 		&_table
 			justify-content: flex-start
+			margin: 
+				left: calc((#{$GOFFSET*0.375}*100vw)/#{$GWIDTH})
+				right: calc((#{$GOFFSET*0.75}*100vw)/#{$GWIDTH})
 	&__tab
 		position: relative
 		&_name
 			flex-basis: $infoSortLarge
-		&_class
+		&_class, &_specifications, &_quality
 			flex-basis: $infoSortMiddle
-		&_specifications
-			flex-basis: $infoSortMiddle
-		&_quality
-			flex-basis: $infoSortLittle
 		&_price
 			flex-basis: $infoSortLittle
 		.info__sort_view &:nth-child(2)
@@ -110,15 +109,17 @@
 			display: block
 			padding-bottom: 30%
 	&__list
+		align-content: flex-start
 		display: flex
-		flex-direction: column
+		flex-wrap: wrap
 		height: 100%
 		left: 0
 		overflow-x: hidden
+		padding-right: calc((#{$GOFFSET*0.375}*100vw)/#{$GWIDTH})
 		position: absolute
 		top: 0
 		width: 100%
-		+size-calc('padding-right', 'r', $GOFFSET*0.375)
+		z-index: 1
 		&::-webkit-scrollbar-track
 			background: $bgDecorDefault
 			+size-calc('border-radius', 'r', $GBDRAIUS/2)
@@ -126,119 +127,244 @@
 			background: $bgDecorLight
 			+size-calc('border-radius', 'r', $GBDRAIUS/2)
 		&::-webkit-scrollbar
-			+size-calc('width', 'r', $GOFFSET*0.375)
+			width: calc((#{$GOFFSET*0.375}*100vw)/#{$GWIDTH})
 		&.is-germany
 			.info__item_germany,
 			&.is-sau .info__item_germany.info__item_pt-sau,
+			&.is-sau.is-light .info__item_germany.info__item_pt-sau.info__item_light,
+			&.is-sau.is-middle .info__item_germany.info__item_pt-sau.info__item_middle,
+			&.is-sau.is-heavy .info__item_germany.info__item_pt-sau.info__item_heavy,
 			&.is-tank .info__item_germany.info__item_tank,
+			&.is-tank.is-light .info__item_germany.info__item_tank.info__item_light,
+			&.is-tank.is-middle .info__item_germany.info__item_tank.info__item_middle,
+			&.is-tank.is-heavy .info__item_germany.info__item_tank.info__item_heavy,
 			&.is-light .info__item_germany.info__item_light,
 			&.is-middle .info__item_germany.info__item_middle,
-			&.is-heavy .info__item_germany.info__item_heavy,
-			&.is-light.is-sau .info__item_germany.info__item_pt-sau.info__item_light,
-			&.is-middle.is-sau .info__item_germany.info__item_pt-sau.info__item_middle,
-			&.is-heavy.is-sau .info__item_germany.info__item_pt-sau.info__item_heavy,
-			&.is-light.is-tank .info__item_germany.info__item_tank.info__item_light,
-			&.is-middle.is-tank .info__item_germany.info__item_tank.info__item_middle,
-			&.is-heavy.is-tank .info__item_germany.info__item_tank.info__item_heavy
-				@extend .info__item_view
+			&.is-heavy .info__item_germany.info__item_heavy
+				@extend %sort-type
 		&.is-ussr
 			.info__item_ussr,
 			&.is-sau .info__item_ussr.info__item_pt-sau,
+			&.is-sau.is-light .info__item_ussr.info__item_pt-sau.info__item_light,
+			&.is-sau.is-middle .info__item_ussr.info__item_pt-sau.info__item_middle,
+			&.is-sau.is-heavy .info__item_ussr.info__item_pt-sau.info__item_heavy,
 			&.is-tank .info__item_ussr.info__item_tank,
+			&.is-tank.is-light .info__item_ussr.info__item_tank.info__item_light,
+			&.is-tank.is-middle .info__item_ussr.info__item_tank.info__item_middle,
+			&.is-tank.is-heavy .info__item_ussr.info__item_tank.info__item_heavy,
 			&.is-light .info__item_ussr.info__item_light,
 			&.is-middle .info__item_ussr.info__item_middle,
-			&.is-heavy .info__item_ussr.info__item_heavy,
-			&.is-light.is-sau .info__item_ussr.info__item_pt-sau.info__item_light,
-			&.is-middle.is-sau .info__item_ussr.info__item_pt-sau.info__item_middle,
-			&.is-heavy.is-sau .info__item_ussr.info__item_pt-sau.info__item_heavy,
-			&.is-light.is-tank .info__item_ussr.info__item_tank.info__item_light,
-			&.is-middle.is-tank .info__item_ussr.info__item_tank.info__item_middle,
-			&.is-heavy.is-tank .info__item_ussr.info__item_tank.info__item_heavy
-				@extend .info__item_view
+			&.is-heavy .info__item_ussr.info__item_heavy
+				@extend %sort-type
 		&.is-allies
 			.info__item_allies,
 			&.is-sau .info__item_allies.info__item_pt-sau,
+			&.is-sau.is-light .info__item_allies.info__item_pt-sau.info__item_light,
+			&.is-sau.is-middle .info__item_allies.info__item_pt-sau.info__item_middle,
+			&.is-sau.is-heavy .info__item_allies.info__item_pt-sau.info__item_heavy,
 			&.is-tank .info__item_allies.info__item_tank,
+			&.is-tank.is-light .info__item_allies.info__item_tank.info__item_light,
+			&.is-tank.is-middle .info__item_allies.info__item_tank.info__item_middle,
+			&.is-tank.is-heavy .info__item_allies.info__item_tank.info__item_heavy,
 			&.is-light .info__item_allies.info__item_light,
 			&.is-middle .info__item_allies.info__item_middle,
-			&.is-heavy .info__item_allies.info__item_heavy,
-			&.is-light.is-sau .info__item_allies.info__item_pt-sau.info__item_light,
-			&.is-middle.is-sau .info__item_allies.info__item_pt-sau.info__item_middle,
-			&.is-heavy.is-sau .info__item_allies.info__item_pt-sau.info__item_heavy,
-			&.is-light.is-tank .info__item_allies.info__item_tank.info__item_light,
-			&.is-middle.is-tank .info__item_allies.info__item_tank.info__item_middle,
-			&.is-heavy.is-tank .info__item_allies.info__item_tank.info__item_heavy
-				@extend .info__item_view
+			&.is-heavy .info__item_allies.info__item_heavy
+				@extend %sort-type
+		&.is-light .info__item_light, &.is-middle .info__item_middle, &.is-heavy .info__item_heavy,
+		&.is-sau .info__item_pt-sau, &.is-tank .info__item_tank,
+		&.is-sau.is-light .info__item_pt-sau.info__item_light, &.is-sau.is-middle .info__item_pt-sau.info__item_middle, &.is-sau.is-heavy .info__item_pt-sau.info__item_heavy,
+		&.is-tank.is-light .info__item_tank.info__item_light, &.is-tank.is-middle .info__item_tank.info__item_middle, &.is-tank.is-heavy .info__item_tank.info__item_heavy
+			@extend %sort-type
 		&.is-germany, &.is-ussr, &.is-allies
-			&.is-sau, &.is-tank, &.is-light, &.is-middle, &.is-heavy,
-			&.is-light.is-sau, &.is-middle.is-sau, &.is-heavy.is-sau,
-			&.is-light.is-tank, &.is-middle.is-tank, &.is-heavy.is-tank
+			&.is-sau, &.is-sau.is-light, &.is-sau.is-middle, &.is-sau.is-heavy,
+			&.is-tank, &.is-tank.is-light, &.is-tank.is-middle, &.is-tank.is-heavy,
+			&.is-light, &.is-middle, &.is-heavy
 				.info__item
-					margin-bottom: 0
-					max-height: 0
-					opacity: 0
-					padding: 0
+					@extend %sort-type-null
+		&.is-sau.is-light, &.is-sau.is-middle, &.is-sau.is-heavy,
+		&.is-tank.is-light, &.is-tank.is-middle, &.is-tank.is-heavy
+			.info__item
+				@extend %sort-type-null
+		&.is-light
+			.info__item.info__item_middle, .info__item.info__item_heavy
+				@extend %sort-type-null
+		&.is-middle
+			.info__item.info__item_light, .info__item.info__item_heavy
+				@extend %sort-type-null
+		&.is-heavy
+			.info__item.info__item_light, .info__item.info__item_middle
+				@extend %sort-type-null
 	&__item
-		align-items: center
+		@extend %sort-type-null
 		background: $bgDecorDefault
 		display: flex
+		flex-basis: 100%
 		overflow: hidden
-		&_view
-			margin-bottom: calc((#{$GOFFSET*0.375}*100vw)/#{$GWIDTH})
-			max-height: 100%
-			opacity: 1
-			padding: calc((#{$GOFFSET*0.375}*100vw)/#{$GWIDTH})
+		transition-delay: $TRS_time/2
 		&_germany .info__color
 			color: $COLOR_red
 		&_ussr .info__color
 			color: $COLOR_green
 		&_allies .info__color
 			color: $COLOR_blue
-	&__picture
-		align-items: center
-		border-right: 1px solid $COLOR_separator
+		&::before, &::after
+			background-position: right center
+			background-repeat: no-repeat
+			background-size: auto 100%
+			display: block
+			height: 100%
+			pointer-events: none
+			position: absolute
+			top: 0
+			width: 50%
+			z-index: 1
+		*
+			position: relative
+			z-index: 2
+		&_tank, &_pt-sau
+			&::before
+				left: 0
+				transform: scaleX(-1)
+			&::after
+				right: 0
+		&_tank
+			&::before, &::after
+				background-image: url('../assets/decor-cards/decor_tank.svg')
+		&_pt-sau
+			&::before, &::after
+				background-image: url('../assets/decor-cards/decor_pt_sau.svg')
+	&__message
+		background: $bgDecorDark
 		display: flex
-		flex-basis: $infoSortLarge
+		height: 100%
+		left: 0
+		opacity: 0
+		pointer-events: none
+		position: absolute
+		top: 0
+		width: 100%
+		z-index: 2
+		&::before
+			color: $COLOR_yellow
+			content: 'Идёт сортировка списка...'
+			display: block
+			+resp-font(36, 16)
+			margin: auto
+			text-align: center
+			transition: color 0s $TRS_standart
+		&.is-error::before
+			color: $COLOR_red
+			content: 'Не выбраны параметры для показа!'
+		&.is-active
+			opacity: 1
+			pointer-events: all
+			transition: opacity 0s $TRS_standart
+	&__class, &__characteristics, &__quality
+		border-left: 1px solid $COLOR_separator
+		flex-basis: $infoSortMiddle
+		padding: 0 calc((#{$GOFFSET*0.375}*100vw)/#{$GWIDTH})
+	&__path
+		align-content: center
+		align-items: center
+		display: flex
+	&__picture
+		padding-right: calc((#{$GOFFSET*0.375}*100vw)/#{$GWIDTH})
+		width: $infoSortLarge
 	&__image
 		height: auto
-		margin-right: calc((#{$GOFFSET/4}*100vw)/#{$GWIDTH})
-		width: 25%
+		+size-calc('margin-right', 'r', $GOFFSET/4)
+		width: 22.5%
 	&__name
+		font-family: $GFONT_bold
+		font-weight: bold
 		+resp-font(32, 18)
-	&__class, &__specifications
-		padding: 0 calc((#{$GOFFSET*0.375}*100vw)/#{$GWIDTH})
 	&__class
-		+resp-font(20, 18)
-		flex-basis: $infoSortMiddle
-	&__specifications
+		+resp-font(20, 16)
+	&__characteristics
 		align-items: center
-		border:
-			left: 1px solid $COLOR_separator
-			right: 1px solid $COLOR_separator
 		display: flex
-		flex-basis: $infoSortMiddle
 		justify-content: space-between
-	&__characteristic
-		flex-basis: calc(100%/5.5)
+	&__param
+		flex-basis: calc(100%/6)
 		position: relative
 		&::before
-			content: attr(data-name)
+			content: attr(data-param)
 			font-family: $GFONT_bold
 			font-weight: bold
-			+resp-font(22, 18)
+			+resp-font(22, 16)
 			left: 50%
 			position: absolute
 			top: 50%
 			transform: translate(-50%, -50%)
-			z-index: 1
+			z-index: 2
 	&__svg
-		height: calc((#{$GOFFSET*2}*100vw)/#{$GWIDTH})
+		height: calc((#{$GOFFSET*1.5}*100vw)/#{$GWIDTH})
+		position: relative
 		width: 100%
+		z-index: 1
 	&__quality
-		flex-basis: $infoSortLittle
+		flex-wrap: wrap
+	&__property
+		background: $bgDecorDark
+		flex-basis: 100%
+		position: relative
+		&::before
+			content: attr(data-name)
+			display: block
+			+resp-font(16, $GFONT_min)
+			+size-calc('padding', 'r', $GOFFSET/16)
+			position: relative
+			text-align: center
+			text-shadow: 1px 1px 1px rgba($GCOLOR_black, 0.8)
+			z-index: 2
+		&:not(:last-child)
+			margin-bottom: calc((#{$GOFFSET/8}*100vw)/#{$GWIDTH})
+	&__line
+		display: block
+		height: 100%
+		left: 0
+		position: absolute
+		top: 0
+		width: 0%
+		z-index: 1
+		@for $a from 0 through 10
+			&[data-width="#{$a}"]
+				background: linear-gradient(90deg, $COLOR_red 0%, #df5231 100%)
+		@for $b from 11 through 20
+			&[data-width="#{$b}"]
+				background: linear-gradient(90deg, #df552f 0%, #df6f2e 100%)
+		@for $c from 21 through 30
+			&[data-width="#{$c}"]
+				background: linear-gradient(90deg, #df722e 0%, #de8b2b 100%)
+		@for $d from 31 through 40
+			&[data-width="#{$d}"]
+				background: linear-gradient(90deg, #de8e2a 0%, #dea829 100%)
+		@for $e from 41 through 50
+			&[data-width="#{$e}"]
+				background: linear-gradient(90deg, #ddaa29 0%, #ddc426 100%)
+		@for $f from 51 through 60
+			&[data-width="#{$f}"]
+				background: linear-gradient(90deg, #d9c327 0%, #bbbd2d 100%)
+		@for $g from 61 through 70
+			&[data-width="#{$g}"]
+				background: linear-gradient(90deg, #b7bd2e 0%, #97b634 100%)
+		@for $h from 71 through 80
+			&[data-width="#{$h}"]
+				background: linear-gradient(90deg, #94b634 0%, #76b03b 100%)
+		@for $i from 81 through 90
+			&[data-width="#{$i}"]
+				background: linear-gradient(90deg, #6ea939 0%, #53a941 100%)
+		@for $j from 91 through 100
+			&[data-width="#{$j}"]
+				background: linear-gradient(90deg,#50a842 0%, #2fa248 100%)
 	&__price
-		+resp-font(28, 22)
-		margin-left: auto
+		border-left: 1px solid $COLOR_separator
+		flex-basis: $infoSortLittle
+		font-family: $GFONT_bold
+		font-weight: bold
+		+resp-font(28, 18)
+		justify-content: center
+		padding-left: calc((#{$GOFFSET*0.375}*100vw)/#{$GWIDTH})
 	@media screen and ( max-width: #{$GTABLET}px )
 		&__header
 			+size-calc('margin-bottom', 'r', $GOFFSET/2)
@@ -265,10 +391,13 @@
 			margin-right: 0
 		&__content::before
 			padding-bottom: 50%
+		&__list
+			+size-calc('padding-right', 'r', $GOFFSET*0.375)
+			&::-webkit-scrollbar
+				+size-calc('width', 'r', $GOFFSET*0.375)
 		&__item
-			&_view
-				+size-calc('margin-bottom', 'r', $GOFFSET*0.375)
-				+size-calc('padding', 'r', $GOFFSET*0.375)
+			&::before, &::after
+				content: ''
 	@media screen and ( max-width: #{$GMOBILE}px )
 		&__header
 			+size-calc('margin-bottom', 'r', $GOFFSET*0.375)
@@ -290,7 +419,30 @@
 			+size-calc('width', 'r', $GOFFSET*0.375)
 		&__text
 			+size-calc('margin-left', 'r', $GOFFSET/8)
+		&__content::before
+			padding-bottom: 100%
 		&__list
 			+size-calc('padding-right', 'r', $GOFFSET/4)
 			&::-webkit-scrollbar
 				+size-calc('width', 'r', $GOFFSET/4)
+
+
+
+
+%sort-type
+	margin-bottom: calc((#{$GOFFSET*0.375}*100vw)/#{$GWIDTH})
+	max-height: 100%
+	opacity: 1
+	padding: calc((#{$GOFFSET*0.375}*100vw)/#{$GWIDTH})
+	@media screen and ( max-width: #{$GTABLET}px )
+		+size-calc('margin-bottom', 'r', $GOFFSET*0.375)
+		+size-calc('padding', 'r', $GOFFSET*0.375)
+	@media screen and ( max-width: #{$GMOBILE}px )
+		+size-calc('margin-bottom', 'r', $GOFFSET/4)
+		+size-calc('padding', 'r', $GOFFSET/4)
+
+%sort-type-null
+	margin-bottom: 0
+	max-height: 0
+	opacity: 0
+	padding: 0
