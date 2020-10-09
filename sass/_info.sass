@@ -277,7 +277,7 @@
 	&__name
 		font-family: $GFONT_bold
 		font-weight: bold
-		+resp-font(32, 18)
+		+resp-font(32, 22)
 	&__class
 		+resp-font(20, 16)
 	&__characteristics
@@ -291,7 +291,7 @@
 			content: attr(data-param)
 			font-family: $GFONT_bold
 			font-weight: bold
-			+resp-font(22, 16)
+			+resp-font(22, 18)
 			left: 50%
 			position: absolute
 			top: 50%
@@ -396,8 +396,32 @@
 			&::-webkit-scrollbar
 				+size-calc('width', 'r', $GOFFSET*0.375)
 		&__item
+			align-items: center
+			flex-wrap: wrap
 			&::before, &::after
 				content: ''
+		&__path
+			border: none
+			padding: 0
+			flex-basis: 100%
+		&__picture
+			flex-basis: 80%
+			order: -3
+		&__image
+			+size-calc('width', 'r', $GOFFSET*2)
+		&__class, &__characteristics
+			flex-basis: 50%
+		&__svg
+			+size-calc('height', 'r', $GOFFSET)
+		&__quality
+			+size-calc('margin-bottom', 'r', $GOFFSET/2)
+			order: -1
+		&__property:not(:last-child)
+			+size-calc('margin-bottom', 'r', $GOFFSET/8)
+		&__price
+			border-left: 1px solid $COLOR_separator
+			flex-basis: 20%
+			order: -2
 	@media screen and ( max-width: #{$GMOBILE}px )
 		&__header
 			+size-calc('margin-bottom', 'r', $GOFFSET*0.375)
@@ -420,11 +444,23 @@
 		&__text
 			+size-calc('margin-left', 'r', $GOFFSET/8)
 		&__content::before
-			padding-bottom: 100%
+			padding-bottom: 120%
 		&__list
 			+size-calc('padding-right', 'r', $GOFFSET/4)
 			&::-webkit-scrollbar
 				+size-calc('width', 'r', $GOFFSET/4)
+		&__image
+			+size-calc('width', 'r', $GOFFSET*1.5)
+		&__class, &__characteristics
+			flex-basis: 100%
+		&__class
+			border-bottom: 1px solid $COLOR_separator
+			+size-calc('margin-bottom', 'r', $GOFFSET/4)
+			+size-calc('padding-bottom', 'r', $GOFFSET/4)
+		&__svg
+			+size-calc('height', 'r', $GOFFSET*0.625)
+		&__quality
+			+size-calc('margin-bottom', 'r', $GOFFSET/4)
 
 
 
