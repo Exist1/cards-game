@@ -1323,9 +1323,7 @@ document.addEventListener('DOMContentLoaded', function() {
 				totalSum = 0; // Сумма всех символов.
 
 			for (let n = 0; n < name.length; n++) {
-				let symbol = name[n].toLowerCase();
-
-				totalSum = totalSum + listSymbols[symbol];
+				totalSum = listSymbols[name[0].toLowerCase()];
 			};
 
 			return totalSum;
