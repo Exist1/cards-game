@@ -1114,6 +1114,8 @@ document.addEventListener('DOMContentLoaded', function() {
 						tabItem.setAttribute(targetAttr + '-specifications', sumSpecifications);
 						tabItem.setAttribute(targetAttr + '-quality', sumQualities);
 						tabItem.setAttribute(targetAttr + '-price', parameter.cost);
+
+						tabItem.style.order = parameter.cost;
 					};
 
 					// Html-разметка карточки.
