@@ -294,6 +294,7 @@
 			+resp-font(22, 18)
 			left: 50%
 			position: absolute
+			text-shadow: $TEXTSHADOW
 			top: 50%
 			transform: translate(-50%, -50%)
 			z-index: 2
@@ -302,6 +303,12 @@
 		position: relative
 		width: 100%
 		z-index: 1
+		.info__item_germany &
+			fill: $COLOR_red
+		.info__item_ussr &
+			fill: $COLOR_green
+		.info__item_allies &
+			fill: $COLOR_blue
 	&__quality
 		flex-wrap: wrap
 	&__property
@@ -315,7 +322,7 @@
 			+size-calc('padding', 'r', $GOFFSET/16)
 			position: relative
 			text-align: center
-			text-shadow: 1px 1px 1px rgba($GCOLOR_black, 0.8)
+			text-shadow: $TEXTSHADOW
 			z-index: 2
 		&:not(:last-child)
 			margin-bottom: calc((#{$GOFFSET/8}*100vw)/#{$GWIDTH})

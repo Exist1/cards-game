@@ -78,6 +78,15 @@
 		&.is-old
 			.starting-army.is-shop &
 				display: none
+		&_germany .starting-army
+			&__name, &__cost, &__type
+				color: $COLOR_red
+		&_ussr .starting-army
+			&__name, &__cost, &__type
+				color: $COLOR_green
+		&_allies .starting-army
+			&__name, &__cost, &__type
+				color: $COLOR_blue
 	&__card
 		height: 100%
 		padding: calc((#{$GOFFSET/4}*100vw)/#{$GWIDTH}) calc((#{$GOFFSET/2}*100vw)/#{$GWIDTH})
@@ -146,7 +155,7 @@
 			display: block
 			+resp-font(20, $GFONT_min)
 			text-align: center
-			text-shadow: 1px 1px 1px rgba($GCOLOR_black, 0.8)
+			text-shadow: $TEXTSHADOW
 			position: relative
 	&__line
 		display: block
@@ -228,6 +237,12 @@
 		width: 100%
 		&:not(:first-child)
 			+size-calc('margin-left', 'r', $GOFFSET/4)
+		.starting-army__box_germany &
+			fill: $COLOR_red
+		.starting-army__box_ussr &
+			fill: $COLOR_green
+		.starting-army__box_allies &
+			fill: $COLOR_blue
 	&__param
 		flex-basis: calc(100%/5.0625)
 		overflow: hidden
@@ -240,6 +255,7 @@
 			+resp-font(28, 20)
 			left: 50%
 			position: absolute
+			text-shadow: $TEXTSHADOW
 			top: 50%
 			transform: translate(-50%, -50%)
 			z-index: 10
@@ -298,15 +314,6 @@
 			content: 'Следующий'
 		.starting-army.is-end &
 			content: 'Ок'
-	&__germany .starting-army
-		&__name, &__cost, &__type
-			color: $COLOR_red
-	&__ussr .starting-army
-		&__name, &__cost, &__type
-			color: $COLOR_green
-	&__allies .starting-army
-		&__name, &__cost, &__type
-			color: $COLOR_blue
 	@media screen and ( min-width: 1400px )
 		&__box
 			flex-basis: calc(100%/3.125)

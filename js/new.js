@@ -64,7 +64,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		classStep = 'shooting__step-', // Класс шага.
 		counterStep = 0, // Счётчик шага.
 		currentInfoTab = 0, // Номер выбранного пункта сортировки таблицы.
-		targetAttr = 'data-sort'; // Ориентировочное название атрибута для сортировки списка.
+		targetAttr = 'data-sort', // Ориентировочное название атрибута для сортировки списка.
+		generationInfoTechnics = false; // Были ли сгенерированы карточки в разделе информации.
 
 	// Кеширование длины массивов элементов.
 	let issCaching = iSettingsSwitch.length,
@@ -644,7 +645,12 @@ document.addEventListener('DOMContentLoaded', function() {
 			let btnTechnics = globalTechnics[gt];
 
 			btnTechnics.addEventListener('click', function() {
-				generationVehicleCards(true);
+				if (!generationInfoTechnics) {
+					generationVehicleCards(true);
+
+					generationInfoTechnics = true;
+				};
+
 				switchSections(this);
 				gt === 0 ? btnBack[1].setAttribute('data-switch', 0) : btnBack[1].setAttribute('data-switch', 3);
 			});
@@ -1023,7 +1029,7 @@ document.addEventListener('DOMContentLoaded', function() {
 						totalProductEnd = (+parameter.dateEnd.year*12) + +parameter.dateEnd.month, // Перевод в месяца, дату конца производства техники.
 						typeItem, // Тип техники.
 						viewItem, // Вид техники.
-						productionItem, // Есть ли производство техники.
+						productionItem = '', // Есть ли производство техники.
 						sumLetters, sumSpecifications, sumQualities; // Сумма всех символов в названии, характеристик и качеств техники.
 
 					// Корректировка парамтра.
@@ -1032,19 +1038,19 @@ document.addEventListener('DOMContentLoaded', function() {
 					// Общие классы карточки.
 					!isInfo ? tabItem.className = 'screen__decor starting-army__box' : tabItem.className = 'screen__decor info__item';
 
+					// Определение классов страны, для раздла информации.
+					if (it === 0) {
+						isInfo ? tabItem.classList.add('info__item_germany') : tabItem.classList.add('starting-army__box_germany');
+
+					} else if (it === 1) {
+						isInfo ? tabItem.classList.add('info__item_ussr') : tabItem.classList.add('starting-army__box_ussr');
+
+					} else {
+						isInfo ? tabItem.classList.add('info__item_allies') : tabItem.classList.add('starting-army__box_allies');
+					};
+
+					// Определение по типу техники.
 					if (isInfo) {
-						// Определение классов страны, для раздла информации.
-						if (it === 0) {
-							tabItem.classList.add('info__item_germany');
-
-						} else if (it === 1) {
-							tabItem.classList.add('info__item_ussr');
-
-						} else {
-							tabItem.classList.add('info__item_allies');
-						};
-
-						// Определение по типу техники.
 						if (parameter.weight === 1) {
 							tabItem.classList.add('info__item_light');
 
@@ -1131,8 +1137,8 @@ document.addEventListener('DOMContentLoaded', function() {
 										<li class="starting-army__param" data-quantity="${parameter.speed}"><svg class="starting-army__svg"><use xlink:href="#speed"></use></svg></li>
 										<li class="starting-army__param" data-quantity="${parameter.range}"><svg class="starting-army__svg"><use xlink:href="#range"></use></svg></li>
 										<li class="starting-army__param" data-quantity="${parameter.hp}"><svg class="starting-army__svg"><use xlink:href="#hp"></use></svg></li>
-										<li class="starting-army__param" data-quantity="${parameter.fpower}"><svg class="starting-army__svg" fill="#E8432A"><use xlink:href="#fpower"></use></svg></li>
-										<li class="starting-army__param" data-quantity="${parameter.armor}"><svg class="starting-army__svg" fill="#E8432A"><use xlink:href="#armor"></use></svg></li>
+										<li class="starting-army__param" data-quantity="${parameter.fpower}"><svg class="starting-army__svg"><use xlink:href="#fpower"></use></svg></li>
+										<li class="starting-army__param" data-quantity="${parameter.armor}"><svg class="starting-army__svg"><use xlink:href="#armor"></use></svg></li>
 									</ul>
 									<div class="starting-army__counter">
 										<button class="screen__button screen__button_action starting-army__btn starting-army__countMinus is-end"><span>-</span></button>
@@ -1158,8 +1164,8 @@ document.addEventListener('DOMContentLoaded', function() {
 								<li class="info__param" data-param="${parameter.speed}"><svg class="info__svg"><use xlink:href="#speed"></use></svg></li>
 								<li class="info__param" data-param="${parameter.range}"><svg class="info__svg"><use xlink:href="#range"></use></svg></li>
 								<li class="info__param" data-param="${parameter.hp}"><svg class="info__svg"><use xlink:href="#hp"></use></svg></li>
-								<li class="info__param" data-param="${parameter.fpower}"><svg class="info__svg" fill="#E8432A"><use xlink:href="#fpower"></use></svg></li>
-								<li class="info__param" data-param="${parameter.armor}"><svg class="info__svg" fill="#E8432A"><use xlink:href="#armor"></use></svg></li>
+								<li class="info__param" data-param="${parameter.fpower}"><svg class="info__svg"><use xlink:href="#fpower"></use></svg></li>
+								<li class="info__param" data-param="${parameter.armor}"><svg class="info__svg"><use xlink:href="#armor"></use></svg></li>
 							</ul>
 
 							<ul class="info__path info__quality">
