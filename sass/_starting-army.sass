@@ -281,7 +281,6 @@
 		flex-direction: column
 		justify-content: space-between
 	&__resources
-		color: $COLOR_red
 		font-family: $GFONT_bold
 		font-weight: bold
 		+resp-font(80, 28)
@@ -300,6 +299,12 @@
 			+size-calc('padding-bottom', 'r', $GOFFSET/4)
 		.starting-army.is-shop &::before
 			content: 'Покупка обойдётся в:'
+		&.is-germany
+			color: $COLOR_red
+		&.is-ussr
+			color: $COLOR_green
+		&.is-allied
+			color: $COLOR_blue
 	&__buttons
 		margin-left: auto
 		width: $startArmyList

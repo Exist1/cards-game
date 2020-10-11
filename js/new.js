@@ -65,7 +65,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		counterStep = 0, // Счётчик шага.
 		currentInfoTab = 0, // Номер выбранного пункта сортировки таблицы.
 		targetAttr = 'data-sort', // Ориентировочное название атрибута для сортировки списка.
-		generationInfoTechnics = false; // Были ли сгенерированы карточки в разделе информации.
+		generationInfoTechnics = false, // Были ли сгенерированы карточки в разделе информации.
+		resourcesCountry = ['is-germany', 'is-ussr', 'is-allied']; // Список классов стран для колоризации "денег" (ресурсов) игрока.
 
 	// Кеширование длины массивов элементов.
 	let issCaching = iSettingsSwitch.length,
@@ -407,6 +408,7 @@ document.addEventListener('DOMContentLoaded', function() {
 					};
 				};
 
+				startArmyResources.classList.add(resourcesCountry[+localStorage.getItem('country-' + currentFirst)]); // Подстановка класса для цвета.
 				startArmyResources.textContent = localStorage.getItem('money-' + currentFirst); // Подстановка ресурсов.
 				
 				changeActiveClass(+localStorage.getItem('country-' + currentFirst), startArmyTab); // Открытие вкладки с техникой.
@@ -485,6 +487,8 @@ document.addEventListener('DOMContentLoaded', function() {
 						// Постановка информации начальной последнего игрока.
 						screens[2].classList.remove(isCompleted);
 						startArmyTitle.setAttribute('data-player', iSettingsPlayer[currentLast].value);
+						startArmyResources.classList.remove(resourcesCountry[+localStorage.getItem('country-' + currentFirst)]);
+						startArmyResources.classList.add(resourcesCountry[+localStorage.getItem('country-' + currentLast)]);
 						startArmyResources.textContent = localStorage.getItem('money-' + currentLast);
 						changeActiveClass(+localStorage.getItem('country-' + currentLast), startArmyTab);
 						nextPlayer = false;
@@ -496,6 +500,8 @@ document.addEventListener('DOMContentLoaded', function() {
 							// Постановка информации начальной вторго игрока.
 							screens[2].classList.remove(isCompleted);
 							startArmyTitle.setAttribute('data-player', iSettingsPlayer[currentSecond].value);
+							startArmyResources.classList.remove(resourcesCountry[+localStorage.getItem('country-' + currentFirst)]);
+							startArmyResources.classList.add(resourcesCountry[+localStorage.getItem('country-' + currentSecond)]);
 							startArmyResources.textContent = localStorage.getItem('money-' + currentSecond);
 							changeActiveClass(+localStorage.getItem('country-' + currentSecond), startArmyTab);
 							playerNotLast = false;
@@ -506,6 +512,8 @@ document.addEventListener('DOMContentLoaded', function() {
 							// Постановка информации начальной последнего игрока.
 							screens[2].classList.remove(isCompleted);
 							startArmyTitle.setAttribute('data-player', iSettingsPlayer[currentLast].value);
+							startArmyResources.classList.remove(resourcesCountry[+localStorage.getItem('country-' + currentSecond)]);
+							startArmyResources.classList.add(resourcesCountry[+localStorage.getItem('country-' + currentLast)]);
 							startArmyResources.textContent = localStorage.getItem('money-' + currentLast);
 							changeActiveClass(+localStorage.getItem('country-' + currentLast), startArmyTab);
 							nextPlayer = false;
@@ -819,6 +827,8 @@ document.addEventListener('DOMContentLoaded', function() {
 					};
 				};
 
+				startArmyResources.className = 'starting-army__resources';
+				startArmyResources.classList.add(resourcesCountry[+localStorage.getItem('country-' + numberShop)]);
 				startArmyResources.textContent = '0';
 
 				switchSections(this);
