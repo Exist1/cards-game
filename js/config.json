@@ -453,7 +453,7 @@
 			},
 			"Jagtiger": {
 				"images": "./assets/cards/jagtiger",
-				"type": 1,
+				"type": 2,
 				"weight": 3,
 				
 				"dateStart": {
@@ -716,7 +716,7 @@
 			},
 			"СУ-85": {
 				"images": "./assets/cards/su85",
-				"type": 1,
+				"type": 2,
 				"weight": 2,
 				
 				"dateStart": {
@@ -796,7 +796,7 @@
 			},
 			"СУ-100": {
 				"images": "./assets/cards/su100",
-				"type": 1,
+				"type": 2,
 				"weight": 2,
 				
 				"dateStart": {
@@ -1212,7 +1212,7 @@
 				},
 				"speed": 4,
 				"range": 6,
-				"hp": 4,
+				"hp": 3,
 				"fpower": 7,
 				"armor": 6,
 				"cost": 100
