@@ -885,7 +885,6 @@ document.addEventListener('DOMContentLoaded', function() {
 							for (let lc = 0; lc < lcCaching; lc++) {
 								let item = listChildren[lc];
 
-								parentBox.classList.contains('is-down') ? console.log('minus') : console.log('plus');
 								parentBox.classList.contains('is-down') ? item.style.order = '-' + +item.getAttribute(itemCheck.getAttribute('data-sort')) : item.style.order = +item.getAttribute(itemCheck.getAttribute('data-sort'));
 							};
 						};
