@@ -97,6 +97,13 @@ document.addEventListener('DOMContentLoaded', function() {
 			isRESOURCES = isJSON.RESOURCES, // Параметр таблицы ресурсов.
 			isPROGRESS = isJSON.PROGRESS; // Параметр таблицы прогрес баров, в карточках техники.
 
+		// Чит-код на получение 999999 ресурсов.
+		document.addEventListener('keyup', function(event) {
+			if (screens[2].classList.contains(isActive)) {
+				console.log(event);
+			};
+		});
+
 		// Активация стартового экрана (секции).
 		screens[0].classList.add(isActive);
 
@@ -1254,12 +1261,10 @@ document.addEventListener('DOMContentLoaded', function() {
 					// Блокировка кнопки, при невозможности покупки техники.
 					countBuy = Math.floor(+startArmyResources.textContent/saPrice);
 
-					if (!screens[2].classList.contains('is-shop') && countBuy <= 1) {
-						saPlus.classList.add(isEnd);
-						countBuy = 1;
-					};
+					if (!screens[2].classList.contains('is-shop') && countBuy <= 1) saPlus.classList.add(isEnd);
+					if (!screens[2].classList.contains('is-shop') && countBuy <= 0) countBuy = 0;
 
-					if (!screens[2].classList.contains('is-shop') && +startArmyResources.textContent - saPrice > 0 || screens[2].classList.contains('is-shop')) {
+					if (!screens[2].classList.contains('is-shop') && +startArmyResources.textContent - saPrice >= 0 || screens[2].classList.contains('is-shop')) {
 						currentCount >= 999 ? currentCount = 999 : currentCount++;
 						saText.textContent = currentCount;
 
@@ -1308,10 +1313,8 @@ document.addEventListener('DOMContentLoaded', function() {
 						};
 
 						// Удаление счётчика копий.
-						if (currentCount === 1) {
-							document.querySelector('[data-id="' + sac +'"]').classList.remove('not-one-card');
-							document.querySelector('[data-id="' + sac +'"]').querySelector('.starting-army__picture').setAttribute('data-card-count', currentCount);
-						};
+						if (currentCount <= 1) document.querySelector('[data-id="' + sac +'"]').classList.remove('not-one-card');
+						document.querySelector('[data-id="' + sac +'"]').querySelector('.starting-army__picture').setAttribute('data-card-count', currentCount);
 					};
 				});
 			};
