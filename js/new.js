@@ -65,8 +65,9 @@ document.addEventListener('DOMContentLoaded', function() {
 		counterStep = 0, // Счётчик шага.
 		currentInfoTab = 0, // Номер выбранного пункта сортировки таблицы.
 		targetAttr = 'data-sort', // Ориентировочное название атрибута для сортировки списка.
-		generationInfoTechnics = false, // Были ли сгенерированы карточки в разделе информации.
-		resourcesCountry = ['is-germany', 'is-ussr', 'is-allied']; // Список классов стран для колоризации "денег" (ресурсов) игрока.
+		resourcesCountry = ['is-germany', 'is-ussr', 'is-allied'], // Список классов стран для колоризации "денег" (ресурсов) игрока.
+		cardsGenerationFirst = false, // Были ли карточки сгенрированы в просто режиме.
+		cardsGenerationLast = false; // Были ли карточки сгенрированы в режиме сражения.
 
 	// Кеширование длины массивов элементов.
 	let issCaching = iSettingsSwitch.length,
@@ -328,7 +329,7 @@ document.addEventListener('DOMContentLoaded', function() {
 					lastQueue = +localStorage.getItem('queue-2'); // Очередь последнего игрока.
 
 				switchSections(this);
-				generationVehicleCards(false);
+				generationVehicleCards(false, false);
 
 				// Оформление экрана (секции) для первого игрока.
 				startArmyDate.setAttribute('data-month', tableSettings.month[currentMonth]); // Подстановка месяца сражения.
@@ -653,14 +654,30 @@ document.addEventListener('DOMContentLoaded', function() {
 			let btnTechnics = globalTechnics[gt];
 
 			btnTechnics.addEventListener('click', function() {
-				if (!generationInfoTechnics) {
-					generationVehicleCards(true);
+				if (gt === 0) { // Стартовый экран.
+					if (!cardsGenerationFirst) {
+						infoList.innerHTML = ''; // Удаление карточек, для повторной генерации.
+						generationVehicleCards(true, false);
 
-					generationInfoTechnics = true;
+						cardsGenerationFirst = true;
+						cardsGenerationLast = false;
+					};
+
+					btnBack[1].setAttribute('data-switch', 0);
+
+				} else { // Режим сражения.
+					if (!cardsGenerationLast) {
+						infoList.innerHTML = ''; // Удаление карточек, для повторной генерации.
+						generationVehicleCards(true, true);
+
+						cardsGenerationFirst = false;
+						cardsGenerationLast = true;
+					};
+
+					btnBack[1].setAttribute('data-switch', 3);
 				};
 
 				switchSections(this);
-				gt === 0 ? btnBack[1].setAttribute('data-switch', 0) : btnBack[1].setAttribute('data-switch', 3);
 			});
 		};
 
@@ -793,7 +810,7 @@ document.addEventListener('DOMContentLoaded', function() {
 					startArmyTab[sat].innerHTML = '';
 				};
 
-				generationVehicleCards(false);
+				generationVehicleCards(false, false);
 
 				screens[2].className = 'screen starting-army';
 				screens[2].classList.add('is-shop');
@@ -1023,8 +1040,9 @@ document.addEventListener('DOMContentLoaded', function() {
 		};
 
 		/* Генерация карточек техники. 
-			@param {boolean} isInfo - генерация будет произведена в раздел информации или нет. */
-		function generationVehicleCards(isInfo) {
+			@param {boolean} isInfo - генерация будет произведена в раздел информации или нет. 
+			@param {boolean} battleMode - генерация в режиме сражения или нет. */
+		function generationVehicleCards(isInfo, battleMode) {
 			for (let it = 0; it < Object.keys(isTECHNICS).length; it++) {
 				let side = Object.keys(isTECHNICS)[it]; // Сторона (страна), учавствующая в сражении.
 
@@ -1194,22 +1212,25 @@ document.addEventListener('DOMContentLoaded', function() {
 					if (!isInfo) {
 						// Установка карточки в блок - кто на вооружении.
 						if (totalProductEnd >= totalProductCurent) {
-							if (totalProductStart <= totalProductCurent) {
-								startArmyTab[it].appendChild(tabItem);
-							};
+							if (totalProductStart <= totalProductCurent) startArmyTab[it].appendChild(tabItem);
 						};
 
 						// Установка карточки в блок - кто снят с производства.
 						if (totalProductStart < totalProductCurent) {
 							if (totalProductEnd >= (totalProductCurent - 5)) {
-								if (totalProductEnd <= (totalProductCurent - 1)) {
-									startArmyTab[it].appendChild(tabItem);
-								};
+								if (totalProductEnd <= (totalProductCurent - 1)) startArmyTab[it].appendChild(tabItem);
 							};
 						};
 
 					} else {
-						infoList.appendChild(tabItem);
+						if (battleMode) {
+							if (totalProductEnd >= totalProductCurent) {
+								if (totalProductStart <= totalProductCurent) infoList.appendChild(tabItem);
+							};
+
+						} else {
+							infoList.appendChild(tabItem);
+						};
 					};
 				};
 			};
