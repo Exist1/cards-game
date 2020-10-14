@@ -38,6 +38,9 @@ document.addEventListener('DOMContentLoaded', function() {
 		shootingBtn = document.querySelectorAll('.shooting__btn'), // Кнопки переключения шага выбора параметров стрельбы.
 		infoTab = document.querySelectorAll('.info__tab'), // Все параметры сортировки в разделе информации.
 		infoList = document.querySelector('.info__list'), // Список всей техники в разделе информации.
+		bonusBox = document.querySelector('.bonus'), // Блок активации чита.
+		bonusWord = bonusBox.querySelector('.bonus__word'), // Заголовок техники содержащий символ активации чит-кода.
+		bonusResult = bonusBox.querySelector('.bonus__result'), // Результат выполнения условия получения подарка.
 		tableSettings = {
 			"month": ["X", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"], // Массив обозначения месяца на странице.
 			"resources": {
@@ -96,13 +99,6 @@ document.addEventListener('DOMContentLoaded', function() {
 			isSHOOTING = isJSON.SHOOTING, // Параметр таблицы стрельбы.
 			isRESOURCES = isJSON.RESOURCES, // Параметр таблицы ресурсов.
 			isPROGRESS = isJSON.PROGRESS; // Параметр таблицы прогрес баров, в карточках техники.
-
-		// Чит-код на получение 999999 ресурсов.
-		document.addEventListener('keyup', function(event) {
-			if (screens[2].classList.contains(isActive)) {
-				console.log(event);
-			};
-		});
 
 		// Активация стартового экрана (секции).
 		screens[0].classList.add(isActive);
@@ -1240,6 +1236,74 @@ document.addEventListener('DOMContentLoaded', function() {
 						};
 					};
 				};
+
+				// Активация чит-команды на 999999 ресурсов (монет).
+				// if (!isInfo) {
+				// 	let startArmyTitle = startArmyTab[it].querySelectorAll('.starting-army__name'), // Все названия техники, для включения чит-команды.
+				// 		bonusTitle = startArmyTitle[randomInteger(0, startArmyTitle.length - 1)], // Название, которое будет содержать чит-букву.
+				// 		bonusSymbol = bonusTitle.textContent[randomInteger(0, bonusTitle.textContent.length - 1)], // Чит символ или буква, для активации.
+				// 		bonusActive = false, // Использован ли подарок.
+				// 		bonusChance = false; // Использовал ли шанс выбора варианта.
+
+				// 	bonusTitle.addEventListener('click', function() {
+				// 		if (!bonusActive) {
+				// 			bonusWord.innerHTML = '';
+				// 			bonusResult.classList.remove(isActive);
+				// 			bonusResult.textContent = '';
+
+				// 			for (let ct = 0; ct < bonusTitle.textContent.length; ct++) {
+				// 				let symbol = bonusTitle.textContent[ct],
+				// 					bonusItem = document.createElement('li');
+	
+				// 				bonusItem.classList.add('bonus__item');
+	
+				// 				if (symbol === ' ') {
+				// 					bonusItem.classList.add('bonus__item_space');
+				// 					bonusItem.textContent = '_';
+	
+				// 				} else {
+				// 					bonusItem.textContent = symbol;
+				// 				};
+	
+				// 				bonusWord.appendChild(bonusItem);
+				// 			};
+	
+				// 			bonusBox.classList.add(isActive);
+				// 			bonusActive = true;
+
+				// 			let bonusItem = document.querySelectorAll('.bonus__item'); // Буквы слова, для активации.
+
+				// 			for (let bi = 0; bi < bonusItem.length; bi++) {
+				// 				let bitem = bonusItem[bi];
+
+				// 				bitem.addEventListener('click', function() {
+				// 					if (!bonusChance) {
+				// 						bonusResult.classList.add(isActive);
+
+				// 						if (bitem.textContent === bonusSymbol) {
+				// 							bitem.style.color = '#3ECF6E';
+				// 							bonusResult.style.color = '#3ECF6E';
+				// 							bonusResult.textContent = 'подарок активирован!';
+
+				// 							// Зачисление подарка.
+				// 							startArmyResources.textContent = '9999';
+	
+				// 						} else {
+				// 							bitem.style.color = '#E8432A';
+				// 							bonusResult.style.color = '#E8432A';
+				// 							bonusResult.textContent = 'увы, вы проиграли!';
+				// 						};
+
+				// 						setTimeout(function() {
+				// 							bonusBox.classList.remove(isActive);
+				// 						}, 1000);
+				// 						bonusChance = true;
+				// 					};
+				// 				});
+				// 			};
+				// 		};
+				// 	});
+				// };
 			};
 
 			let startArmyCounter = document.querySelectorAll('.starting-army__counter'), // Панель кнопок выбора количества техники.
