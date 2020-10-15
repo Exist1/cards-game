@@ -372,6 +372,9 @@
 		+resp-font(28, 18)
 		justify-content: center
 		padding-left: calc((#{$GOFFSET*0.375}*100vw)/#{$GWIDTH})
+	@media screen and ( min-width: #{$GWIDTH}px ) and ( max-height: 650px )and ( max-width: 1400px )
+		&__content::before
+			padding-bottom: 21%
 	@media screen and ( max-width: #{$GTABLET}px )
 		&__header
 			+size-calc('margin-bottom', 'r', $GOFFSET/2)
@@ -451,7 +454,7 @@
 		&__text
 			+size-calc('margin-left', 'r', $GOFFSET/8)
 		&__content::before
-			padding-bottom: 120%
+			padding-bottom: 115%
 		&__list
 			+size-calc('padding-right', 'r', $GOFFSET/4)
 			&::-webkit-scrollbar

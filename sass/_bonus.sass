@@ -1,6 +1,5 @@
 .bonus
 	background-color: rgba($GCOLOR_black, 0.85)
-	display: flex
 	height: 100%
 	left: 0
 	opacity: 0
@@ -14,8 +13,11 @@
 		pointer-events: all
 	&__body
 		background: $bgDecorDark
+		left: 50%
 		padding: calc((#{$GOFFSET*0.375}*100vw)/#{$GWIDTH})
-		margin: auto
+		position: absolute
+		top: 50%
+		transform: translate(-50%, -50%)
 		width: 55%
 	&__title
 		align-items: center
@@ -27,7 +29,6 @@
 		text-transform: uppercase
 	&__present
 		height: calc((#{$GOFFSET}*100vw)/#{$GWIDTH})
-		margin-right: calc((#{$GOFFSET/2}*100vw)/#{$GWIDTH})
 		width: calc((#{$GOFFSET}*100vw)/#{$GWIDTH})
 	&__word
 		align-items: center
@@ -68,5 +69,26 @@
 			color: $COLOR_red
 		.bonus__result.is-active + &
 			margin-top: calc((#{$GOFFSET/4}*100vw)/#{$GWIDTH})
-	// @media screen and ( max-width: #{$GTABLET}px )
-	// @media screen and ( max-width: #{$GMOBILE}px )
+	@media screen and ( max-width: #{$GTABLET}px )
+		&__body
+			+size_calc('padding', 'r', $GOFFSET*0.375)
+			width: 65%
+		&__present
+			+size_calc('height', 'r', $GOFFSET)
+			+size_calc('width', 'r', $GOFFSET)
+		&__word
+			+size_calc('margin', 'rx', $GOFFSET*0.375)
+		&__subtitle
+			.bonus__result.is-active + &
+				+size_calc('margin-top', 'r', $GOFFSET/4)
+	@media screen and ( max-width: #{$GMOBILE}px )
+		&__body
+			+size_calc('padding', 'rx', $GOFFSET/4)
+			width: 100%
+		&__present
+			+size_calc('height', 'r', $GOFFSET*0.75)
+			+size_calc('width', 'r', $GOFFSET*0.75)
+		&__word
+			+size_calc('margin', 'rx', $GOFFSET/4)
+		&__subtitle br
+			display: none
