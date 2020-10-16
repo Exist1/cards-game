@@ -1238,7 +1238,7 @@ document.addEventListener('DOMContentLoaded', function() {
 				};
 
 				// Активация чит-команды на 9999 ресурсов (монет).
-				if (!isInfo) {
+				/* if (!isInfo) {
 					let startArmyTitle = startArmyTab[it].querySelectorAll('.starting-army__name'), // Все названия техники, для включения чит-команды.
 						bonusTitle = startArmyTitle[randomInteger(0, startArmyTitle.length - 1)], // Название, которое будет содержать чит-букву.
 						bonusSymbol = bonusTitle.textContent[randomInteger(0, bonusTitle.textContent.length - 1)], // Чит символ или буква, для активации.
@@ -1305,7 +1305,7 @@ document.addEventListener('DOMContentLoaded', function() {
 							};
 						};
 					});
-				};
+				}; */
 			};
 
 			let startArmyCounter = document.querySelectorAll('.starting-army__counter'), // Панель кнопок выбора количества техники.
