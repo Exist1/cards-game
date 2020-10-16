@@ -39,8 +39,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		infoTab = document.querySelectorAll('.info__tab'), // Все параметры сортировки в разделе информации.
 		infoList = document.querySelector('.info__list'), // Список всей техники в разделе информации.
 		bonusBox = document.querySelector('.bonus'), // Блок активации чита.
-		bonusWord = bonusBox.querySelector('.bonus__word'), // Заголовок техники содержащий символ активации чит-кода.
-		bonusResult = bonusBox.querySelector('.bonus__result'), // Результат выполнения условия получения подарка.
+		// bonusWord = bonusBox.querySelector('.bonus__word'), // Заголовок техники содержащий символ активации чит-кода.
+		// bonusResult = bonusBox.querySelector('.bonus__result'), // Результат выполнения условия получения подарка.
 		tableSettings = {
 			"month": ["X", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"], // Массив обозначения месяца на странице.
 			"resources": {
@@ -1245,6 +1245,8 @@ document.addEventListener('DOMContentLoaded', function() {
 				// 		bonusActive = false, // Использован ли подарок.
 				// 		bonusChance = false; // Использовал ли шанс выбора варианта.
 
+				// 	console.log(bonusTitle.textContent, bonusSymbol);
+
 				// 	bonusTitle.addEventListener('click', function() {
 				// 		if (!bonusActive) {
 				// 			bonusWord.innerHTML = '';
@@ -1254,20 +1256,20 @@ document.addEventListener('DOMContentLoaded', function() {
 				// 			for (let ct = 0; ct < bonusTitle.textContent.length; ct++) {
 				// 				let symbol = bonusTitle.textContent[ct],
 				// 					bonusItem = document.createElement('li');
-
+	
 				// 				bonusItem.classList.add('bonus__item');
-
+	
 				// 				if (symbol === ' ') {
 				// 					bonusItem.classList.add('bonus__item_space');
 				// 					bonusItem.textContent = '_';
-
+	
 				// 				} else {
 				// 					bonusItem.textContent = symbol;
 				// 				};
-
+	
 				// 				bonusWord.appendChild(bonusItem);
 				// 			};
-
+	
 				// 			bonusBox.classList.add(isActive);
 				// 			bonusActive = true;
 
@@ -1287,7 +1289,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 				// 							// Зачисление подарка.
 				// 							startArmyResources.textContent = '9999';
-
+	
 				// 						} else {
 				// 							bitem.style.color = '#E8432A';
 				// 							bonusResult.style.color = '#E8432A';
