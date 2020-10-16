@@ -1238,74 +1238,72 @@ document.addEventListener('DOMContentLoaded', function() {
 				};
 
 				// Активация чит-команды на 9999 ресурсов (монет).
-				/* if (!isInfo) {
-					let startArmyTitle = startArmyTab[it].querySelectorAll('.starting-army__name'), // Все названия техники, для включения чит-команды.
-						bonusTitle = startArmyTitle[randomInteger(0, startArmyTitle.length - 1)], // Название, которое будет содержать чит-букву.
-						bonusSymbol = bonusTitle.textContent[randomInteger(0, bonusTitle.textContent.length - 1)], // Чит символ или буква, для активации.
-						bonusActive = false, // Использован ли подарок.
-						bonusChance = false; // Использовал ли шанс выбора варианта.
+				// if (!isInfo) {
+				// 	let startArmyTitle = startArmyTab[it].querySelectorAll('.starting-army__name'), // Все названия техники, для включения чит-команды.
+				// 		bonusTitle = startArmyTitle[randomInteger(0, startArmyTitle.length - 1)], // Название, которое будет содержать чит-букву.
+				// 		bonusSymbol = bonusTitle.textContent[randomInteger(0, bonusTitle.textContent.length - 1)], // Чит символ или буква, для активации.
+				// 		bonusActive = false, // Использован ли подарок.
+				// 		bonusChance = false; // Использовал ли шанс выбора варианта.
 
-					console.log(bonusTitle.textContent, bonusSymbol);
+				// 	bonusTitle.addEventListener('click', function() {
+				// 		if (!bonusActive) {
+				// 			bonusWord.innerHTML = '';
+				// 			bonusResult.classList.remove(isActive);
+				// 			bonusResult.textContent = '';
 
-					bonusTitle.addEventListener('click', function() {
-						if (!bonusActive) {
-							bonusWord.innerHTML = '';
-							bonusResult.classList.remove(isActive);
-							bonusResult.textContent = '';
+				// 			for (let ct = 0; ct < bonusTitle.textContent.length; ct++) {
+				// 				let symbol = bonusTitle.textContent[ct],
+				// 					bonusItem = document.createElement('li');
 
-							for (let ct = 0; ct < bonusTitle.textContent.length; ct++) {
-								let symbol = bonusTitle.textContent[ct],
-									bonusItem = document.createElement('li');
-	
-								bonusItem.classList.add('bonus__item');
-	
-								if (symbol === ' ') {
-									bonusItem.classList.add('bonus__item_space');
-									bonusItem.textContent = '_';
-	
-								} else {
-									bonusItem.textContent = symbol;
-								};
-	
-								bonusWord.appendChild(bonusItem);
-							};
-	
-							bonusBox.classList.add(isActive);
-							bonusActive = true;
+				// 				bonusItem.classList.add('bonus__item');
 
-							let bonusItem = document.querySelectorAll('.bonus__item'); // Буквы слова, для активации.
+				// 				if (symbol === ' ') {
+				// 					bonusItem.classList.add('bonus__item_space');
+				// 					bonusItem.textContent = '_';
 
-							for (let bi = 0; bi < bonusItem.length; bi++) {
-								let bitem = bonusItem[bi];
+				// 				} else {
+				// 					bonusItem.textContent = symbol;
+				// 				};
 
-								bitem.addEventListener('click', function() {
-									if (!bonusChance) {
-										bonusResult.classList.add(isActive);
+				// 				bonusWord.appendChild(bonusItem);
+				// 			};
 
-										if (bitem.textContent === bonusSymbol) {
-											bitem.style.color = '#3ECF6E';
-											bonusResult.style.color = '#3ECF6E';
-											bonusResult.textContent = 'подарок активирован!';
+				// 			bonusBox.classList.add(isActive);
+				// 			bonusActive = true;
 
-											// Зачисление подарка.
-											startArmyResources.textContent = '9999';
-	
-										} else {
-											bitem.style.color = '#E8432A';
-											bonusResult.style.color = '#E8432A';
-											bonusResult.textContent = 'увы, вы проиграли!';
-										};
+				// 			let bonusItem = document.querySelectorAll('.bonus__item'); // Буквы слова, для активации.
 
-										setTimeout(function() {
-											bonusBox.classList.remove(isActive);
-										}, 1000);
-										bonusChance = true;
-									};
-								});
-							};
-						};
-					});
-				}; */
+				// 			for (let bi = 0; bi < bonusItem.length; bi++) {
+				// 				let bitem = bonusItem[bi];
+
+				// 				bitem.addEventListener('click', function() {
+				// 					if (!bonusChance) {
+				// 						bonusResult.classList.add(isActive);
+
+				// 						if (bitem.textContent === bonusSymbol) {
+				// 							bitem.style.color = '#3ECF6E';
+				// 							bonusResult.style.color = '#3ECF6E';
+				// 							bonusResult.textContent = 'подарок активирован!';
+
+				// 							// Зачисление подарка.
+				// 							startArmyResources.textContent = '9999';
+
+				// 						} else {
+				// 							bitem.style.color = '#E8432A';
+				// 							bonusResult.style.color = '#E8432A';
+				// 							bonusResult.textContent = 'увы, вы проиграли!';
+				// 						};
+
+				// 						setTimeout(function() {
+				// 							bonusBox.classList.remove(isActive);
+				// 						}, 1000);
+				// 						bonusChance = true;
+				// 					};
+				// 				});
+				// 			};
+				// 		};
+				// 	});
+				// };
 			};
 
 			let startArmyCounter = document.querySelectorAll('.starting-army__counter'), // Панель кнопок выбора количества техники.
