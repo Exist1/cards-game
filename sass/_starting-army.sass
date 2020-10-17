@@ -339,8 +339,6 @@
 			+size-calc('padding-bottom', 'r', $GOFFSET/2)
 		&__body
 			display: block
-		&__tab
-			+size-calc('padding-right', 'r', $GOFFSET/2)
 		&__list::before
 			padding-bottom: 55%
 		&__card
@@ -367,7 +365,7 @@
 			flex-direction: row
 			left: 0
 			+size-calc('padding', 'rx', $GOFFSET*0.375, $GHEIGHT, calc((#{$GOFFSET*2}*100vw)/#{$GWIDTH}))
-			position: absolute
+			position: fixed
 			width: 100%
 			z-index: 999
 			.starting-army.is-completed &
@@ -408,12 +406,11 @@
 			+size-calc('margin-bottom', 'r', $GOFFSET*0.375)
 		&__list::before
 			padding-bottom: 115%
-		&__tab
-			padding-right: 0
-			&::-webkit-scrollbar
-				+size-calc('width', 'r', $GOFFSET/4)
+		&__tab::-webkit-scrollbar
+			+size-calc('width', 'r', $GOFFSET/4)
 		&__box
-			flex-basis: 100%
+			flex-basis: 98%
+			margin-right: 2%
 		&__card
 			+size-calc('padding', 'r', $GOFFSET/4)
 		&__progress
