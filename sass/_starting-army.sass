@@ -325,7 +325,7 @@
 	@media screen and ( min-width: 1700px )
 		&__box
 			flex-basis: calc(100%/3.125)
-	@media screen and ( min-width: #{$GWIDTH}px ) and ( max-height: 650px )and ( max-width: 1400px )
+	@media screen and ( min-width: #{$GWIDTH}px ) and ( max-height: 650px ) and ( max-width: 1400px )
 		&__list::before
 			padding-bottom: 35%
 	@media screen and ( max-width: #{$GTABLET}px )
@@ -342,7 +342,7 @@
 		&__tab
 			+size-calc('padding-right', 'r', $GOFFSET/2)
 		&__list::before
-			padding-bottom: 60%
+			padding-bottom: 55%
 		&__card
 			+size-calc('padding', 'rr', $GOFFSET/4, $GHEIGHT, $GOFFSET/2)
 		&__progress
@@ -397,6 +397,9 @@
 				+size-calc('margin-right', 'r', $GOFFSET/2)
 		&__box
 			+size-calc('margin-bottom', 'r', $GOFFSET/2)
+	@media screen and ( min-width: #{$GMOBILE + 1}px ) and ( max-width: #{$GTABLET}px ) and ( min-height: 900px )
+		&__list::before
+			padding-bottom: 100%
 	@media screen and ( max-width: #{$GMOBILE}px )
 		&__wrap
 			margin: 0

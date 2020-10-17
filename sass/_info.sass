@@ -432,6 +432,9 @@
 			border-left: 1px solid $COLOR_separator
 			flex-basis: 20%
 			order: -2
+	@media screen and ( min-width: #{$GMOBILE + 1}px ) and ( max-width: #{$GTABLET}px ) and ( min-height: 900px )
+		&__content::before
+			padding-bottom: 90%
 	@media screen and ( max-width: #{$GMOBILE}px )
 		&__header
 			+size-calc('margin-bottom', 'r', $GOFFSET*0.375)
