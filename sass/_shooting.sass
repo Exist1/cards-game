@@ -130,7 +130,7 @@
 		margin-top: calc((28*100vw)/#{$GWIDTH})
 		text-align: center
 		text-transform: uppercase
-		transition: color 0s $TRS_standart
+		transition: color 0s $TRS_standart, opacity $TRSC
 		&::before
 			color: $GCOLOR_white !important
 			content: 'Результат:'
@@ -176,7 +176,7 @@
 			&.is-active
 				pointer-events: all
 				z-index: 2
-				.shooting__content
+				.shooting__hidden
 					opacity: 1
 					pointer-events: all
 					transition-delay: $TRS_time*1.5
@@ -187,11 +187,17 @@
 		&__content
 			max-height: 100rem !important
 			+size-calc('margin-top', 'r', $GOFFSET/2)
-			opacity: 0
-			pointer-events: none
+			.shooting__article_cube &
+				+size-calc('margin-top', 'r', $GOFFSET*2)
 		&__list, &__back
 			.shooting__step-0 .shooting__article_fpower &
 				width: 100%
+		&__list
+			.shooting__article_armor &
+				+size-calc('margin-top', 'r', -$GOFFSET*1.25)
+		&__hidden
+			opacity: 0
+			pointer-events: none
 		&__item
 			line-height: 2.5
 			&:not(:nth-last-child(-n + 4))
@@ -203,11 +209,19 @@
 				+size-calc('margin-right', 'r', $GOFFSET/2)
 				+size-calc('width', 'r', $GOFFSET)
 		&__info
-			+size-calc('margin-bottom', 'r', $GOFFSET*0.375)
+			margin-bottom: 0
+			opacity: 0
+			pointer-events: none
+			&.is-active
+				opacity: 1
+				pointer-events: all
+				transition-delay: $TRS_time*1.5
 		&__random
 			+size-calc('margin-top', 'r', $GOFFSET*0.375)
 		&__result
 			+size-calc('margin-top', 'r', $GOFFSET/2)
+			.shooting__article_cube.is-active &
+				transition: color 0s $TRS_standart, opacity $TRSC $TRS_time*1.5
 		&__panel
 			opacity: 1
 			pointer-events: all
@@ -218,5 +232,8 @@
 			+size-calc('margin-top', 'r', $GOFFSET*0.375)
 			&:not(:nth-last-child(-n + 4))
 				+size-calc('margin-bottom', 'r', $GOFFSET/4)
+		&__list
+			.shooting__article_armor &
+				+size-calc('margin-top', 'r', -$GOFFSET)
 		&__random
 			+size-calc('padding', 'r', $GOFFSET*0.375)

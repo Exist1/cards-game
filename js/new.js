@@ -36,6 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		shootingResult = document.querySelector('.shooting__result'), // Место итогово результата стрельбы.
 		shootingRandom = document.querySelector('.shooting__random'), // Кнопка выбора случайного числа кубика.
 		shootingTab = document.querySelectorAll('.shooting__tab'), // Кнопки переключения шага выбора параметров стрельбы.
+		shootingInfo = document.querySelector('.shooting__info'), // Информация о шансе и максимальном уроне.
 		infoTab = document.querySelectorAll('.info__tab'), // Все параметры сортировки в разделе информации.
 		infoList = document.querySelector('.info__list'), // Список всей техники в разделе информации.
 		// bonusBox = document.querySelector('.bonus'), // Блок активации чита.
@@ -65,7 +66,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		playerNotLast = true, // Игрорк не последний, если участвуют все три игрока.
 		numberShop, // Номер игрока, зашедшего в магазин.
 		classStep = 'shooting__step-', // Класс шага.
-		counterStep = 0, // Счётчик шага.
 		currentInfoTab = 0, // Номер выбранного пункта сортировки таблицы.
 		targetAttr = 'data-sort', // Ориентировочное название атрибута для сортировки списка.
 		resourcesCountry = ['is-germany', 'is-ussr', 'is-allied'], // Список классов стран для колоризации "денег" (ресурсов) игрока.
@@ -116,8 +116,8 @@ document.addEventListener('DOMContentLoaded', function() {
 			clearInputPlayer();
 
 			shootingWrap.className = 'screen__wrap shooting__wrap shooting__step-0';
-			counterStep = 0;
-			changeActiveClass(counterStep, shootingArticle);
+			shootingInfo.classList.remove(isActive);
+			changeActiveClass(0, shootingArticle);
 
 			for (let sa = 0; sa < saCaching; sa++) {
 				let shArticle = shootingArticle[sa],
@@ -609,8 +609,8 @@ document.addEventListener('DOMContentLoaded', function() {
 					};
 
 					shootingWrap.className = 'screen__wrap shooting__wrap shooting__step-0';
-					counterStep = 0;
-					changeActiveClass(counterStep, shootingArticle);
+					shootingInfo.classList.remove(isActive);
+					changeActiveClass(0, shootingArticle);
 
 					for (let sa = 0; sa < saCaching; sa++) {
 						let shArticle = shootingArticle[sa],
@@ -699,6 +699,8 @@ document.addEventListener('DOMContentLoaded', function() {
 			
 			shTab.addEventListener('click', function() {
 				if (shootingWrap.classList.contains(classStep + st)) changeActiveClass(st, shootingArticle);
+
+				st !== 2 ? shootingInfo.classList.remove(isActive) : shootingInfo.classList.add(isActive);
 			});
 		};
 
@@ -730,6 +732,8 @@ document.addEventListener('DOMContentLoaded', function() {
 							currentArmor = ai;
 
 							if (ai === 17) articleTitle.textContent = '22'; // Корректировка значения.
+
+							shootingInfo.classList.add(isActive);
 
 							// Подстановка информации.
 							shootingUpdate(true);
