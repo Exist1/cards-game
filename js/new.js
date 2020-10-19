@@ -35,10 +35,10 @@ document.addEventListener('DOMContentLoaded', function() {
 		shootingText = document.querySelectorAll('.shooting__text'), // Место информации шанса и саксимального урона.
 		shootingResult = document.querySelector('.shooting__result'), // Место итогово результата стрельбы.
 		shootingRandom = document.querySelector('.shooting__random'), // Кнопка выбора случайного числа кубика.
-		shootingBtn = document.querySelectorAll('.shooting__btn'), // Кнопки переключения шага выбора параметров стрельбы.
+		shootingTab = document.querySelectorAll('.shooting__tab'), // Кнопки переключения шага выбора параметров стрельбы.
 		infoTab = document.querySelectorAll('.info__tab'), // Все параметры сортировки в разделе информации.
 		infoList = document.querySelector('.info__list'), // Список всей техники в разделе информации.
-		bonusBox = document.querySelector('.bonus'), // Блок активации чита.
+		// bonusBox = document.querySelector('.bonus'), // Блок активации чита.
 		// bonusWord = bonusBox.querySelector('.bonus__word'), // Заголовок техники содержащий символ активации чит-кода.
 		// bonusResult = bonusBox.querySelector('.bonus__result'), // Результат выполнения условия получения подарка.
 		tableSettings = {
@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		gbsCaching = globalBtnShop.length,
 		gppCaching = globalPrestigePoints.length,
 		saCaching = shootingArticle.length,
-		sbCaching = shootingBtn.length,
+		stCaching = shootingTab.length,
 		gaCaching = globalAttack.length,
 		gtCaching = globalTechnics.length,
 		bbCaching = btnBack.length,
@@ -694,39 +694,11 @@ document.addEventListener('DOMContentLoaded', function() {
 		};
 
 		// Управление кнопками переключения шага выбора в разделе "стрельба".
-		for (let sb = 0; sb < sbCaching; sb++) {
-			let shBtn = shootingBtn[sb];
-
-			shBtn.addEventListener('click', function() {
-				if (!shBtn.classList.contains(isEnd)) {
-					if (shBtn.classList.contains('shooting__btn_left')) { // Кнопка переключения шага назад.
-						counterStep <= 0 ? counterStep = 0 : counterStep--;
-
-						if (counterStep === 0) {
-							shBtn.classList.add(isEnd);
-
-							if (shootingWrap.classList.contains(classStep + '1') && currentArmor === undefined) shootingBtn[1].classList.remove(isEnd);
-
-						} else if (shootingWrap.classList.contains(classStep + '2') && counterStep === 1) {
-							shootingBtn[1].classList.remove(isEnd);
-						};
-
-					} else if (shBtn.classList.contains('shooting__btn_right')) { // Кнопка переключения шага вперёд.
-						shootingWrap.classList.add(classStep + (counterStep + 1));
-
-						if (shootingWrap.classList.contains(classStep + '1') && currentArmor === undefined || shootingWrap.classList.contains(classStep + '2') && counterStep === 1) {
-							shBtn.classList.add(isEnd);
-							shootingBtn[0].classList.remove(isEnd);
-
-						};
-
-						if (shootingWrap.classList.contains(classStep + '2') && counterStep === 0) shootingBtn[0].classList.remove(isEnd);
-
-						counterStep >= 2 ? counterStep = 2 : counterStep++;
-					};
-	
-					changeActiveClass(counterStep, shootingArticle);
-				};
+		for (let st = 0; st < stCaching; st++) {
+			let shTab = shootingTab[st];
+			
+			shTab.addEventListener('click', function() {
+				if (shootingWrap.classList.contains(classStep + st)) changeActiveClass(st, shootingArticle);
 			});
 		};
 
@@ -744,10 +716,6 @@ document.addEventListener('DOMContentLoaded', function() {
 						articleTitle.textContent = aItem.querySelector('span').textContent;
 
 						if (sa === 0) {
-							shootingBtn[0].classList.remove(isEnd);
-
-							if (shootingWrap.classList.contains(classStep + '1') && currentArmor === '') shootingBtn[1].classList.add(isEnd);
-
 							currentFpower = ai;
 
 							if (ai === 0) articleTitle.textContent = 'ПЕХОТА'; // Корректировка значения.
@@ -759,8 +727,6 @@ document.addEventListener('DOMContentLoaded', function() {
 							if (currentCube !== '') shootingUpdate(false);
 
 						} else if (sa === 1) {
-							if (shootingWrap.classList.contains(classStep + '2') && counterStep === 1) shootingBtn[1].classList.add(isEnd);
-
 							currentArmor = ai;
 
 							if (ai === 17) articleTitle.textContent = '22'; // Корректировка значения.
@@ -783,8 +749,7 @@ document.addEventListener('DOMContentLoaded', function() {
 						// Переключение на следующий шаг.
 						if (sa !== 2) {
 							shootingWrap.classList.add(classStep + (sa + 1));
-							counterStep = sa + 1;
-							changeActiveClass(counterStep, shootingArticle);
+							changeActiveClass(sa + 1, shootingArticle);
 						};
 					};
 				});

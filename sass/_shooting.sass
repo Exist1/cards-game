@@ -46,7 +46,7 @@
 		flex-basis: 100%
 		span
 			color: $COLOR_grey
-			+resp-font(62, 20)
+			+resp-font(62, 22)
 			left: 50%
 			position: absolute
 			text-shadow: 4px 4px 4px rgba($GCOLOR_black, 0.8)
@@ -138,28 +138,19 @@
 			font-family: $GFONT_regular
 			font-weight: normal
 			+resp-font(24, 18)
-	&__btn
+	&__panel
+		display: flex
 		+size-calc('height', 'r', $GOFFSET*2.5)
+		left: 0
 		opacity: 0
 		pointer-events: none
 		position: absolute
 		top: 0
-		+size-calc('width', 'r', $GOFFSET)
-		z-index: 999
-		&_left
-			left: 0
-		&_right
-			right: 0
-		&.is-end
-			cursor: no-drop
-	&__arrow
-		fill: $GCOLOR_white
-		height: 100%
 		width: 100%
-		&_left
-			transform: scaleX(-1)
-		.shooting__btn.is-end &
-			fill: $COLOR_bgDefault
+		z-index: 999
+	&__tab
+		cursor: pointer
+		flex-basis: calc(100%/3)
 	@media screen and ( max-width: #{$GTABLET}px )
 		&__wrap
 			display: block
@@ -176,16 +167,12 @@
 			top: 0
 			width: 100%
 			z-index: 1
-			&_fpower
-				.shooting__title
-					+size-calc('margin-left', 'r', $GOFFSET)
 			&_armor
 				border: none !important
 				.shooting__title
 					margin-left: calc(100%/3)
-			&_cube
-				.shooting__title
-					margin-left: calc((100%/1.5) - #{$GOFFSET/10}rem)
+			&_cube .shooting__title
+				margin-left: calc(100%/1.5)
 			&.is-active
 				pointer-events: all
 				z-index: 2
@@ -221,25 +208,15 @@
 			+size-calc('margin-top', 'r', $GOFFSET*0.375)
 		&__result
 			+size-calc('margin-top', 'r', $GOFFSET/2)
-		&__btn
+		&__panel
 			opacity: 1
 			pointer-events: all
 	@media screen and ( max-width: #{$GMOBILE}px )
-		&__svg-title
-			+size-calc('height', 'r', $GOFFSET*1.25)
-		&__article
-			&_fpower
-				.shooting__title
-					+size-calc('margin-left', 'r', $GOFFSET/2)
-			&_cube
-				.shooting__title
-					margin-left: calc((100%/1.5) - #{$GOFFSET/20}rem)
+		&__svg-title, &__panel
+			+size-calc('height', 'r', $GOFFSET*1.5)
 		&__content
 			+size-calc('margin-top', 'r', $GOFFSET*0.375)
 			&:not(:nth-last-child(-n + 4))
 				+size-calc('margin-bottom', 'r', $GOFFSET/4)
 		&__random
 			+size-calc('padding', 'r', $GOFFSET*0.375)
-		&__btn
-			+size-calc('height', 'r', $GOFFSET*1.25)
-			+size-calc('width', 'r', $GOFFSET/2)
